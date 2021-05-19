@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { Component } from 'react';
 import axios from "axios";
+import BreweryList from '../BreweryList';
+import SearchBar from '../SearchBar';
 
-const BreweryContainer = (props) => {
-  const [breweries, setBreweries] = useState([])
+class BreweryContainer extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      breweries: []
+    }
+  }
 
-  useEffect(() => {
-    fetchBreweries()
-  })
+  componentDidMount() {
+    this.fetchBreweries()
+  }
 
-  let options = {
+  // request headers for axios fetch call
+  options = {
     method: 'GET',
     url: 'https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries',
     headers: {
@@ -17,20 +25,26 @@ const BreweryContainer = (props) => {
     }
   };
 
-  let fetchBreweries = () => {
-    axios.request(options).then(function (response) {
-      console.log(response.data);
-    }).catch(function (error) {
+  fetchBreweries = () => {
+    axios.request(this.options).then((response) => {
+      this.setState({
+        breweries: response.data
+      })
+      // console.log(response.data)
+    }).catch(error => {
       console.error(error);
     });
   }
 
-
-  return (
-    <div>
-      <p>BreweryContainer</p>
-    </div>
-  )
+  render() {
+    return (
+      <div>
+        <p>BreweryContainer</p>
+        < SearchBar />
+        < BreweryList breweries={this.state.breweries}/>
+      </div>
+    )
+  }
 }
 
 export default BreweryContainer;
