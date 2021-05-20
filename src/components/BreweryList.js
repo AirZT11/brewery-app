@@ -4,15 +4,15 @@ import BreweryCard from './BreweryCard';
 const BreweryList = ({breweries}) => {
   return (
     <div>
-      <ul>
+      <div>
         {breweries.map(b => (
-          <li>
+          <div>
             {<BreweryCard brewery={b}/>}
             {console.log(b)}
-          </li>  
-        )
+          </div>  
+          )
         )}
-      </ul>
+      </div>
     </div>
   )
 }

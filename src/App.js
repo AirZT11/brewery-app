@@ -1,11 +1,10 @@
 import './App.css';
-import HomePage from './components/HomePage';
 import BrewerContainer from './components/containers/BreweryContainer';
 
 function App() {
   return (
     <div className="App">
-      < HomePage />
+      <h2>Welcome to Beer App!</h2>
       < BrewerContainer />
     </div>
   );
