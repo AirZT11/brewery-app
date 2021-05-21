@@ -4,7 +4,7 @@ import BrewerContainer from './components/containers/BreweryContainer';
 function App() {
   return (
     <div className="App">
-      <h2>Welcome to Beer App!</h2>
+      <h1>Welcome to the Brewery App!</h1>
       < BrewerContainer />
     </div>
   );

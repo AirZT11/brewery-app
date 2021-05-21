@@ -8,7 +8,6 @@ const BreweryList = ({breweries}) => {
         {breweries.map(b => (
           <div>
             {<BreweryCard brewery={b}/>}
-            {console.log(b)}
           </div>  
           )
         )}
