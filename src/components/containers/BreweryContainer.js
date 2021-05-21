@@ -14,23 +14,27 @@ class BreweryContainer extends Component {
   }
 
   componentDidMount() {
-    this.fetchBreweries()
+    // this.fetchBreweries()
   }
 
   fetchBreweries = () => {
     axios.request({
       method: 'GET',
       url: `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search`,
-      params: { query: 'dog' },
+      params: { query: this.state.searchInput },
       headers: {
         'x-rapidapi-key': '0d5f8f8bb8mshdec6240eba9abb8p130b38jsn82704896f6c0',
         'x-rapidapi-host': 'brianiswu-open-brewery-db-v1.p.rapidapi.com'
       }
     }).then((response) => {
-      this.setState({
-        breweries: response.data
+      // function filters all breweries that dont have a latitude point
+      let filteredBrews = response.data.filter(brew => {
+        return brew.latitude !== null
       })
-      // console.log(response)
+      this.setState({
+        breweries: filteredBrews
+      })
+      console.log(filteredBrews)
     }).catch(error => {
       console.error(error);
     });

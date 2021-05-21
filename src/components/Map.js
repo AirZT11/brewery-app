@@ -22,20 +22,18 @@ const Map = ({breweries}) => {
       >
         {/* {console.log(breweries)} */}
         {breweries.map(b => (
-          // console.log(b.latitude)
-          // console.log(b.longitude)
+          // console.log(b.latitude, b.longitude)
+
           < Marker 
             key={b.id}
-            latitude={b.latitude}
-            longitude={b.longitude}
+            latitude={parseInt(b.latitude)}
+            longitude={parseInt(b.longitude)}
           >
-            <div>beer</div>
-            {/* <button>
-              <img src="/public/logo192.png" alt='beer'/>
-            </button> */}
+            <button>
+              <img src="/public/beerIcon.svg" alt='beer'/>
+            </button>
           </Marker>
-        )
-        )}
+        ))}
       </ReactMapGL>
     </div>
   )
