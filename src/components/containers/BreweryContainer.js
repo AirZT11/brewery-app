@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 import BreweryList from '../BreweryList';
 import SearchBar from '../SearchBar';
+import Map from '../Map';
 
 class BreweryContainer extends Component {
   constructor(props) {
@@ -13,14 +14,14 @@ class BreweryContainer extends Component {
   }
 
   componentDidMount() {
-    // this.fetchBreweries()
+    this.fetchBreweries()
   }
 
   fetchBreweries = () => {
     axios.request({
       method: 'GET',
       url: `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search`,
-      params: { query: this.state.searchInput },
+      params: { query: 'dog' },
       headers: {
         'x-rapidapi-key': '0d5f8f8bb8mshdec6240eba9abb8p130b38jsn82704896f6c0',
         'x-rapidapi-host': 'brianiswu-open-brewery-db-v1.p.rapidapi.com'
@@ -52,6 +53,7 @@ class BreweryContainer extends Component {
       <div>
         < SearchBar handleChange={this.handleChange} searchInput={this.searchInput} handleSubmit = {this.handleSubmit}/>
         < BreweryList breweries={this.state.breweries} />
+        < Map breweries={this.state.breweries} />
       </div>
     )
   }

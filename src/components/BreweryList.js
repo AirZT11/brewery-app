@@ -7,11 +7,13 @@ const BreweryList = ({breweries}) => {
       <div>
         {breweries.map(b => (
           <div>
-            {<BreweryCard brewery={b}/>}
+            {/* {console.log(b)} */}
+            {/* {<BreweryCard brewery={b}/>} */}
           </div>  
           )
         )}
       </div>
+
     </div>
   )
 }
