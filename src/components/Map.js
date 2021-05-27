@@ -1,26 +1,36 @@
-import React, { useState } from 'react';
-import ReactMapGL, {Marker} from 'react-map-gl';
+import React, { useState, useEffect } from 'react';
+import ReactMapGL, {Marker, Popup} from 'react-map-gl';
+import BreweryCard from './BreweryCard';
 
 const Map = ({breweries}) => {
   const [viewport, setviewPort] = useState({
     latitude: 39.6361637,
     longitude: -105.321458,
-    width: '100vw',
-    height: '75vh',
-    zoom: 5
+    width: '50%',
+    height: '500px',
+    zoom: 3
   });
   
+  const [selectedBrew, setSelectedBrew] = React.useState(null);
+  useEffect(() => {
+    const listener = e => {
+      if (e.key === "Escape") {
+        setSelectedBrew(null)
+      }
+    }
+    window.addEventListener('keydown', listener)
+  }, [])
   return (
     <div>
       < ReactMapGL 
         {...viewport} 
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
         mapStyle='mapbox://styles/airzt11/ckoyq05k2288l17nox4ns6ttl'
+        asyncRender={true}
         onViewportChange={viewport => {
           setviewPort(viewport);
         }}
       >
-        {/* {console.log(breweries)} */}
         {breweries.map(b => (
           // console.log(b.latitude, b.longitude)
 
@@ -29,11 +39,24 @@ const Map = ({breweries}) => {
             latitude={parseInt(b.latitude)}
             longitude={parseInt(b.longitude)}
           >
-            <button>
-              <img src="/public/beerIcon.svg" alt='beer'/>
+            <button onClick={e => {
+              e.preventDefault();
+              setSelectedBrew(b);
+            }}>
+              <img src="/Lager2.svg" alt='beer'/>
             </button>
           </Marker>
         ))}
+
+    {selectedBrew ? <Popup latitude={parseInt(selectedBrew.latitude)} longitude={parseInt(selectedBrew.longitude)}
+        closeButton={true}
+        closeOnClick={false}
+        onClose={() => setSelectedBrew(null)}
+        anchor="top" >
+        < BreweryCard brewery={selectedBrew}/>
+      </Popup> : null }
+
+
       </ReactMapGL>
     </div>
   )
