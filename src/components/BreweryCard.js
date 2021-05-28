@@ -3,7 +3,7 @@ import React from 'react';
 const BreweryCard = ({brewery: {city, country, id, name, postal_code, state, street, website_url}}) => {
   return (
     <div className='brew-card'>
-      <p>{name}</p>
+      <strong><p>{name}</p></strong>
       <p>Rating *****</p>
       <p>{city}, {state}</p>
       <p>{country}</p>
@@ -15,7 +15,7 @@ const BreweryCard = ({brewery: {city, country, id, name, postal_code, state, str
 
 const urlExist = (url) => {
   if (url != null) {
-    return <a href={url}>link</a>
+    return <a href={url}>website</a>
   }
 }
 export default BreweryCard;

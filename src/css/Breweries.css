@@ -19,23 +19,23 @@
 
 .brew-list {
   flex: 2;
+  width: 23%;
   position: absolute;
   bottom: 0;
   right: 0;
+  margin: auto;
   overflow: auto;
-  background: rgb(104, 104, 104, 0.5);
-  /* display: block; */
-  /* height: 100%; */
-  /* width: 30%; */
-  border: 5px solid red;
-  /* z-index: 100; */
-  /* border-radius: inherit; */
+  height: 50vh;
+  background: rgba(207, 207, 207, 0.7);
 }
 
 .brew-card {
-  border: 3px;
-  border-style: solid;
-  border-color: cornsilk;
+  border-bottom: 1px solid rgb(182, 182, 182);
   padding-bottom: 20px;
-  line-height: 3px;
+  line-height: 1.1;
+}
+
+.brew-card p {
+  /* display: inline; */
+  margin: 1px
 }
