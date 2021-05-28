@@ -6,12 +6,14 @@ const Map = ({breweries}) => {
   const [viewport, setviewPort] = useState({
     latitude: 39.6361637,
     longitude: -105.321458,
-    width: '50%',
-    height: '500px',
+    width: '100%',
+    height: '100%',
     zoom: 3
   });
   
+  // sets a selected brewery in state
   const [selectedBrew, setSelectedBrew] = React.useState(null);
+
   useEffect(() => {
     const listener = e => {
       if (e.key === "Escape") {
@@ -21,7 +23,7 @@ const Map = ({breweries}) => {
     window.addEventListener('keydown', listener)
   }, [])
   return (
-    <div>
+    <div className='map'>
       < ReactMapGL 
         {...viewport} 
         mapboxApiAccessToken={process.env.REACT_APP_MAPBOX_TOKEN}
@@ -33,7 +35,6 @@ const Map = ({breweries}) => {
       >
         {breweries.map(b => (
           // console.log(b.latitude, b.longitude)
-
           < Marker 
             key={b.id}
             latitude={parseInt(b.latitude)}
@@ -48,6 +49,7 @@ const Map = ({breweries}) => {
           </Marker>
         ))}
 
+    {/* Displays brewery info on marker */}
     {selectedBrew ? <Popup latitude={parseInt(selectedBrew.latitude)} longitude={parseInt(selectedBrew.longitude)}
         closeButton={true}
         closeOnClick={false}
@@ -55,8 +57,7 @@ const Map = ({breweries}) => {
         anchor="top" >
         < BreweryCard brewery={selectedBrew}/>
       </Popup> : null }
-
-
+      
       </ReactMapGL>
     </div>
   )

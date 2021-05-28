@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
+import '../../css/Breweries.css'
 import axios from "axios";
-import BreweryList from '../BreweryList';
+import BreweryList from './BreweryList';
 import SearchBar from '../SearchBar';
 import Map from '../Map';
+// import 'mapbox-gl.css'
 
 class BreweryContainer extends Component {
   constructor(props) {
     super(props)
     this.state = {
       breweries: [],
-      searchInput: 'dog'
+      searchInput: '',
+      display: 'none'
     }
   }
 
@@ -43,21 +46,34 @@ class BreweryContainer extends Component {
   handleChange = (e) => {
     this.setState({
       searchInput: e.target.value
-    }, () => console.log(this.state.searchInput))
+    })
   }
 
   handleSubmit = (e) => {
     e.preventDefault();
     this.fetchBreweries();
+    this.displayList();
   }
   
+  displayList = () => {
+    this.setState({
+      display: 'block'
+    })
+  }
 
   render() {
     return (
       <div>
         < SearchBar handleChange={this.handleChange} searchInput={this.searchInput} handleSubmit = {this.handleSubmit}/>
-        {/* < BreweryList breweries={this.state.breweries} /> */}
-        < Map breweries={this.state.breweries} />
+        <br/>
+        <div className='brew-container'>
+          < Map breweries={this.state.breweries} />
+          {/* displays breweryList when search is submitted */}
+          <div style={{display: this.state.display}}>
+            < BreweryList breweries={this.state.breweries} />
+          </div>
+          
+        </div>
       </div>
     )
   }

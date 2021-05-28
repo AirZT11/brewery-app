@@ -1,0 +1,41 @@
+.brew-container {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  /* justify-content: space-around; */
+  margin: auto;
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  width: 100vh;
+  height: 50vh;
+  overflow: auto;
+}
+
+.map {
+  flex: 8;
+  position: relative;
+  /* margin: 10px; */
+}
+
+.brew-list {
+  flex: 2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  overflow: auto;
+  background: rgb(104, 104, 104, 0.5);
+  /* display: block; */
+  /* height: 100%; */
+  /* width: 30%; */
+  border: 5px solid red;
+  /* z-index: 100; */
+  /* border-radius: inherit; */
+}
+
+.brew-card {
+  border: 3px;
+  border-style: solid;
+  border-color: cornsilk;
+  padding-bottom: 20px;
+  line-height: 3px;
+}

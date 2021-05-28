@@ -1,19 +1,16 @@
 import React from 'react';
-import BreweryCard from './BreweryCard';
+import BreweryCard from '../BreweryCard';
 
 const BreweryList = ({breweries}) => {
   return (
-    <div>
-      <div>
+    <div className='brew-list'>
         {breweries.map(b => (
-          <div>
+          <div key={b.name}>
             {/* {console.log(b)} */}
-            {/* {<BreweryCard brewery={b}/>} */}
+            {<BreweryCard brewery={b}/>}
           </div>  
           )
         )}
-      </div>
-
     </div>
   )
 }
