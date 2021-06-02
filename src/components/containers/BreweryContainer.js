@@ -64,8 +64,7 @@ class BreweryContainer extends Component {
   render() {
     return (
       <div>
-        < SearchBar handleChange={this.handleChange} searchInput={this.searchInput} handleSubmit = {this.handleSubmit}/>
-        <br/>
+        
         <div className='brew-container'>
           < Map breweries={this.state.breweries} />
           {/* displays breweryList when search is submitted */}
@@ -73,6 +72,9 @@ class BreweryContainer extends Component {
             < BreweryList breweries={this.state.breweries} />
           </div>  
         </div>
+        
+        < SearchBar handleChange={this.handleChange} searchInput={this.searchInput} handleSubmit = {this.handleSubmit}/>
+        <br/>
       </div>
     )
   }
