@@ -71,8 +71,7 @@ class BreweryContainer extends Component {
           {/* displays breweryList when search is submitted */}
           <div style={{display: this.state.display}}>
             < BreweryList breweries={this.state.breweries} />
-          </div>
-          
+          </div>  
         </div>
       </div>
     )
