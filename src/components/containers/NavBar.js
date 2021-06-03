@@ -8,13 +8,13 @@ const NavBar = (props) => {
       <nav className='nav-bar' >
           <ul>
             <li>
-              <a><NavLink to="/">Home</NavLink></a>
+              <NavLink exact className='nav-link' to="/">Home</NavLink>
             </li>
             <li>
-              <a><NavLink to="/about">About</NavLink></a>
+              <NavLink exact className='nav-link' to="/about">About</NavLink>
             </li>
             <li>
-              <a><NavLink to="/profile">Profile</NavLink></a>
+              <NavLink exact className='nav-link' to="/profile">Profile</NavLink>
             </li>
           </ul>
         </nav>

@@ -1,10 +1,15 @@
 import React from 'react';
-import { link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const BreweryCard = ({brewery: {city, country, id, name, postal_code, state, street, website_url}}) => {
   return (
     <div className='brew-card'>
-      <strong><p>{name}</p></strong>
+      
+        <Link to={`brewery/${name}`} >
+        <strong><p>{name}</p></strong>
+        </Link>
+
+
       <p>Rating *****</p>
       <p className='brew-location'>{city}, {state}</p>
       <p className='brew-location'>{country}</p>
