@@ -22,9 +22,9 @@ function App() {
             <Route exact path="/profile">< Profile /></Route>
             <Route exact path="/">< BrewerContainer /></Route>
             <Route exact path='/brewery/:id' render={(props) => {
-              const breweryId = props.match.params.id
-              console.log(props.match)
-              return <BreweryPage brewery={breweryId}/>
+              // const breweryId = props.match.params.id
+              // console.log(props.match)
+              return <BreweryPage/>
             }}>
             </Route>
           </Switch>
