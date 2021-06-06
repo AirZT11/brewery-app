@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom';
 const BreweryCard = ({brewery}) => {
   return (
     <div className='brew-card'>
-      {/* {console.log(brewery)} */}
+      {console.log(brewery)}
         <Link to={{
-          pathname: `brewery/${brewery.name}`,
+          pathname: `brewery/${brewery.id}`,
           state: {
             fromBrewCard: brewery
           }

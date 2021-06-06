@@ -14,8 +14,15 @@
 
 .map {
   /* flex: 8; */
+  /* margin: auto; */
   position: relative;
   /* margin: 10px; */
+}
+
+.small-map {
+  margin: auto;
+  width: 500px;
+  border: 5px solid rgba(0, 0, 0, 0.5);
 }
 
 .brew-list {
@@ -50,5 +57,15 @@
   font-size: 12px;
   font-weight: bold;
   text-decoration: none;
+}
+
+.brewery-page {
+  display: flex;
+  /* justify-content: space-evenly; */
+  margin: auto
+}
+
+.brewpage-description {
+  text-align: left;
 }
 

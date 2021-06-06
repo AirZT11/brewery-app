@@ -8,7 +8,7 @@ const Map = ({breweries}) => {
     longitude: -105.321458,
     width: '75vw',
     height: '50vh',
-    zoom: 3
+    zoom: 4
   });
   
   // sets a selected brewery in state

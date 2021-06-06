@@ -36,8 +36,7 @@ class BreweryContainer extends Component {
       })
       this.setState({
         breweries: filteredBrews
-      })
-      console.log(filteredBrews)
+      }) 
     }).catch(error => {
       console.error(error);
     });
