@@ -37,8 +37,8 @@ const Map = ({breweries}) => {
           // console.log(b.latitude, b.longitude)
           < Marker 
             key={b.id}
-            latitude={parseInt(b.latitude)}
-            longitude={parseInt(b.longitude)}
+            latitude={parseFloat(b.latitude)}
+            longitude={parseFloat(b.longitude)}
           >
             <button onClick={e => {
               e.preventDefault();

@@ -1,22 +1,37 @@
-import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import axios from "axios";
 import ReactMapGL, {Marker} from 'react-map-gl';
 
 const BreweryPage = (props) => {
-  // props from brewery link 
-  const location = useLocation();
-  const brewery = location.state;
-  const { fromBrewCard } = brewery
-  const { name, city, state, country, website_url, latitude, longitude } = fromBrewCard
-
-  // state for map
+  const { id } = useParams();
+  const [brewery, setBrewery] = useState({});
+  const { name, city, state, country, website_url, latitude, longitude } = brewery
   const [viewport, setviewPort] = useState({
-    latitude: parseInt(latitude),
-    longitude: parseInt(longitude),
-    width: '500px',
-    height: '500px',
-    zoom: 8
-  });
+    latitude: parseFloat(latitude),
+    longitude: parseFloat(longitude),
+    width: '25vw',
+    height: '25vh',
+    zoom: 8});
+  
+  useEffect(() => {
+    axios.request({
+      method: 'GET',
+      url: `https://api.openbrewerydb.org/breweries/${id}`,
+      headers: {
+        'x-rapidapi-key': '0d5f8f8bb8mshdec6240eba9abb8p130b38jsn82704896f6c0',
+        'x-rapidapi-host': 'brianiswu-open-brewery-db-v1.p.rapidapi.com'
+      }
+    }).then((response) => {
+      setBrewery(response.data)
+    }).catch(error => {
+      console.error(error);
+    });
+  }, [])
+    
+    
+  // console.log(brewery)
+  console.log(viewport)
 
   return (
     <div className='brewery-page'>
@@ -38,8 +53,8 @@ const BreweryPage = (props) => {
             setviewPort(viewport);
           }}>
             < Marker 
-              latitude={parseInt(latitude)}
-              longitude={parseInt(longitude)}
+              latitude={parseFloat(latitude)}
+              longitude={parseFloat(longitude)}
             >
               <img src="/Lager2.svg" alt='beer'/>
             </Marker>
