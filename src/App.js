@@ -1,4 +1,5 @@
 import './css/App.css';
+import React, { Component } from 'react';
 import {
   BrowserRouter as Router,
   Switch,
@@ -10,28 +11,36 @@ import Profile from './components/Profile';
 import BreweryPage from './components/BreweryPage';
 import BrewerContainer from './components/containers/BreweryContainer';
 
-function App() {
-  return (
-    <div className="App">
-      <Router>
-        < NavBar />
-
-        <div className='content'>
-          <Switch>
-            <Route exact path="/about"><About /></Route>
-            <Route exact path="/profile">< Profile /></Route>
-            <Route exact path="/">< BrewerContainer /></Route>
-            <Route exact path='/brewery/:id'>
-              <BreweryPage/> 
-            </Route>
-          </Switch>
-        </div>
-
-    </Router>
-
-    </div>
-    
-  );
+class App extends Component{
+  constructor() {
+    this.state = {
+      displayList: 'none'
+    }
+  }
+  
+  render() {
+    return (
+      <div className="App">
+        <Router>
+          < NavBar />
+  
+          <div className='content'>
+            <Switch>
+              <Route exact path="/about"><About /></Route>
+              <Route exact path="/profile">< Profile /></Route>
+              <Route exact path="/">< BrewerContainer /></Route>
+              <Route exact path='/brewery/:id'>
+                <BreweryPage/> 
+              </Route>
+            </Switch>
+          </div>
+  
+      </Router>
+  
+      </div>
+      
+    );
+  }
 }
 
 export default App;

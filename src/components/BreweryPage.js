@@ -7,12 +7,7 @@ const BreweryPage = (props) => {
   const { id } = useParams();
   const [brewery, setBrewery] = useState({});
   const { name, city, state, country, website_url, latitude, longitude } = brewery
-  const [viewport, setviewPort] = useState({
-    latitude: parseFloat(latitude),
-    longitude: parseFloat(longitude),
-    width: '25vw',
-    height: '25vh',
-    zoom: 8});
+  const [viewport, setviewPort] = useState({});
   
   useEffect(() => {
     axios.request({
@@ -24,13 +19,19 @@ const BreweryPage = (props) => {
       }
     }).then((response) => {
       setBrewery(response.data)
-    }).catch(error => {
+      setviewPort({
+        latitude: parseFloat(response.data.latitude),
+        longitude: parseFloat(response.data.longitude),
+        width: '50vw',
+        height: '25vh',
+        zoom: 8
+    })})
+    .catch(error => {
       console.error(error);
     });
   }, [])
-    
-    
-  // console.log(brewery)
+     
+  console.log(brewery)
   console.log(viewport)
 
   return (
@@ -58,9 +59,7 @@ const BreweryPage = (props) => {
             >
               <img src="/Lager2.svg" alt='beer'/>
             </Marker>
-
-        </ReactMapGL>     
-
+        </ReactMapGL>
       </div>
     </div>
   )
