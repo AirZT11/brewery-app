@@ -4,6 +4,7 @@ import axios from "axios";
 import BreweryList from './BreweryList';
 import SearchBar from '../SearchBar';
 import Map from '../Map';
+import BreweryPage from '../BreweryPage';
 // import 'mapbox-gl.css'
 
 class BreweryContainer extends Component {
@@ -68,12 +69,16 @@ class BreweryContainer extends Component {
           < Map breweries={this.state.breweries} />
           {/* displays breweryList when search is submitted */}
           <div style={{display: this.state.display}}>
-            < BreweryList breweries={this.state.breweries} />
+            < BreweryList breweries={this.state.breweries} listStyle={'brewList-map'}/>
           </div>  
         </div>
         
         < SearchBar handleChange={this.handleChange} searchInput={this.searchInput} handleSubmit = {this.handleSubmit}/>
         <br/>
+
+        <div style={{display: this.state.display}} >
+          < BreweryList breweries={this.state.breweries} listStyle={'brewList'} />
+        </div>
       </div>
     )
   }

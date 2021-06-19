@@ -6,7 +6,7 @@ const SearchBar = ({handleChange, searchInput, handleSubmit}) => {
   return (
     <div className='search-bar'>
       <form onSubmit={handleSubmit} >
-        <input type='text' value={searchInput} onChange={handleChange}/>
+        <input className='search-text' type='text' value={searchInput} onChange={handleChange}/>
         <input type='submit' />
       </form>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import StarRating from './StarRating';
 
 const BreweryCard = ({brewery}) => {
   return (
@@ -11,8 +12,7 @@ const BreweryCard = ({brewery}) => {
         <strong><p>{brewery.name}</p></strong>
         </Link>
 
-
-      <p>Rating *****</p>
+      < StarRating />
       <p className='brew-location'><i>{brewery.city}</i>, {brewery.state}</p>
       <p className='brew-location'>{brewery.country}</p>
       <p>{urlExist(brewery.website_url)}</p>

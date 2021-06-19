@@ -10,6 +10,7 @@
   width: 75vw;
   height: 50vh;
   overflow: hidden;
+
 }
 
 .map {
@@ -27,7 +28,7 @@
   overflow: hidden;
 }
 
-.brew-list {
+.brewList-map {
   /* flex: 2; */
   width: 23%;
   position: absolute;
@@ -37,6 +38,15 @@
   overflow: auto;
   height: 50vh;
   background: rgba(207, 207, 207, 0.7);
+}
+
+.brewList {
+  width: 75vw;
+  height: 25vh;
+  margin: auto;
+  overflow: auto;
+  border: 5px solid rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
 }
 
 .brew-card {

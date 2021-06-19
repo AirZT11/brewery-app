@@ -12,12 +12,7 @@ import BreweryPage from './components/BreweryPage';
 import BrewerContainer from './components/containers/BreweryContainer';
 
 class App extends Component{
-  constructor() {
-    this.state = {
-      displayList: 'none'
-    }
-  }
-  
+
   render() {
     return (
       <div className="App">
