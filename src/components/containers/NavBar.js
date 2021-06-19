@@ -16,6 +16,9 @@ const NavBar = (props) => {
             <li>
               <NavLink exact className='nav-link' to="/profile">Profile</NavLink>
             </li>
+            <li>
+              <NavLink exact className='nav-link' to="/signup">Sign Up</NavLink>
+            </li>
           </ul>
         </nav>
     </div>

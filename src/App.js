@@ -10,6 +10,7 @@ import About from './components/About';
 import Profile from './components/Profile';
 import BreweryPage from './components/BreweryPage';
 import BrewerContainer from './components/containers/BreweryContainer';
+import SignUpContainer from './components/containers/SignUpContainer';
 
 class App extends Component{
 
@@ -27,6 +28,7 @@ class App extends Component{
               <Route exact path='/brewery/:id'>
                 <BreweryPage/> 
               </Route>
+              <Route exact path='/signup'><SignUpContainer /></Route>
             </Switch>
           </div>
   
