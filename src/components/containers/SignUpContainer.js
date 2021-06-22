@@ -9,48 +9,33 @@ class SignUpContainer extends Component {
       name: '',
       email: '',
       username: '',
-      password: ''
+      password: '',
+      errors: []
     }
   }
 
   handleChange = (event) => {
     this.setState({
       [event.target.name]: event.target.value
-    }, () => console.log(event.target.value))
+    })
   }
 
   handleSubmit = event => {
     event.preventDefault();
-    // const { history } = this.props;
-    const formData = new FormData();
-    formData.append('name', this.state.name);
-    formData.append('email', this.state.email);
-    formData.append('username', this.state.username);
-    formData.append('password', this.state.password);
-    // if(this.props.errors === null) this.props.clearErrors();
-
-    console.log(formData)
-    axios.post('http://localhost:3001/api/v1/users', formData)
+    axios.post('http://localhost:3001/api/v1/users', {
+      name: this.state.name,
+      email: this.state.email,
+      username: this.state.username,
+      password: this.state.password
+    })
     .then(response => {
       console.log(response)
     })
     .catch(error => {
-      alert(error)
+      this.setState({
+        errors: error.response.data
+      })
     })
-    // fetch('http://localhost:3001/api/v1/users', {
-    //   method: 'POST',
-    //   body: formData
-    // })
-    // .then(response => response.json())
-    // .then(data => {
-    //   if (data.errors) {
-    //     console.log(data.errors)
-    //   } else {
-    //     console.log('created user!')
-    //     // automatically login person after creating account
-    //     // history.push('/login')
-    //   }
-    // })
   }
 
   render() {
@@ -60,6 +45,7 @@ class SignUpContainer extends Component {
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           state={this.state}
+          errors={this.state.errors}
         />
       </div>
     )
