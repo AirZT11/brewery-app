@@ -4,7 +4,6 @@ const SignUp = ({handleChange, handleSubmit, state}) => {
 
   return (
     <div>
-      <form>
       <h1>Sign Up</h1>
         <form onSubmit={handleSubmit}>
           <label htmlFor='name'>Name </label><br />
@@ -21,7 +20,6 @@ const SignUp = ({handleChange, handleSubmit, state}) => {
           <br /><br />
           <input type='submit' /><br />
         </form>
-      </form>
     </div>
   )
 }
