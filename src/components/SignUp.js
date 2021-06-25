@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import '../css/SignUpForm.css';
 
 const SignUp = ({handleChange, handleSubmit, state, errors}) => {
-  const [display, setDisplay] = useState('none')
+  // const [display, setDisplay] = useState('none')
 
   // get's keys of all errors and finds specific key
   let errorKey = (error) => {
@@ -45,8 +45,13 @@ const SignUp = ({handleChange, handleSubmit, state, errors}) => {
           <label htmlFor='password'>Password </label><br />
           {errorMsg('password')}
           <input id='password' name='password' type='password' value={state.password} placeholder='password' onChange={handleChange}/>
-          <br /><br /><br />
+          <br /><br />
           
+          <label htmlFor='passwordConfirmation'>Password Confirmation</label><br />
+          {errorMsg('password_confirmation')}
+          <input id='password-confirmation' name='passwordConfirmation' type='password' value={state.passwordConfirmation} placeholder='confirm password' onChange={handleChange}/>
+          <br /><br /><br />
+
           <input className='submit-btn' type='submit' /><br />
         </form>
     </div>

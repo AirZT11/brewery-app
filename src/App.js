@@ -1,5 +1,6 @@
 import './css/App.css';
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,8 +12,15 @@ import Profile from './components/Profile';
 import BreweryPage from './components/BreweryPage';
 import BrewerContainer from './components/containers/BreweryContainer';
 import SignUpContainer from './components/containers/SignUpContainer';
+import Login from './components/Login';
+
+import { fetchCurrentUser } from './actions/userActions'
 
 class App extends Component{
+
+  componentDidMount() {
+    this.props.fetchCurrentUser();
+  }
 
   render() {
     return (
@@ -29,6 +37,7 @@ class App extends Component{
                 <BreweryPage/> 
               </Route>
               <Route exact path='/signup'><SignUpContainer /></Route>
+              <Route exact path='/login'><Login /></Route>
             </Switch>
           </div>
   
@@ -40,4 +49,4 @@ class App extends Component{
   }
 }
 
-export default App;
+export default connect(null, { fetchCurrentUser })(App);

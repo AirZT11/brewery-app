@@ -4,7 +4,7 @@ import axios from "axios";
 import BreweryList from './BreweryList';
 import SearchBar from '../SearchBar';
 import Map from '../Map';
-import BreweryPage from '../BreweryPage';
+// import BreweryPage from '../BreweryPage';
 // import 'mapbox-gl.css'
 
 class BreweryContainer extends Component {
