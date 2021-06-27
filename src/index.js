@@ -5,11 +5,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import { Provider } from 'react-redux';
-import store from './store'
+// PersistGate delays the rednering of app until persisted data is retreived + saved to redux
+import { PersistGate } from 'redux-persist/integration/react';
+import { store, persistor} from './store';
 
 ReactDOM.render(
   <Provider store={store} >
-    <App />
+    <PersistGate loading={null} persistor={persistor} >
+      <App />
+    </PersistGate>
   </ Provider >,
   document.getElementById('root')
 );

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ReactMapGL, {Marker, Popup} from 'react-map-gl';
 import BreweryCard from './BreweryCard';
+import 'mapbox-gl/dist/mapbox-gl.css'
 
 const Map = ({breweries}) => {
   const [viewport, setviewPort] = useState({

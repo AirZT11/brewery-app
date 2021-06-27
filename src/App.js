@@ -1,11 +1,8 @@
 import './css/App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-} from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
+
 import NavBar from './components/containers/NavBar';
 import About from './components/About';
 import Profile from './components/Profile';
@@ -26,7 +23,7 @@ class App extends Component{
     return (
       <div className="App">
         <Router>
-          < NavBar />
+          < NavBar currentUser={this.props.currentUser} />
   
           <div className='content'>
             <Switch>
@@ -49,4 +46,8 @@ class App extends Component{
   }
 }
 
-export default connect(null, { fetchCurrentUser })(App);
+const mapStateToProps = state => ({
+  currentUser: state.userData.currentUser
+})
+
+export default connect(mapStateToProps, { fetchCurrentUser })(App);

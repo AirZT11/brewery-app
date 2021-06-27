@@ -20,6 +20,10 @@
   padding-bottom: 16px;
 }
 
+/* .nav-bar li:last-child {
+  right: 0px;
+} */
+
 .nav-link {
   color: white;
   text-decoration: none;
