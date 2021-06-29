@@ -20,9 +20,10 @@
   padding-bottom: 16px;
 }
 
-/* .nav-bar li:last-child {
-  right: 0px;
-} */
+.nav-bar li:last-child {
+  right: 0;
+  position: absolute;
+}
 
 .nav-link {
   color: white;

@@ -3,6 +3,11 @@ import { NavLink } from 'react-router-dom';
 import '../../css/NavBar.css';
 
 const NavBar = ({ currentUser: { user: {name} }  }) => {
+  const logout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('persist:root')
+  }
+
   return (
     <div>
       <nav className='nav-bar' >
@@ -24,6 +29,9 @@ const NavBar = ({ currentUser: { user: {name} }  }) => {
             </li>
             <li>
               <NavLink exact className='nav-link' to='/profile'>{name}</NavLink>
+            </li>
+            <li>
+              <NavLink exact className='nav-link' to="/login" onClick={logout}>Logout</NavLink>
             </li>
           </ul>
         </nav>

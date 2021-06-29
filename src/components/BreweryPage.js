@@ -30,9 +30,6 @@ const BreweryPage = (props) => {
       console.error(error);
     });
   }, [])
-     
-  console.log(brewery)
-  console.log(viewport)
 
   return (
     <div className='brewery-page'>

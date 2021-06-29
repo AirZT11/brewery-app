@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
 
 const BreweryCard = ({brewery}) => {
+
   return (
     <div className='brew-card'>
       {/* {console.log(brewery)} */}
@@ -12,7 +13,7 @@ const BreweryCard = ({brewery}) => {
         <strong><p>{brewery.name}</p></strong>
         </Link>
 
-      < StarRating />
+      < StarRating breweryId={brewery.id} breweryName={brewery.name} />
       <p className='brew-location'><i>{brewery.city}</i>, {brewery.state}</p>
       <p className='brew-location'>{brewery.country}</p>
       <p>{urlExist(brewery.website_url)}</p>

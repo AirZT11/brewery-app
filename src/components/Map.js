@@ -4,10 +4,11 @@ import BreweryCard from './BreweryCard';
 import 'mapbox-gl/dist/mapbox-gl.css'
 
 const Map = ({breweries}) => {
+  
   const [viewport, setviewPort] = useState({
     latitude: 39.6361637,
     longitude: -105.321458,
-    width: '75vw',
+    width: '100vw',
     height: '50vh',
     zoom: 4
   });
@@ -35,7 +36,6 @@ const Map = ({breweries}) => {
         }}
       >
         {breweries.map(b => (
-          // console.log(b.latitude, b.longitude)
           < Marker 
             key={b.id}
             latitude={parseFloat(b.latitude)}

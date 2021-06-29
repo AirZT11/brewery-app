@@ -11,12 +11,14 @@ import BrewerContainer from './components/containers/BreweryContainer';
 import SignUpContainer from './components/containers/SignUpContainer';
 import Login from './components/Login';
 
-import { fetchCurrentUser } from './actions/userActions'
+import { fetchCurrentUser } from './actions/userActions';
+import { getRatings } from './actions/ratingActions';
 
 class App extends Component{
 
   componentDidMount() {
     this.props.fetchCurrentUser();
+    this.props.getRatings();
   }
 
   render() {
@@ -50,4 +52,4 @@ const mapStateToProps = state => ({
   currentUser: state.userData.currentUser
 })
 
-export default connect(mapStateToProps, { fetchCurrentUser })(App);
+export default connect(mapStateToProps, { fetchCurrentUser, getRatings })(App);
