@@ -1,8 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import StarRating from './StarRating';
 
-const BreweryCard = ({brewery}) => {
+const BreweryCard = ({brewery, ratings}) => {
 
   return (
     <div className='brew-card'>
@@ -27,4 +28,9 @@ const urlExist = (url) => {
     return <a className='brew-website' href={url} target="_blank" rel="noreferrer">link</a>
   }
 }
-export default BreweryCard;
+
+const mapStateToProps = state => ({
+  ratings: state.ratingData.ratings
+})
+
+export default connect(mapStateToProps)(BreweryCard);

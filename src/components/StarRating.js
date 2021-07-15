@@ -1,34 +1,66 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { FaStar } from 'react-icons/fa';
 import '../css/Rating.css';
 import { postRating } from '../actions/ratingActions';
 
-const StarRating = ({breweryId, userId, breweryName, postRating}) => {
+// TODO: 
+    // Display how many ratings there are for a specific brewery - DONE
+    // *Figure out why cancelling rating activates postRating Action*
+    // Add a popup component that lets you sign in or sign up
+    // Make the <p> tag for # of reviews be a link to see the reviews
+
+const StarRating = ({breweryId, currentUser, breweryName, allRatings, postRating}) => {
+  const [breweryRatings, setBreweryRatings] = useState([]); 
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
   const [submitDisplay, setSubmitDisplay] = useState('none');
   const [review, setReview] = useState('');
 
+  useEffect(() => {
+    filterBreweryRatings(breweryId)
+  }, [])
+
+  // filters allRatings and returns ratings for brewery
+  const filterBreweryRatings = breweryId => {
+    const filteredRatings = allRatings.filter(rating => {
+      return rating.brewery_id === breweryId
+    })
+    if (filteredRatings.length > 0) {
+      setBreweryRatings(filteredRatings)
+    }
+  }
+
   const handleClick = (ratingVal) => {
-    setRating(ratingVal)
-    setSubmitDisplay('block')
+    if (currentUser) {
+      setRating(ratingVal)
+      setSubmitDisplay('block')
+    } else {
+      // Add a popup component that lets you sign in or sign up
+      alert('Please sign up or sign in to submit a review')
+    }
   }
 
   const handleChange = (event) => {
     setReview(event.target.value)
   }
 
+  const handleCancel = () => {
+    setSubmitDisplay('none')
+    setRating('null')
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault()
     const state = {
       rating: rating,
-      userId: userId,
+      userId: currentUser.user.id,
       breweryId: breweryId,
       breweryName: breweryName,
       review: review
     }
     postRating(state)
+    setSubmitDisplay('none')
   }
 
   return (
@@ -46,7 +78,6 @@ const StarRating = ({breweryId, userId, breweryName, postRating}) => {
             onClick={() => handleClick(ratingVal) } 
             style={{display: 'none' }}
           />
-          
           < FaStar 
             className='star' 
             onMouseEnter={() => setHover(ratingVal)}
@@ -55,8 +86,13 @@ const StarRating = ({breweryId, userId, breweryName, postRating}) => {
           />
         </label>
       )})}
-      <input type='text' name='review' onChange={handleChange} style={{display: submitDisplay}} placeholder='Submit a review...'></input>
-      <input type='submit' style={{display: submitDisplay}}></input>
+      <p>{breweryRatings.length} Reviews</p>
+      <div style={{display: submitDisplay}} >
+        <input type='text' name='review' onChange={handleChange} placeholder='Submit a review...'></input>
+        <button onClick={handleCancel} >Cancel</button>
+        <input type='submit' ></input>
+      </div>
+      
       </form>
       
     </div>
@@ -64,7 +100,8 @@ const StarRating = ({breweryId, userId, breweryName, postRating}) => {
 }
 
 const mapStateToProps = state => ({
-  userId: state.userData.currentUser.user.id
+  currentUser: state.userData.currentUser,
+  allRatings: state.ratingData.ratings
 })
 
 export default connect(mapStateToProps, { postRating })(StarRating);

@@ -10,6 +10,7 @@ export default function userReducer(state = initialState, action) {
         ...state,
         ratings: action.payload
       }
+    
 
     default:
       return state;

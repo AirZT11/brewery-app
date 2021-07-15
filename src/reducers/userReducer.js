@@ -15,6 +15,8 @@ export default function userReducer(state = initialState, action) {
         ...state,
         currentUser: action.payload
       }
+    case 'LOGOUT':
+      return initialState
     default:
       return state;
   }

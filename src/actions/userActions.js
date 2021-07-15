@@ -59,3 +59,9 @@ export const fetchCurrentUser = () => dispatch => {
     // go to login page and make user sign in
   }
 }
+
+export const logOut = () => dispatch => {
+  dispatch({
+    type: 'LOGOUT'
+  })
+}

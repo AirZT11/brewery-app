@@ -1,13 +1,13 @@
 import './css/App.css';
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { BrowserRouter as Router, Switch, Route, } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 
 import NavBar from './components/containers/NavBar';
 import About from './components/About';
 import Profile from './components/Profile';
 import BreweryPage from './components/BreweryPage';
-import BrewerContainer from './components/containers/BreweryContainer';
+import BreweryContainer from './components/containers/BreweryContainer';
 import SignUpContainer from './components/containers/SignUpContainer';
 import Login from './components/Login';
 
@@ -30,13 +30,18 @@ class App extends Component{
           <div className='content'>
             <Switch>
               <Route exact path="/about"><About /></Route>
-              <Route exact path="/profile">< Profile /></Route>
-              <Route exact path="/">< BrewerContainer /></Route>
+              <Route exact path="/profile/">< Profile /></Route>
+              <Route exact path="/">< BreweryContainer /></Route>
               <Route exact path='/brewery/:id'>
                 <BreweryPage/> 
               </Route>
               <Route exact path='/signup'><SignUpContainer /></Route>
-              <Route exact path='/login'><Login /></Route>
+              <Route exact path='/login' 
+              render={() => 
+                this.props.currentUser ? 
+                < Redirect to="/" /> : < Login /> 
+                }
+              ></Route>
             </Switch>
           </div>
   

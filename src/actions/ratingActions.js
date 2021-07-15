@@ -3,6 +3,7 @@ const RATINGS_API_URL = 'http://localhost:3001/api/v1/ratings';
 
 // TODO: only logged in user can POST rating
 export const postRating = (data) => dispatch => {
+  console.log(data)
   fetch(RATINGS_API_URL, {
         method: "POST",
         headers:  {
