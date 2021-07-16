@@ -1,4 +1,21 @@
 .star {
   cursor: pointer;
   transition: color 200ms;
+  font-size: 20px;
+  /*  */
+  display: inline-block;
+  position: relative;
+  color: #ddd;
+}
+
+
+.star::after {
+  /* font-family: FontAwesome; */
+  content: "hello";
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* width: 60%; */
+  /* overflow: hidden; */
+  color: #f80;
 }

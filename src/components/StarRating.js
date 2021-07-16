@@ -20,8 +20,11 @@ const StarRating = ({breweryId, currentUser, breweryName, allRatings, postRating
 
   useEffect(() => {
     filterBreweryRatings(breweryId);
+  }, [])
+
+  useEffect(() => {
     averageRatings();
-  })
+  }, [breweryRatings])
 
   // filters allRatings from redux ratings state and returns ratings for brewery
   const filterBreweryRatings = breweryId => {
@@ -61,7 +64,8 @@ const StarRating = ({breweryId, currentUser, breweryName, allRatings, postRating
     setReview(event.target.value)
   }
 
-  const handleCancel = () => {
+  const handleCancel = (e) => {
+    e.preventDefault();
     setSubmitDisplay('none')
     setRating('null')
   }
@@ -99,12 +103,13 @@ const StarRating = ({breweryId, currentUser, breweryName, allRatings, postRating
               className='star' 
               onMouseEnter={() => setHover(ratingVal)}
               onMouseLeave={() => setHover(null)}
-            
               // first color yellow, second color gray
-              color={ratingVal <= (hover || averageRating) ? '#ffc107' : '#e4e5e9'} 
+              color={ratingVal <= (hover || rating || averageRating) ? '#ffc107' : '#e4e5e9'} 
+              // style={}
             />
           </label>
         )})}
+      <p>{averageRating} Rating</p>
       <p>{breweryRatings.length} Reviews</p>
 
       <form onSubmit={handleSubmit}>
