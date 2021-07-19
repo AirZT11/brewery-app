@@ -40,7 +40,7 @@ class App extends Component{
               render={() => 
                 this.props.currentUser ? 
                 < Redirect to="/" /> : < Login /> 
-                }
+              }
               ></Route>
             </Switch>
           </div>

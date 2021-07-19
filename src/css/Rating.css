@@ -2,20 +2,20 @@
   cursor: pointer;
   transition: color 200ms;
   font-size: 20px;
-  /*  */
-  display: inline-block;
+ 
+  /* display: inline-block;
   position: relative;
-  color: #ddd;
+  color: #ddd; */
 }
 
 
-.star::after {
-  /* font-family: FontAwesome; */
+/* .star::after {
+  font-family: FontAwesome;
   content: "hello";
   position: absolute;
   left: 0;
   top: 0;
-  /* width: 60%; */
-  /* overflow: hidden; */
+  width: 60%;
+  overflow: hidden;
   color: #f80;
-}
+} */

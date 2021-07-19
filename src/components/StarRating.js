@@ -2,10 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import { FaStar } from 'react-icons/fa';
 import '../css/Rating.css';
+import Popup from 'reactjs-popup';
+import 'reactjs-popup/dist/index.css';
 import { postRating } from '../actions/ratingActions';
+import Reviews from './Reviews';
 
 // TODO: 
-    // DONE - Display how many ratings there are for a specific brewery
+    // display the correct level of colors on stars based on the actual rating
     // *Figure out why cancelling rating activates postRating Action*
     // Add a popup component that lets you sign in or sign up
     // Make the <p> tag for # of reviews be a link to see the reviews
@@ -110,7 +113,12 @@ const StarRating = ({breweryId, currentUser, breweryName, allRatings, postRating
           </label>
         )})}
       <p>{averageRating} Rating</p>
-      <p>{breweryRatings.length} Reviews</p>
+        
+      <Popup trigger={<button>{breweryRatings.length} Reviews</button>}>
+          {breweryRatings.map(review => {
+            return <Reviews review={review}/>
+          })}
+      </Popup>
 
       <form onSubmit={handleSubmit}>
         <div style={{display: submitDisplay}} >
