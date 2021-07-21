@@ -6,6 +6,7 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import { postRating } from '../actions/ratingActions';
 import Reviews from './Reviews';
+import filterBreweryRatings from '../lib/filterBreweryRatings';
 
 // TODO: 
     // display the correct level of colors on stars based on the actual rating
@@ -22,22 +23,12 @@ const StarRating = ({breweryId, currentUser, breweryName, allRatings, postRating
   const [review, setReview] = useState('');
 
   useEffect(() => {
-    filterBreweryRatings(breweryId);
+    filterBreweryRatings(allRatings, breweryId, setBreweryRatings);
   }, [])
 
   useEffect(() => {
     averageRatings();
   }, [breweryRatings])
-
-  // filters allRatings from redux ratings state and returns ratings for brewery
-  const filterBreweryRatings = breweryId => {
-    const filteredRatings = allRatings.filter(rating => {
-      return rating.brewery_id === breweryId
-    })
-    if (filteredRatings.length > 0) {
-      setBreweryRatings(filteredRatings)
-    }
-  }
 
   // calculates the average rating for brewery
   const averageRatings = () => {
