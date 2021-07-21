@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from "axios";
 import ReactMapGL, {Marker} from 'react-map-gl';
+import Reviews from './Reviews';
 
-const BreweryPage = (props) => {
+const BreweryPage = () => {
   const { id } = useParams();
   const [brewery, setBrewery] = useState({});
   const { name, city, state, country, website_url, latitude, longitude } = brewery
   const [viewport, setviewPort] = useState({});
-  
+
   useEffect(() => {
     axios.request({
       method: 'GET',
@@ -58,6 +59,9 @@ const BreweryPage = (props) => {
             </Marker>
         </ReactMapGL>
       </div>
+      {/* <Reviews reviews={brewery.reviews}/> */}
+      {console.log(brewery)}
+      
     </div>
   )
 }

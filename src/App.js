@@ -10,6 +10,7 @@ import BreweryPage from './components/BreweryPage';
 import BreweryContainer from './components/containers/BreweryContainer';
 import SignUpContainer from './components/containers/SignUpContainer';
 import Login from './components/Login';
+import Reviews from './components/Reviews';
 
 import { fetchCurrentUser } from './actions/userActions';
 import { getRatings } from './actions/ratingActions';
@@ -32,16 +33,15 @@ class App extends Component{
               <Route exact path="/about"><About /></Route>
               <Route exact path="/profile/">< Profile /></Route>
               <Route exact path="/">< BreweryContainer /></Route>
-              <Route exact path='/brewery/:id'>
-                <BreweryPage/> 
-              </Route>
+              <Route exact path='/brewery/:id'><BreweryPage/> </Route>
               <Route exact path='/signup'><SignUpContainer /></Route>
               <Route exact path='/login' 
-              render={() => 
-                this.props.currentUser ? 
-                < Redirect to="/" /> : < Login /> 
-              }
+                render={() => 
+                  this.props.currentUser ? 
+                  < Redirect to="/" /> : < Login /> 
+                }
               ></Route>
+              <Route exact path='/reviews/:id'><Reviews/></Route>
             </Switch>
           </div>
   
