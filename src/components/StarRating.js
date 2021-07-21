@@ -9,9 +9,9 @@ import Reviews from './Reviews';
 
 // TODO: 
     // display the correct level of colors on stars based on the actual rating
-    // *Figure out why cancelling rating activates postRating Action*
+    // DONE - *Figure out why cancelling rating activates postRating Action*
     // Add a popup component that lets you sign in or sign up
-    // Make the <p> tag for # of reviews be a link to see the reviews
+    // DONE - Make the <button> tag for # of reviews display reviews in a popup
 
 const StarRating = ({breweryId, currentUser, breweryName, allRatings, postRating}) => {
   const [breweryRatings, setBreweryRatings] = useState([]); 

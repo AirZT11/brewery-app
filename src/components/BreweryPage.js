@@ -3,12 +3,19 @@ import { useParams } from 'react-router-dom';
 import axios from "axios";
 import ReactMapGL, {Marker} from 'react-map-gl';
 import Reviews from './Reviews';
+import StarRating from './StarRating';
+
+// TODO:
+  // DONE - Display starRating
+  // DONE - Display # of reviews
+  // Display Reviews
 
 const BreweryPage = () => {
   const { id } = useParams();
   const [brewery, setBrewery] = useState({});
   const { name, city, state, country, website_url, latitude, longitude } = brewery
   const [viewport, setviewPort] = useState({});
+
 
   useEffect(() => {
     axios.request({
@@ -36,12 +43,12 @@ const BreweryPage = () => {
     <div className='brewery-page'>
       <div className='brewpage-description'>
         <h1>{name}</h1>
-        <p>Rating *****</p>
+        < StarRating breweryId={parseInt(id)} />
         <p className='brew-location'>{city}, {state}</p>
         <p className='brew-location'>{country}</p>
         <a href={website_url} target="_blank" rel="noreferrer">{website_url}</a>
       </div>
-
+      
       <div className='small-map'>
         < ReactMapGL 
           {...viewport} 
@@ -59,8 +66,7 @@ const BreweryPage = () => {
             </Marker>
         </ReactMapGL>
       </div>
-      {/* <Reviews reviews={brewery.reviews}/> */}
-      {console.log(brewery)}
+      {/* {console.log(brewery)} */}
       
     </div>
   )
