@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-d
 
 import NavBar from './components/containers/NavBar';
 import About from './components/About';
-import Profile from './components/Profile';
+import UserProfile from './components/UserProfile';
 import BreweryPage from './components/BreweryPage';
 import BreweryContainer from './components/containers/BreweryContainer';
 import SignUpContainer from './components/containers/SignUpContainer';
@@ -31,7 +31,7 @@ class App extends Component{
           <div className='content'>
             <Switch>
               <Route exact path="/about"><About /></Route>
-              <Route exact path="/profile/">< Profile /></Route>
+              <Route exact path="/user/">< UserProfile /></Route>
               <Route exact path="/">< BreweryContainer /></Route>
               <Route exact path='/brewery/:id'><BreweryPage/> </Route>
               <Route exact path='/signup'><SignUpContainer /></Route>

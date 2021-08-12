@@ -14,7 +14,7 @@ const Map = ({breweries}) => {
   });
   
   // sets a selected brewery in state
-  const [selectedBrew, setSelectedBrew] = React.useState(null);
+  const [selectedBrew, setSelectedBrew] = useState(null);
 
   useEffect(() => {
     const listener = e => {
