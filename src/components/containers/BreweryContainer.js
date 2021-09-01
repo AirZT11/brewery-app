@@ -13,12 +13,43 @@ class BreweryContainer extends Component {
     this.state = {
       breweries: [],
       searchInput: '',
-      display: 'none'
+      display: 'none',
+      isLocationAvail: false,
+      userLocation: {},
     }
   }
 
   componentDidMount() {
-    // this.fetchBreweries()
+    this.fetchBreweries()
+    this.checkLocationAvail();
+    this.getUserLocation();
+  }
+
+  checkLocationAvail = () => {
+    if ("geolocation" in navigator) {
+      this.setState({isLocationAvail: true})
+    } else {
+      this.setState({isLocationAvail: false})
+    }
+  }
+  getUserLocation = () => {
+    if (this.state.isLocationAvail) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        this.setState({
+          userLocation: {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude
+          }
+        })
+      });
+    } else {
+      this.setState({
+        userLocation: {
+          lat: 40.6726224,
+          lng: -73.9422279
+        }
+      })
+    }
   }
 
   fetchBreweries = () => {
@@ -64,22 +95,24 @@ class BreweryContainer extends Component {
   render() {
     return (
       <div>
-        
-        <div className='brew-container'>
-          < Map breweries={this.state.breweries} />
+        <div 
+          className='brew-container'
+        >
+          < Map breweries={this.state.breweries} userLocation={this.state.userLocation} />
+
           {/* displays breweryList when search is submitted */}
           <div style={{display: this.state.display}}>
             < BreweryList breweries={this.state.breweries} listStyle={'brewList-map'}/>
           </div>  
         </div>
         
-        < SearchBar handleChange={this.handleChange} searchInput={this.searchInput} handleSubmit = {this.handleSubmit}/>
+        < SearchBar handleChange={this.handleChange} searchInput={this.searchInput} handleSubmit={this.handleSubmit} />
         <br/>
 
         <div style={{display: this.state.display}} >
           < BreweryList breweries={this.state.breweries} listStyle={'brewList'} />
         </div>
-      </div>
+      </div>  
     )
   }
 }
