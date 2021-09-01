@@ -7,13 +7,22 @@ const mapContainerStyle = {
   width: '100vw',
   height: '50vh'
 }
+const options = {
+  disableDefaultUI: true,
+  zoomControl: true,
+}
 
 const Map = ({breweries, userLocation}) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
+  // const [breweryLocations, setBreweryLocations] = useState([]);
   
+  useEffect(() => {
+
+  }, [])
+
   if (loadError) return "Error loading maps"
   if (!isLoaded) return "Loading Map..."
   return (
@@ -21,9 +30,18 @@ const Map = ({breweries, userLocation}) => {
 
       <GoogleMap 
         mapContainerStyle={mapContainerStyle} 
-        zoom={11} 
+        zoom={7} 
         center={userLocation} 
-      ></GoogleMap>
+        options={options}
+      >
+        {breweries.map(brewery => (
+          <Marker  
+            key={brewery.id}
+            position={{ lat: Number(brewery.latitude), lng: Number(brewery.longitude) }} />
+          )
+        )}
+
+      </GoogleMap>
 
     </div>
   )
