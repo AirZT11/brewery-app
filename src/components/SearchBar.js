@@ -1,5 +1,5 @@
 import React from 'react';
-
+import '../css/SearchBar.css';
 // Search input should dynamically load a list of breweries that correspond to what is being typed
 
 const SearchBar = ({handleChange, searchInput, handleSubmit}) => {
