@@ -1,17 +1,18 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-
 import { connect } from "react-redux";
 
 import Locate from "./Locate";
 import GoogleSearch from "./GoogleSearch";
 import BreweryCard from "./BreweryCard";
-import "../css/Map.css";
+
 import {
   GoogleMap,
   useLoadScript,
   Marker,
   InfoWindow,
 } from "@react-google-maps/api";
+
+import "../css/Map.css";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -23,7 +24,7 @@ const options = {
   zoomControl: true,
 };
 
-const Map = ({ breweries, userLocation }) => {
+const Map = ({ breweries, userLocation, displayList }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -54,9 +55,9 @@ const Map = ({ breweries, userLocation }) => {
   if (!isLoaded) return "Loading Map...";
 
   return (
-    <div>
+    <>
       {/* <GoogleSearch userLocation={userLocation} panTo={panTo} /> */}
-      <Locate panTo={panTo} />
+      <Locate panTo={panTo} displayList={displayList} />
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -91,13 +92,11 @@ const Map = ({ breweries, userLocation }) => {
             }}
             onCloseClick={() => setSelectedBrew(null)}
           >
-            <div>
-              <BreweryCard brewery={selectedBrew} />
-            </div>
+            <BreweryCard brewery={selectedBrew} />
           </InfoWindow>
         )}
       </GoogleMap>
-    </div>
+    </>
   );
 };
 

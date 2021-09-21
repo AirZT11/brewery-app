@@ -12,8 +12,8 @@ const options = {
 // find location, then search for breweries based on coordinates
 // as finding user location takes a while, use a promise to wait for response and then search brews
 //
-const Locate = ({ panTo, fetchUserLocationBrews }) => {
-  const handleClick = async () => {
+const Locate = ({ panTo, fetchUserLocationBrews, displayList }) => {
+  const handleClick = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         panTo({
@@ -29,6 +29,7 @@ const Locate = ({ panTo, fetchUserLocationBrews }) => {
       () => null,
       options
     );
+    displayList();
   };
 
   // const handleClick = () => {

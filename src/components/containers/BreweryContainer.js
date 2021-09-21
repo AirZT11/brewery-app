@@ -75,6 +75,7 @@ class BreweryContainer extends Component {
           <Map
             breweries={this.props.breweries}
             userLocation={this.state.userLocation}
+            displayList={this.displayList}
           />
 
           {/* SIDE BAR LIST DISPLAY */}
