@@ -6,14 +6,11 @@ import axios from "axios";
 import BreweryList from "./BreweryList";
 import SearchBar from "../SearchBar";
 import Map from "../Map";
-// import BreweryPage from '../BreweryPage';
-// import 'mapbox-gl.css'
 
 class BreweryContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // breweries: [],
       searchInput: "",
       display: "none",
       isLocationAvail: false,
@@ -22,7 +19,6 @@ class BreweryContainer extends Component {
   }
 
   componentDidMount() {
-    // this.fetchBreweries();
     this.checkLocationAvail();
     this.getUserLocation();
   }
@@ -54,31 +50,6 @@ class BreweryContainer extends Component {
     }
   };
 
-  // fetchBreweries = () => {
-  //   axios
-  //     .request({
-  //       method: "GET",
-  //       url: `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search`,
-  //       params: { query: this.state.searchInput },
-  //       headers: {
-  //         "x-rapidapi-key":
-  //           "0d5f8f8bb8mshdec6240eba9abb8p130b38jsn82704896f6c0",
-  //         "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
-  //       },
-  //     })
-  //     .then((response) => {
-  //       let filteredBrews = response.data.filter((brew) => {
-  //         return brew.latitude !== null;
-  //       });
-  //       this.setState({
-  //         breweries: filteredBrews,
-  //       });
-  //     })
-  //     .catch((error) => {
-  //       console.error(error);
-  //     });
-  // };
-
   handleChange = (e) => {
     this.setState({
       searchInput: e.target.value,
@@ -87,7 +58,7 @@ class BreweryContainer extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.fetchBreweries("GET", this.state.searchInput);
+    this.props.fetchBreweries(this.state.searchInput);
     this.displayList();
   };
 

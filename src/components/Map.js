@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
+
+import { connect } from "react-redux";
+
+import Locate from "./Locate";
 import BreweryCard from "./BreweryCard";
 import "../css/Map.css";
 import {
@@ -19,7 +23,6 @@ import {
   ComboboxOption,
 } from "@reach/combobox";
 import "@reach/combobox/styles.css";
-import { ImLocation } from "react-icons/im";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -30,7 +33,8 @@ const options = {
   disableDefaultUI: true,
   zoomControl: true,
 };
-export default function Map({ breweries, userLocation }) {
+
+const Map = ({ breweries, userLocation }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -54,7 +58,7 @@ export default function Map({ breweries, userLocation }) {
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(14);
+    mapRef.current.setZoom(11);
   }, []);
 
   if (loadError) return "Error loading maps";
@@ -106,29 +110,13 @@ export default function Map({ breweries, userLocation }) {
       </GoogleMap>
     </div>
   );
-}
+};
 
-function Locate({ panTo }) {
-  return (
-    <button
-      className="locate"
-      onClick={() => {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            panTo({
-              lat: position.coords.latitude,
-              lng: position.coords.longitude,
-            });
-          },
-          () => null,
-          options
-        );
-      }}
-    >
-      <ImLocation />
-    </button>
-  );
-}
+const mapStateToProps = (state) => ({
+  // breweries: state.breweryData.userLocationBreweries,
+});
+
+export default connect(mapStateToProps)(Map);
 
 function Search({ userLocation, panTo }) {
   const {
@@ -161,6 +149,7 @@ function Search({ userLocation, panTo }) {
     }
   };
 
+  // DISPLAYS SEARCH BAR FOR GOOGLE
   return (
     <div className="search">
       <Combobox
