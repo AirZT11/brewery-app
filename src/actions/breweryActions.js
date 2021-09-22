@@ -48,9 +48,3 @@ export const fetchUserLocationBrews = (lat, lng) => (dispatch) => {
       console.error(error);
     });
 };
-
-// export const setLoading = () => (dispatch) => {
-//   dispatch({
-//     type: "SET_LOADING",
-//   });
-// };

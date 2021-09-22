@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
-import { fetchUserLocationBrews, setLoading } from "../actions/breweryActions";
+import { fetchUserLocationBrews } from "../actions/breweryActions";
 import { ImLocation } from "react-icons/im";
 
 const options = {
@@ -8,10 +8,6 @@ const options = {
   zoomControl: true,
 };
 
-// PANS TO USER LOCATION
-// find location, then search for breweries based on coordinates
-// as finding user location takes a while, use a promise to wait for response and then search brews
-//
 const Locate = ({
   panTo,
   fetchUserLocationBrews,
@@ -41,13 +37,10 @@ const Locate = ({
     displayList();
   };
 
-  // const handleClick = () => {
-  //   panToUserLocation().then(() => console.log("finding user breweries"));
-  // };
-
   return (
     <button className="locate" onClick={handleClick}>
       <ImLocation />
+      Near By Breweries
     </button>
   );
 };

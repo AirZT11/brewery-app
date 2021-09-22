@@ -21,11 +21,22 @@
 
 .locate {
   position: absolute;
-  bottom: 1rem;
+  top: 1rem;
   left: 1rem;
-  font-size: x-large;
-  background: none;
+  font-size: large;
+  /* background: none; */
   border: none;
   z-index: 10;
   cursor: pointer;
+  border-radius: 20px;
+  padding: 0.5rem;
+  opacity: 0.7;
+  box-shadow: 1px 1px 2px #00000077;
+  background-color: ghostwhite;
+}
+
+.locate:hover {
+  box-shadow: 2px 2px 3px #000000b7;
+  text-decoration: underline;
+  opacity: 0.8;
 }
