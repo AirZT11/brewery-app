@@ -5,6 +5,7 @@ import Locate from "./Locate";
 // import GoogleSearch from "./GoogleSearch";
 import BreweryCard from "./BreweryCard";
 import Loading from "./Loading";
+import BreweryList from "./containers/BreweryList";
 
 import {
   GoogleMap,
@@ -13,6 +14,7 @@ import {
   InfoWindow,
 } from "@react-google-maps/api";
 
+import mapStyles from "../mapStyles";
 import "../css/Map.css";
 import "../css/Loading.css";
 
@@ -22,11 +24,12 @@ const mapContainerStyle = {
   height: "50vh",
 };
 const options = {
+  styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
 };
 
-const Map = ({ breweries, userLocation, displayList }) => {
+const Map = ({ breweries, userLocation, display, displayList }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -49,9 +52,9 @@ const Map = ({ breweries, userLocation, displayList }) => {
     mapRef.current = map;
   }, []);
 
-  const panTo = useCallback(({ lat, lng }) => {
+  const panTo = useCallback(({ lat, lng }, zoomAmount) => {
     mapRef.current.panTo({ lat, lng });
-    mapRef.current.setZoom(11);
+    mapRef.current.setZoom(zoomAmount);
   }, []);
 
   if (loadError) return "Error loading maps";
@@ -106,6 +109,15 @@ const Map = ({ breweries, userLocation, displayList }) => {
           </InfoWindow>
         )}
       </GoogleMap>
+      <br />
+      <div style={{ display: display }}>
+        <BreweryList
+          breweries={breweries}
+          listStyle={"brewList"}
+          panTo={panTo}
+          setSelectedBrew={setSelectedBrew}
+        />
+      </div>
     </div>
   );
 };

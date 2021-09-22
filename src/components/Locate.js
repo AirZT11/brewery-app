@@ -21,10 +21,13 @@ const Locate = ({
     setLoadDisplay("block");
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        panTo({
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        });
+        panTo(
+          {
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          },
+          11
+        );
 
         fetchUserLocationBrews(
           position.coords.latitude,

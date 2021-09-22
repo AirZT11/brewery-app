@@ -3,17 +3,32 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
 
-const BreweryCard = ({ brewery, ratings, userLocation }) => {
+const BreweryCard = ({
+  brewery,
+  ratings,
+  userLocation,
+  panTo,
+  setSelectedBrew,
+}) => {
+  const handleClick = () => {
+    panTo(
+      {
+        lat: Number(brewery.latitude),
+        lng: Number(brewery.longitude),
+      },
+      14
+    );
+    setSelectedBrew(brewery);
+    console.log("clicked!");
+  };
   return (
-    <div className="brew-card">
+    <div className="brew-card" onClick={handleClick}>
       <Link
         to={{
           pathname: `brewery/${brewery.id}`,
         }}
       >
-        <strong>
-          <p>{brewery.name}</p>
-        </strong>
+        <strong>{brewery.name}</strong>
       </Link>
 
       <StarRating breweryId={brewery.id} breweryName={brewery.name} />

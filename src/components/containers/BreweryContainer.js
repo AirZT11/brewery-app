@@ -47,6 +47,7 @@ const BreweryContainer = ({
           breweries={breweries}
           userLocation={userLocation}
           displayList={displayList}
+          display={display}
         />
 
         {/* SIDE BAR LIST DISPLAY */}
@@ -63,9 +64,9 @@ const BreweryContainer = ({
       />
       <br />
 
-      <div style={{ display: display }}>
+      {/* <div style={{ display: display }}>
         <BreweryList breweries={breweries} listStyle={"brewList"} />
-      </div>
+      </div> */}
     </>
   );
 };
