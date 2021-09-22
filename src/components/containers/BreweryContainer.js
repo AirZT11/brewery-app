@@ -70,7 +70,7 @@ class BreweryContainer extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <div className="brew-container">
           <Map
             breweries={this.props.breweries}
@@ -98,7 +98,7 @@ class BreweryContainer extends Component {
             listStyle={"brewList"}
           />
         </div>
-      </div>
+      </>
     );
   }
 }

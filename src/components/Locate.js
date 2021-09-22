@@ -1,6 +1,6 @@
 import React from "react";
-import { connect } from "react-redux";
-import { fetchUserLocationBrews } from "../actions/breweryActions";
+import { connect, useDispatch } from "react-redux";
+import { fetchUserLocationBrews, setLoading } from "../actions/breweryActions";
 import { ImLocation } from "react-icons/im";
 
 const options = {
@@ -12,8 +12,17 @@ const options = {
 // find location, then search for breweries based on coordinates
 // as finding user location takes a while, use a promise to wait for response and then search brews
 //
-const Locate = ({ panTo, fetchUserLocationBrews, displayList }) => {
+const Locate = ({
+  panTo,
+  fetchUserLocationBrews,
+  displayList,
+  setLoadDisplay,
+}) => {
+  const dispatch = useDispatch();
+
   const handleClick = () => {
+    dispatch({ type: "SET_LOADING" });
+    setLoadDisplay("block");
     navigator.geolocation.getCurrentPosition(
       (position) => {
         panTo({

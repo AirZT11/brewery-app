@@ -2,8 +2,9 @@ import React, { useState, useEffect, useRef, useCallback } from "react";
 import { connect } from "react-redux";
 
 import Locate from "./Locate";
-import GoogleSearch from "./GoogleSearch";
+// import GoogleSearch from "./GoogleSearch";
 import BreweryCard from "./BreweryCard";
+import Loading from "./Loading";
 
 import {
   GoogleMap,
@@ -13,6 +14,7 @@ import {
 } from "@react-google-maps/api";
 
 import "../css/Map.css";
+import "../css/Loading.css";
 
 const libraries = ["places"];
 const mapContainerStyle = {
@@ -31,6 +33,7 @@ const Map = ({ breweries, userLocation, displayList }) => {
   });
 
   const [selectedBrew, setSelectedBrew] = useState(null);
+  const [loadDisplay, setLoadDisplay] = useState("none");
 
   useEffect(() => {}, []);
 
@@ -55,9 +58,16 @@ const Map = ({ breweries, userLocation, displayList }) => {
   if (!isLoaded) return "Loading Map...";
 
   return (
-    <>
+    <div className="map-container">
       {/* <GoogleSearch userLocation={userLocation} panTo={panTo} /> */}
-      <Locate panTo={panTo} displayList={displayList} />
+
+      <Loading type="spinningBubbles" />
+
+      <Locate
+        panTo={panTo}
+        displayList={displayList}
+        setLoadDisplay={setLoadDisplay}
+      />
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -96,7 +106,7 @@ const Map = ({ breweries, userLocation, displayList }) => {
           </InfoWindow>
         )}
       </GoogleMap>
-    </>
+    </div>
   );
 };
 
