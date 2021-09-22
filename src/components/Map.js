@@ -108,6 +108,12 @@ const Map = ({ breweries, userLocation, display, displayList }) => {
             <BreweryCard brewery={selectedBrew} />
           </InfoWindow>
         )}
+        <Marker
+          position={{
+            lat: userLocation.lat,
+            lng: userLocation.lng,
+          }}
+        />
       </GoogleMap>
       <br />
       <div style={{ display: display }}>
@@ -123,7 +129,7 @@ const Map = ({ breweries, userLocation, display, displayList }) => {
 };
 
 const mapStateToProps = (state) => ({
-  // breweries: state.breweryData.userLocationBreweries,
+  // userLocation: state.userData.userLocation,
 });
 
 export default connect(mapStateToProps)(Map);
