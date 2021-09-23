@@ -6,17 +6,25 @@ const BreweryList = ({ breweries, listStyle, panTo, setSelectedBrew }) => {
   return (
     <div className={listStyle}>
       <Loading type="bars" />
-      {breweries.map((b) => (
-        <div key={b.name}>
-          {
-            <BreweryCard
-              brewery={b}
-              panTo={panTo}
-              setSelectedBrew={setSelectedBrew}
-            />
-          }
-        </div>
-      ))}
+      {Array.isArray(breweries) ? (
+        breweries.map((b) => (
+          <div key={b.name}>
+            {
+              <BreweryCard
+                brewery={b}
+                panTo={panTo}
+                setSelectedBrew={setSelectedBrew}
+              />
+            }
+          </div>
+        ))
+      ) : (
+        <BreweryCard
+          brewery={breweries}
+          panTo={panTo}
+          setSelectedBrew={setSelectedBrew}
+        />
+      )}
     </div>
   );
 };

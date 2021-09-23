@@ -52,7 +52,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
             <BreweryContainer displayList={displayList} display={display} />
           </Route>
           <Route exact path="/brewery/:id">
-            <BreweryPage />{" "}
+            <BreweryPage displayList={displayList} display={display} />{" "}
           </Route>
           <Route exact path="/signup">
             <SignUpContainer />

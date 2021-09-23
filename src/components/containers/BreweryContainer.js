@@ -32,6 +32,7 @@ const BreweryContainer = ({
           userLocation={userLocation}
           displayList={displayList}
           display={display}
+          mapWidth="100vh"
         />
 
         {/* SIDE BAR LIST DISPLAY */}

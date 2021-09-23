@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { fetchUserLocationBrews } from "../actions/breweryActions";
 import { ImLocation } from "react-icons/im";
@@ -14,6 +14,10 @@ const Locate = ({
   displayList,
   setLoadDisplay,
 }) => {
+  useEffect(() => {
+    handleClick();
+  });
+
   const dispatch = useDispatch();
 
   const handleClick = () => {

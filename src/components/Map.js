@@ -19,21 +19,23 @@ import "../css/Map.css";
 import "../css/Loading.css";
 
 const libraries = ["places"];
-const mapContainerStyle = {
-  width: "100vw",
-  height: "50vh",
-};
+
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
   zoomControl: true,
 };
 
-const Map = ({ breweries, userLocation, display, displayList }) => {
+const Map = ({ breweries, userLocation, display, displayList, mapWidth }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
+
+  const mapContainerStyle = {
+    width: mapWidth,
+    height: "50vh",
+  };
 
   const [selectedBrew, setSelectedBrew] = useState(null);
   const [loadDisplay, setLoadDisplay] = useState("none");
@@ -66,11 +68,13 @@ const Map = ({ breweries, userLocation, display, displayList }) => {
 
       <Loading type="spinningBubbles" />
 
-      <Locate
-        panTo={panTo}
-        displayList={displayList}
-        setLoadDisplay={setLoadDisplay}
-      />
+      {Array.isArray(breweries) && (
+        <Locate
+          panTo={panTo}
+          displayList={displayList}
+          setLoadDisplay={setLoadDisplay}
+        />
+      )}
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
@@ -79,12 +83,30 @@ const Map = ({ breweries, userLocation, display, displayList }) => {
         options={options}
         onLoad={onMapLoad}
       >
-        {breweries.map((brewery) => (
+        {Array.isArray(breweries) ? (
+          breweries.map((brewery) => (
+            <Marker
+              key={brewery.id}
+              position={{
+                lat: Number(brewery.latitude),
+                lng: Number(brewery.longitude),
+              }}
+              icon={{
+                url: "/beerIcon.svg",
+                scaledSize: new window.google.maps.Size(30, 30),
+                origin: new window.google.maps.Point(0, 0),
+                anchor: new window.google.maps.Point(15, 15),
+              }}
+              onClick={() => {
+                setSelectedBrew(brewery);
+              }}
+            />
+          ))
+        ) : (
           <Marker
-            key={brewery.id}
             position={{
-              lat: Number(brewery.latitude),
-              lng: Number(brewery.longitude),
+              lat: Number(breweries.latitude),
+              lng: Number(breweries.longitude),
             }}
             icon={{
               url: "/beerIcon.svg",
@@ -92,11 +114,11 @@ const Map = ({ breweries, userLocation, display, displayList }) => {
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
             }}
-            onClick={() => {
-              setSelectedBrew(brewery);
-            }}
+            // onClick={() => {
+            //   setSelectedBrew(brewery);
+            // }}
           />
-        ))}
+        )}
         {selectedBrew && (
           <InfoWindow
             position={{
