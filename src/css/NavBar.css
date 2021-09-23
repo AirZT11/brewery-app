@@ -1,13 +1,15 @@
-@import url("https://fonts.googleapis.com/css?family=Lobster+Two&display=swap");
-
 .bar {
   position: relative;
-  display: flex;
+  /* display: flex; */
+  justify-content: space-between;
   top: 0;
-  height: 55px;
+  height: 62px;
   background-color: #333;
   box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.774);
   z-index: 10;
+}
+
+.bar .search {
 }
 
 .app-name {
@@ -19,7 +21,7 @@
   font-weight: bold;
   font-size: 30px;
   color: whitesmoke;
-  margin-top: 4px;
+  margin-top: 10px;
   margin-left: 10px;
   cursor: pointer;
   /* padding: 8px; */
@@ -44,6 +46,7 @@
 
 .nav-link:hover {
   color: tomato;
+  text-shadow: 4px 6px 4px rgba(153, 153, 153, 0.309);
 }
 
 #menuToggle input {
@@ -65,7 +68,7 @@
   display: block;
   position: relative;
   width: 33px;
-  height: 4px;
+  height: 5px;
   margin-bottom: 5px;
   background: #cdcdcd;
   border-radius: 3px;
@@ -85,7 +88,7 @@
 
 #menuToggle input:checked ~ span {
   opacity: 1;
-  transform: rotate(45deg) translate(-2px, -1px);
+  transform: rotate(45deg) translate(-4px, 1px);
   background: #232323;
 }
 
@@ -95,20 +98,20 @@
 }
 
 #menuToggle input:checked ~ span:nth-last-child(2) {
-  transform: rotate(-45deg) translate(0, -1px);
+  transform: rotate(-45deg) translate(0, -4px);
 }
 
 #menu {
   position: absolute;
   width: 200px;
-  margin-top: 7px;
+  margin-top: 10px;
   margin-bottom: 0;
   padding: 5px;
   right: 0px;
   background: #ededed;
   list-style-type: none;
   z-index: 9;
-  /* box-shadow: 2px 2px 5px rgb(0, 0, 0); */
+  border-radius: 0 0 0 10px;
   -webkit-font-smoothing: antialiased;
   transform-origin: 0% 0%;
   transform: translate(0, -100%);
@@ -116,9 +119,11 @@
 }
 
 #menu li {
-  padding: 5px 20px 5px 0px;
+  padding: 10px 20px 5px 0px;
   font-size: 22px;
   text-align: right;
+  font-family: "Roboto";
+  font-weight: bold;
 }
 
 #menuToggle input:checked ~ ul {

@@ -1,10 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import { fetchBreweries } from "../../actions/breweryActions";
 import { NavLink } from "react-router-dom";
+import SearchBar from "../SearchBar";
 import "../../css/NavBar.css";
 import { logOut } from "../../actions/userActions";
 
-const NavBar = ({ currentUser, logOut }) => {
+const NavBar = ({
+  currentUser,
+  fetchBreweries,
+  logOut,
+  displayList,
+  display,
+}) => {
+  const [searchInput, setSearchInput] = useState("");
+
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchBreweries(searchInput);
+    displayList();
+  };
+
   const logout = () => {
     logOut();
     localStorage.removeItem("token");
@@ -16,6 +36,13 @@ const NavBar = ({ currentUser, logOut }) => {
     <nav className="nav-bar">
       <div className="bar">
         <a className="app-name">BreweryFinder</a>
+        <span className="search">
+          <SearchBar
+            handleChange={handleChange}
+            searchInput={searchInput}
+            handleSubmit={handleSubmit}
+          />
+        </span>
       </div>
       <div id="menuToggle">
         <input type="checkbox" />
@@ -34,37 +61,28 @@ const NavBar = ({ currentUser, logOut }) => {
           </NavLink>
 
           {currentUser ? (
-            <li>
-              <NavLink exact className="nav-link" to="/profile">
-                {currentUser.user.name}
-              </NavLink>
-            </li>
+            <NavLink exact className="nav-link" to="/profile">
+              <li>{currentUser.user.name}</li>
+            </NavLink>
           ) : (
-            <li>
-              <NavLink exact className="nav-link" to="/signup">
-                Sign Up
-              </NavLink>
-            </li>
+            <NavLink exact className="nav-link" to="/signup">
+              <li>Sign Up</li>
+            </NavLink>
           )}
 
           {currentUser ? (
-            <li>
-              <NavLink exact className="nav-link" to="/" onClick={logout}>
-                Logout
-              </NavLink>
-            </li>
+            <NavLink exact className="nav-link" to="/" onClick={logout}>
+              <li>Logout</li>
+            </NavLink>
           ) : (
-            <li>
-              <NavLink exact className="nav-link" to="/login">
-                Login
-              </NavLink>
-            </li>
+            <NavLink exact className="nav-link" to="/login">
+              <li>Login</li>
+            </NavLink>
           )}
         </ul>
       </div>
-      {/* </div> */}
     </nav>
   );
 };
 
-export default connect(null, { logOut })(NavBar);
+export default connect(null, { fetchBreweries, logOut })(NavBar);

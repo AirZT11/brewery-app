@@ -1,21 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { fetchBreweries } from "../../actions/breweryActions";
 import { getUserLocation } from "../../actions/userActions";
 import "../../css/Breweries.css";
-import BreweryList from "./BreweryList";
-import SearchBar from "../SearchBar";
 import Map from "../Map";
 
 const BreweryContainer = ({
+  displayList,
+  display,
   breweries,
   fetchBreweries,
   getUserLocation,
   locationAvail,
   userLocation,
 }) => {
-  const [searchInput, setSearchInput] = useState("");
-  const [display, setDisplay] = useState("none");
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -25,20 +23,6 @@ const BreweryContainer = ({
   useEffect(() => {
     getUserLocation(locationAvail);
   }, [locationAvail]);
-
-  const handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchBreweries(searchInput);
-    displayList();
-  };
-
-  const displayList = () => {
-    setDisplay("block");
-  };
 
   return (
     <>
@@ -56,17 +40,6 @@ const BreweryContainer = ({
             < BreweryList breweries={this.state.breweries} listStyle={'brewList-map'}/>
           </div>   */}
       </div>
-
-      <SearchBar
-        handleChange={handleChange}
-        searchInput={searchInput}
-        handleSubmit={handleSubmit}
-      />
-      <br />
-
-      {/* <div style={{ display: display }}>
-        <BreweryList breweries={breweries} listStyle={"brewList"} />
-      </div> */}
     </>
   );
 };

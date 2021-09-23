@@ -1,5 +1,5 @@
 import "./css/App.css";
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {
   BrowserRouter as Router,
@@ -20,50 +20,56 @@ import Reviews from "./components/Reviews";
 import { fetchCurrentUser } from "./actions/userActions";
 import { getRatings } from "./actions/ratingActions";
 
-class App extends Component {
-  componentDidMount() {
-    this.props.fetchCurrentUser();
-    this.props.getRatings();
-  }
+const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
+  const [display, setDisplay] = useState("none");
 
-  render() {
-    return (
-      <div className="App">
-        <Router>
-          <NavBar currentUser={this.props.currentUser} />
+  useEffect(() => {
+    fetchCurrentUser();
+    getRatings();
+  }, []);
 
-          <Switch>
-            <Route exact path="/about">
-              <About />
-            </Route>
-            <Route exact path="/user/">
-              <UserProfile />
-            </Route>
-            <Route exact path="/">
-              <BreweryContainer />
-            </Route>
-            <Route exact path="/brewery/:id">
-              <BreweryPage />{" "}
-            </Route>
-            <Route exact path="/signup">
-              <SignUpContainer />
-            </Route>
-            <Route
-              exact
-              path="/login"
-              render={() =>
-                this.props.currentUser ? <Redirect to="/" /> : <Login />
-              }
-            ></Route>
-            <Route exact path="/reviews/:id">
-              <Reviews />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
-}
+  const displayList = () => {
+    setDisplay("block");
+  };
+
+  return (
+    <div className="App">
+      <Router>
+        <NavBar
+          currentUser={currentUser}
+          displayList={displayList}
+          display={display}
+        />
+
+        <Switch>
+          <Route exact path="/about">
+            <About />
+          </Route>
+          <Route exact path="/user/">
+            <UserProfile />
+          </Route>
+          <Route exact path="/">
+            <BreweryContainer displayList={displayList} display={display} />
+          </Route>
+          <Route exact path="/brewery/:id">
+            <BreweryPage />{" "}
+          </Route>
+          <Route exact path="/signup">
+            <SignUpContainer />
+          </Route>
+          <Route
+            exact
+            path="/login"
+            render={() => (currentUser ? <Redirect to="/" /> : <Login />)}
+          ></Route>
+          <Route exact path="/reviews/:id">
+            <Reviews />
+          </Route>
+        </Switch>
+      </Router>
+    </div>
+  );
+};
 
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
