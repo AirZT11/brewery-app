@@ -11,62 +11,58 @@ const NavBar = ({ currentUser, logOut }) => {
     // localStorage.removeItem('persist:root')
     alert("You have been successfully logged out");
   };
-  if (currentUser) {
-    return (
-      <nav className="nav-bar">
-        <ul>
-          <li>
-            <NavLink exact className="nav-link" to="/">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact className="nav-link" to="/about">
-              About
-            </NavLink>
-          </li>
-          {/* <li><NavLink exact className='nav-link' to="/profile">Profile</NavLink></li> */}
-          <li>
-            <NavLink exact className="nav-link" to="/profile">
-              {currentUser.user.name}
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact className="nav-link" to="/" onClick={logout}>
-              Logout
-            </NavLink>
-          </li>
-        </ul>
-      </nav>
-    );
-  } else {
-    return (
-      <div className="nav-bar">
-        <ul>
-          <li>
-            <NavLink exact className="nav-link" to="/">
-              Home
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact className="nav-link" to="/about">
-              About
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact className="nav-link" to="/signup">
-              Sign Up
-            </NavLink>
-          </li>
-          <li>
-            <NavLink exact className="nav-link" to="/login">
-              Login
-            </NavLink>
-          </li>
+
+  return (
+    <nav className="nav-bar">
+      <div className="bar" />
+      <div id="menuToggle">
+        <input type="checkbox" />
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+        <ul id="menu">
+          <NavLink exact className="nav-link" to="/">
+            <li>Home</li>
+          </NavLink>
+
+          <NavLink exact className="nav-link" to="/about">
+            <li>About</li>
+          </NavLink>
+
+          {currentUser ? (
+            <li>
+              <NavLink exact className="nav-link" to="/profile">
+                {currentUser.user.name}
+              </NavLink>
+            </li>
+          ) : (
+            <li>
+              <NavLink exact className="nav-link" to="/signup">
+                Sign Up
+              </NavLink>
+            </li>
+          )}
+
+          {currentUser ? (
+            <li>
+              <NavLink exact className="nav-link" to="/" onClick={logout}>
+                Logout
+              </NavLink>
+            </li>
+          ) : (
+            <li>
+              <NavLink exact className="nav-link" to="/login">
+                Login
+              </NavLink>
+            </li>
+          )}
         </ul>
       </div>
-    );
-  }
+      {/* </div> */}
+    </nav>
+  );
 };
 
 export default connect(null, { logOut })(NavBar);
