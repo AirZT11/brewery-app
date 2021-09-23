@@ -26,7 +26,14 @@ const options = {
   zoomControl: true,
 };
 
-const Map = ({ breweries, userLocation, display, displayList, mapWidth }) => {
+const Map = ({
+  breweries,
+  userLocation,
+  display,
+  displayList,
+  mapWidth,
+  mapZoom,
+}) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -78,7 +85,7 @@ const Map = ({ breweries, userLocation, display, displayList, mapWidth }) => {
 
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
-        zoom={7}
+        zoom={mapZoom}
         center={userLocation}
         options={options}
         onLoad={onMapLoad}
@@ -138,14 +145,16 @@ const Map = ({ breweries, userLocation, display, displayList, mapWidth }) => {
         />
       </GoogleMap>
       <br />
-      <div style={{ display: display }}>
-        <BreweryList
-          breweries={breweries}
-          listStyle={"brewList"}
-          panTo={panTo}
-          setSelectedBrew={setSelectedBrew}
-        />
-      </div>
+      {Array.isArray(breweries) && (
+        <div style={{ display: display }}>
+          <BreweryList
+            breweries={breweries}
+            listStyle={"brewList"}
+            panTo={panTo}
+            setSelectedBrew={setSelectedBrew}
+          />
+        </div>
+      )}
     </div>
   );
 };

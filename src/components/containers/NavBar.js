@@ -35,7 +35,9 @@ const NavBar = ({
   return (
     <nav className="nav-bar">
       <div className="bar">
-        <a className="app-name">BreweryFinder</a>
+        <NavLink exact className="app-name" to="/">
+          BreweryFinder
+        </NavLink>
         <span className="search">
           <SearchBar
             handleChange={handleChange}

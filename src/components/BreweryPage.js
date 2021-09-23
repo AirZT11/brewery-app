@@ -72,6 +72,7 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
           displayList={displayList}
           display={display}
           mapWidth="50vh"
+          mapZoom={12}
         />
       </div>
     </div>

@@ -9,8 +9,9 @@
 .small-map {
   margin: auto;
   width: 50vh;
-  border: 3px solid rgba(0, 0, 0, 0.5);
-  border-radius: 25px;
+  height: 50vh;
+  /* border: 3px solid rgba(0, 0, 0, 0.5); */
+  border-radius: 15px;
   overflow: hidden;
 }
 
@@ -27,7 +28,7 @@
 
 .brewList {
   width: 90%;
-  height: 25vh;
+  height: 35vh;
   margin: auto;
   overflow: auto;
   /* border: 5px solid rgba(0, 0, 0, 0.5); */
