@@ -14,7 +14,9 @@ const NavBar = ({ currentUser, logOut }) => {
 
   return (
     <nav className="nav-bar">
-      <div className="bar" />
+      <div className="bar">
+        <a className="app-name">BreweryFinder</a>
+      </div>
       <div id="menuToggle">
         <input type="checkbox" />
 
