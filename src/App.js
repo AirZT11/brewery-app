@@ -22,6 +22,7 @@ import { getRatings } from "./actions/ratingActions";
 
 const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
   const [display, setDisplay] = useState("none");
+  const [mapZoom, setMapZoom] = useState(11);
 
   useEffect(() => {
     fetchCurrentUser();
@@ -39,6 +40,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
           currentUser={currentUser}
           displayList={displayList}
           display={display}
+          setMapZoom={setMapZoom}
         />
 
         <Switch>
@@ -49,7 +51,12 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
             <UserProfile />
           </Route>
           <Route exact path="/">
-            <BreweryContainer displayList={displayList} display={display} />
+            <BreweryContainer
+              displayList={displayList}
+              display={display}
+              mapZoom={mapZoom}
+              setMapZoom={setMapZoom}
+            />
           </Route>
           <Route exact path="/brewery/:id">
             <BreweryPage displayList={displayList} display={display} />{" "}

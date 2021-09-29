@@ -45,6 +45,10 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
     filterBreweryRatings(allRatings, parseInt(id), setBreweryRatings);
   }, []);
 
+  // useEffect(() => {
+  //   displayList("block");
+  // });
+
   return (
     <div className="brewery-page">
       <div className="brewpage-description">

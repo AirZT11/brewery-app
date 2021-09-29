@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { fetchBreweries } from "../../actions/breweryActions";
 import { getUserLocation } from "../../actions/userActions";
@@ -13,6 +13,7 @@ const BreweryContainer = ({
   getUserLocation,
   locationAvail,
   userLocation,
+  mapZoom,
 }) => {
   const dispatch = useDispatch();
 
@@ -32,8 +33,8 @@ const BreweryContainer = ({
           userLocation={userLocation}
           displayList={displayList}
           display={display}
-          mapWidth="100vh"
-          mapZoom={7}
+          mapWidth="100vw"
+          mapZoom={mapZoom}
         />
 
         {/* SIDE BAR LIST DISPLAY */}

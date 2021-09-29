@@ -47,7 +47,9 @@ const Map = ({
   const [selectedBrew, setSelectedBrew] = useState(null);
   const [loadDisplay, setLoadDisplay] = useState("none");
 
-  useEffect(() => {}, []);
+  // useEffect(() => {
+  //   panTo(userLocation, mapZoom);
+  // }, [mapZoom]);
 
   // useRef to retain a ref to the map's instance itself
   // to programmatically move where the map is, to pan and zoom
@@ -80,6 +82,7 @@ const Map = ({
           panTo={panTo}
           displayList={displayList}
           setLoadDisplay={setLoadDisplay}
+          mapZoom={mapZoom}
         />
       )}
 

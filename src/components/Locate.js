@@ -13,6 +13,7 @@ const Locate = ({
   fetchUserLocationBrews,
   displayList,
   setLoadDisplay,
+  mapZoom,
 }) => {
   useEffect(() => {
     handleClick();
@@ -30,7 +31,7 @@ const Locate = ({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           },
-          11
+          mapZoom
         );
 
         fetchUserLocationBrews(

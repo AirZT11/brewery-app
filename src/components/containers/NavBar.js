@@ -11,7 +11,7 @@ const NavBar = ({
   fetchBreweries,
   logOut,
   displayList,
-  display,
+  setMapZoom,
 }) => {
   const [searchInput, setSearchInput] = useState("");
 
@@ -23,6 +23,7 @@ const NavBar = ({
     e.preventDefault();
     fetchBreweries(searchInput);
     displayList();
+    setMapZoom(4);
   };
 
   const logout = () => {
