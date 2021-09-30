@@ -28,7 +28,8 @@
 
 .brewList {
   /* width: 90%; */
-  height: 38vh;
+  /* height: 38vh; */
+  height: 43vh;
   margin: auto;
   overflow: auto;
   position: relative;

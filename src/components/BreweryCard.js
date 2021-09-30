@@ -35,9 +35,10 @@ const BreweryCard = ({
       <p className="brew-location">
         <i>{brewery.city}</i>, {brewery.state}
       </p>
-      <p className="brew-location">{brewery.country}</p>
-      <p>{urlExist(brewery.website_url)}</p>
-      <p>
+      {/* <p className="brew-location">{brewery.country}</p> */}
+      <span>
+        {urlExist(brewery.website_url)}
+        <span> || </span>
         <a
           className="brew-website"
           href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
@@ -45,7 +46,7 @@ const BreweryCard = ({
         >
           Directions
         </a>
-      </p>
+      </span>
     </div>
   );
 };

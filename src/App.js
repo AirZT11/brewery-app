@@ -74,7 +74,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
             <Reviews />
           </Route>
         </Switch>
-        <BottomNav />
+        {/* <BottomNav /> */}
       </Router>
     </div>
   );

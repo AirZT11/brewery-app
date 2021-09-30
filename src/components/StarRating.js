@@ -16,11 +16,11 @@ import "../css/Modal.css";
 // DONE - Make the <button> tag for # of reviews display reviews in a popup
 
 const StarRating = ({
-  breweryId,
   currentUser,
-  breweryName,
   allRatings,
   postRating,
+  breweryId,
+  breweryName,
 }) => {
   const [breweryRatings, setBreweryRatings] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
@@ -31,7 +31,7 @@ const StarRating = ({
 
   useEffect(() => {
     filterBreweryRatings(allRatings, breweryId, setBreweryRatings);
-  }, []);
+  }, [allRatings]);
 
   useEffect(() => {
     averageRatings();
@@ -42,7 +42,6 @@ const StarRating = ({
   });
   // calculates the average rating for brewery
   const averageRatings = () => {
-    // console.log('ratingValues: ' + ratingValues)
     if (breweryRatings.length > 0) {
       const reducer = (acc, currentVal) => acc + currentVal;
       setAverageRating(ratingValues.reduce(reducer) / breweryRatings.length);
@@ -88,7 +87,6 @@ const StarRating = ({
     <div>
       {[...Array(5)].map((star, i) => {
         const ratingVal = i + 1;
-
         return (
           <label>
             <input

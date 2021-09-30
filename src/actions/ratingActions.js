@@ -19,10 +19,14 @@ export const postRating = (data) => (dispatch) => {
   })
     .then((resp) => resp.json())
     .then((rating) => {
+      console.log(rating);
       if (rating.error) {
         alert(rating.error);
       } else {
-        console.log(rating);
+        dispatch({
+          type: "POST_RATING",
+          payload: rating.rating,
+        });
       }
     });
 };
