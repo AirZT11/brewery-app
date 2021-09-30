@@ -33,6 +33,7 @@ const Map = ({
   displayList,
   mapWidth,
   mapZoom,
+  setMapZoom,
 }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -82,6 +83,7 @@ const Map = ({
           panTo={panTo}
           displayList={displayList}
           setLoadDisplay={setLoadDisplay}
+          setMapZoom={setMapZoom}
           mapZoom={mapZoom}
         />
       )}

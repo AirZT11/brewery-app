@@ -14,6 +14,7 @@ const BreweryContainer = ({
   locationAvail,
   userLocation,
   mapZoom,
+  setMapZoom,
 }) => {
   const dispatch = useDispatch();
 
@@ -35,6 +36,7 @@ const BreweryContainer = ({
           display={display}
           mapWidth="100vw"
           mapZoom={mapZoom}
+          setMapZoom={setMapZoom}
         />
 
         {/* SIDE BAR LIST DISPLAY */}

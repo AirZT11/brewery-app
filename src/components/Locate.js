@@ -14,14 +14,15 @@ const Locate = ({
   displayList,
   setLoadDisplay,
   mapZoom,
+  setMapZoom,
 }) => {
   useEffect(() => {
-    handleClick();
+    loadUserBrews(mapZoom);
   });
 
   const dispatch = useDispatch();
 
-  const handleClick = () => {
+  const loadUserBrews = (zoom) => {
     dispatch({ type: "SET_LOADING" });
     setLoadDisplay("block");
     navigator.geolocation.getCurrentPosition(
@@ -31,7 +32,7 @@ const Locate = ({
             lat: position.coords.latitude,
             lng: position.coords.longitude,
           },
-          mapZoom
+          zoom
         );
 
         fetchUserLocationBrews(
@@ -43,6 +44,11 @@ const Locate = ({
       options
     );
     displayList();
+  };
+
+  const handleClick = () => {
+    loadUserBrews(11);
+    setMapZoom(11);
   };
 
   return (
