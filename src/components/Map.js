@@ -34,6 +34,7 @@ const Map = ({
   mapWidth,
   mapZoom,
   setMapZoom,
+  mapCenter,
 }) => {
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -92,7 +93,7 @@ const Map = ({
       <GoogleMap
         mapContainerStyle={mapContainerStyle}
         zoom={mapZoom}
-        center={userLocation}
+        center={mapCenter}
         options={options}
         onLoad={onMapLoad}
       >

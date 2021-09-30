@@ -75,8 +75,9 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
           userLocation={userLocation}
           displayList={displayList}
           display={display}
-          mapWidth="50vh"
+          mapWidth="50vw"
           mapZoom={12}
+          mapCenter={{ lat: Number(latitude), lng: Number(longitude) }}
         />
       </div>
     </div>
