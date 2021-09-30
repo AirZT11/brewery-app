@@ -23,7 +23,7 @@ const NavBar = ({
     e.preventDefault();
     fetchBreweries(searchInput);
     displayList();
-    setMapZoom(4);
+    setMapZoom(5);
   };
 
   const logout = () => {

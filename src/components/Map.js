@@ -85,6 +85,7 @@ const Map = ({
           setLoadDisplay={setLoadDisplay}
           setMapZoom={setMapZoom}
           mapZoom={mapZoom}
+          userLocation={userLocation}
         />
       )}
 

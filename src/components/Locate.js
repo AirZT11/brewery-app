@@ -15,10 +15,11 @@ const Locate = ({
   setLoadDisplay,
   mapZoom,
   setMapZoom,
+  userLocation,
 }) => {
   useEffect(() => {
     loadUserBrews(mapZoom);
-  });
+  }, [userLocation]);
 
   const dispatch = useDispatch();
 
