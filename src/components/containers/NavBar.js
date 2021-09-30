@@ -24,12 +24,12 @@ const NavBar = ({
     fetchBreweries(searchInput);
     displayList();
     setMapZoom(5);
+    setSearchInput("");
   };
 
   const logout = () => {
     logOut();
     localStorage.removeItem("token");
-    // localStorage.removeItem('persist:root')
     alert("You have been successfully logged out");
   };
 

@@ -37,7 +37,7 @@
 
 .brew-card {
   border-bottom: 1px solid rgb(182, 182, 182);
-  padding: 10px;
+  padding: 0.7em 1em 0.7em 1em;
   line-height: 1.1;
   text-align: left;
 }
