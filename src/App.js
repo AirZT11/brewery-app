@@ -19,6 +19,7 @@ import Reviews from "./components/Reviews";
 
 import { fetchCurrentUser } from "./actions/userActions";
 import { getRatings } from "./actions/ratingActions";
+import BottomNav from "./components/BottomNav";
 
 const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
   const [display, setDisplay] = useState("none");
@@ -73,6 +74,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
             <Reviews />
           </Route>
         </Switch>
+        <BottomNav />
       </Router>
     </div>
   );

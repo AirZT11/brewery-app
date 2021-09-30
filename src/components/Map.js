@@ -151,7 +151,7 @@ const Map = ({
           }}
         />
       </GoogleMap>
-      <br />
+      {/* <br /> */}
       {Array.isArray(breweries) && (
         <div style={{ display: display }}>
           <BreweryList
