@@ -74,8 +74,8 @@ export const getUserLocation = (locationAvail) => (dispatch) => {
     dispatch({
       type: "GET_USER_LOCATION",
       payload: {
-        lat: 45.6726224,
-        lng: -73.9422279,
+        lat: 39.5501,
+        lng: -105.7821,
       },
     });
   }

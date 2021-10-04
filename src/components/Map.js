@@ -86,7 +86,7 @@ const Map = ({
           setLoadDisplay={setLoadDisplay}
           setMapZoom={setMapZoom}
           mapZoom={mapZoom}
-          userLocation={userLocation}
+          // userLocation={userLocation}
         />
       )}
 
@@ -141,7 +141,10 @@ const Map = ({
             }}
             onCloseClick={() => setSelectedBrew(null)}
           >
-            <BreweryCard brewery={selectedBrew} />
+            <BreweryCard
+              brewery={selectedBrew}
+              setSelectedBrew={setSelectedBrew}
+            />
           </InfoWindow>
         )}
         <Marker

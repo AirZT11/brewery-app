@@ -30,20 +30,16 @@ const Locate = ({
       (position) => {
         panTo(
           {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
+            lat: userLocation.lat,
+            lng: userLocation.lng,
           },
           zoom
-        );
-
-        fetchUserLocationBrews(
-          position.coords.latitude,
-          position.coords.longitude
         );
       },
       () => null,
       options
     );
+    fetchUserLocationBrews(userLocation.lat, userLocation.lng);
     displayList();
   };
 
@@ -60,4 +56,8 @@ const Locate = ({
   );
 };
 
-export default connect(null, { fetchUserLocationBrews })(Locate);
+const mapStateToProps = (state) => ({
+  userLocation: state.userData.userLocation,
+});
+
+export default connect(mapStateToProps, { fetchUserLocationBrews })(Locate);

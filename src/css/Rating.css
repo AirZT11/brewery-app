@@ -2,12 +2,19 @@
   cursor: pointer;
   transition: color 200ms;
   font-size: 20px;
- 
+
   /* display: inline-block;
   position: relative;
   color: #ddd; */
 }
 
+.partial-star {
+  cursor: pointer;
+  transition: color 200ms;
+  font-size: 20px;
+  background-color: linear-gradient(to right, blue 50%, yellow 50%);
+  /* clip-path: inset(0 50% 0 0); */
+}
 
 /* .star::after {
   font-family: FontAwesome;

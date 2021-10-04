@@ -23,7 +23,7 @@ import BottomNav from "./components/BottomNav";
 
 const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
   const [display, setDisplay] = useState("none");
-  const [mapZoom, setMapZoom] = useState(11);
+  const [mapZoom, setMapZoom] = useState(10);
 
   useEffect(() => {
     fetchCurrentUser();

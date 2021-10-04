@@ -66,7 +66,7 @@ const StarRating = ({
   const handleCancel = (e) => {
     e.preventDefault();
     setSubmitDisplay("none");
-    setRating("null");
+    setRating(averageRating);
   };
 
   // submits a rating to the backend database
@@ -81,6 +81,7 @@ const StarRating = ({
     };
     postRating(state);
     setSubmitDisplay("none");
+    setRating(averageRating);
   };
 
   return (
@@ -92,21 +93,22 @@ const StarRating = ({
             <input
               type="radio"
               name="rating"
-              value={ratingVal}
+              value={1}
               onClick={() => handleClick(ratingVal)}
               style={{ display: "none" }}
             />
             <FaStar
-              className="star"
+              className={
+                Number.isInteger(averageRating) ? "star" : "partial-star"
+              }
               onMouseEnter={() => setHover(ratingVal)}
               onMouseLeave={() => setHover(null)}
-              // first color yellow, second color gray
               color={
                 ratingVal <= (hover || rating || averageRating)
-                  ? "#ffc107"
+                  ? // first color yellow, second color gray
+                    "#ffc107"
                   : "#e4e5e9"
               }
-              // style={}
             />
           </label>
         );

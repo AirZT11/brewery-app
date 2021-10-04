@@ -19,7 +19,7 @@ const BreweryCard = ({
       14
     );
     setSelectedBrew(brewery);
-    console.log("clicked!");
+    // console.log("clicked!");
   };
   return (
     <div className="brew-card" onClick={handleClick}>
