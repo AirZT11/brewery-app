@@ -7,26 +7,48 @@ import { postRating } from "../actions/ratingActions";
 import Reviews from "./Reviews";
 import Stars from "react-star-ratings";
 import "../css/Modal.css";
+import filterBreweryRatings from "../lib/filterBreweryRatings";
 
 // TODO:
 // display the correct level of colors on stars based on the actual rating
 // Add a popup component that lets you sign in or sign up
 
 const StarRating = ({
+  brewery,
   currentUser,
-  averageRating,
-  breweryRatings,
+  allRatings,
   postRating,
-  breweryId,
   breweryName,
 }) => {
+  const [breweryRatings, setBreweryRatings] = useState([]);
+  const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState("none");
   const [review, setReview] = useState("");
 
   useEffect(() => {
+    filterBreweryRatings(allRatings, brewery.id, setBreweryRatings);
+  }, [allRatings]);
+
+  useEffect(() => {
+    averageRatings();
+  }, [breweryRatings]);
+
+  useEffect(() => {
     setRating(averageRating);
-  }, []);
+  }, [averageRating]);
+
+  // calculates the average rating for brewery
+  const averageRatings = () => {
+    const ratingValues = breweryRatings.map((rating) => {
+      return rating.rating;
+    });
+    if (breweryRatings.length > 0) {
+      const reducer = (acc, currentVal) => acc + currentVal;
+      const average = ratingValues.reduce(reducer) / breweryRatings.length;
+      setAverageRating(average);
+    } else setAverageRating(0);
+  };
 
   // if currentUser exists, setRating to value of the clicked star and display review form
   const handleClick = (ratingVal) => {
@@ -55,7 +77,7 @@ const StarRating = ({
     const state = {
       rating: rating,
       userId: currentUser.user.id,
-      breweryId: breweryId,
+      breweryId: brewery.id,
       breweryName: breweryName,
       review: review,
     };
@@ -76,9 +98,11 @@ const StarRating = ({
         starDimension="22px"
         starSpacing="2px"
       />
+
       <span> {averageRating} Stars</span>
 
       <br />
+
       <Popup
         trigger={
           <button className="button">{breweryRatings.length} Reviews</button>
@@ -132,6 +156,7 @@ const StarRating = ({
 
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
+  allRatings: state.ratingData.ratings,
 });
 
 export default connect(mapStateToProps, { postRating })(StarRating);

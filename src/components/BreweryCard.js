@@ -2,39 +2,8 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
-import filterBreweryRatings from "../lib/filterBreweryRatings";
 
-const BreweryCard = ({
-  brewery,
-  ratings,
-  userLocation,
-  panTo,
-  setSelectedBrew,
-  allRatings,
-}) => {
-  const [breweryRatings, setBreweryRatings] = useState([]);
-  const [averageRating, setAverageRating] = useState(0);
-
-  useEffect(() => {
-    filterBreweryRatings(allRatings, brewery.id, setBreweryRatings);
-  }, [allRatings]);
-
-  useEffect(() => {
-    averageRatings();
-  }, [breweryRatings]);
-
-  const ratingValues = breweryRatings.map((rating) => {
-    return rating.rating;
-  });
-
-  // calculates the average rating for brewery
-  const averageRatings = () => {
-    if (breweryRatings.length > 0) {
-      const reducer = (acc, currentVal) => acc + currentVal;
-      setAverageRating(ratingValues.reduce(reducer) / breweryRatings.length);
-    } else setAverageRating(0);
-  };
-
+const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
   const handleClick = () => {
     panTo(
       {
@@ -55,12 +24,7 @@ const BreweryCard = ({
         <strong>{brewery.name}</strong>
       </Link>
 
-      <StarRating
-        breweryId={brewery.id}
-        breweryName={brewery.name}
-        averageRating={averageRating}
-        breweryRatings={breweryRatings}
-      />
+      <StarRating brewery={brewery} />
 
       <p className="brew-location">
         <i>{brewery.city}</i>, {brewery.state}
@@ -93,7 +57,6 @@ const urlExist = (url) => {
 
 const mapStateToProps = (state) => ({
   userLocation: state.userData.userLocation,
-  allRatings: state.ratingData.ratings,
 });
 
 export default connect(mapStateToProps)(BreweryCard);

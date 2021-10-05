@@ -53,7 +53,7 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
     <div className="brewery-page">
       <div className="brewpage-description">
         <h1>{name}</h1>
-        <StarRating breweryId={parseInt(id)} />
+        <StarRating brewery={brewery} />
         <p className="brew-location">
           {city}, {state}
         </p>
