@@ -14,11 +14,11 @@ import filterBreweryRatings from "../lib/filterBreweryRatings";
 // Add a popup component that lets you sign in or sign up
 
 const StarRating = ({
-  brewery,
+  breweryId,
+  breweryName,
   currentUser,
   allRatings,
   postRating,
-  breweryName,
 }) => {
   const [breweryRatings, setBreweryRatings] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
@@ -27,7 +27,7 @@ const StarRating = ({
   const [review, setReview] = useState("");
 
   useEffect(() => {
-    filterBreweryRatings(allRatings, brewery.id, setBreweryRatings);
+    filterBreweryRatings(allRatings, breweryId, setBreweryRatings);
   }, [allRatings]);
 
   useEffect(() => {
@@ -77,7 +77,7 @@ const StarRating = ({
     const state = {
       rating: rating,
       userId: currentUser.user.id,
-      breweryId: brewery.id,
+      breweryId: breweryId,
       breweryName: breweryName,
       review: review,
     };

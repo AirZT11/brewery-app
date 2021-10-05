@@ -5,6 +5,7 @@ import StarRating from "./StarRating";
 
 const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
   const handleClick = () => {
+    setSelectedBrew(brewery);
     panTo(
       {
         lat: Number(brewery.latitude),
@@ -12,7 +13,6 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
       },
       14
     );
-    setSelectedBrew(brewery);
   };
   return (
     <div className="brew-card" onClick={handleClick}>
@@ -24,7 +24,7 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
         <strong>{brewery.name}</strong>
       </Link>
 
-      <StarRating brewery={brewery} />
+      <StarRating breweryId={brewery.id} breweryName={brewery.name} />
 
       <p className="brew-location">
         <i>{brewery.city}</i>, {brewery.state}

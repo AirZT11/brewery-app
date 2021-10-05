@@ -142,8 +142,9 @@ const Map = ({
             onCloseClick={() => setSelectedBrew(null)}
           >
             <BreweryCard
-              brewery={selectedBrew}
+              panTo={panTo}
               setSelectedBrew={setSelectedBrew}
+              brewery={selectedBrew}
             />
           </InfoWindow>
         )}
