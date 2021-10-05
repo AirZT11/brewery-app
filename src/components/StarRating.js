@@ -1,52 +1,32 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { FaStar } from "react-icons/fa";
 import "../css/Rating.css";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
 import { postRating } from "../actions/ratingActions";
 import Reviews from "./Reviews";
-import filterBreweryRatings from "../lib/filterBreweryRatings";
+import Stars from "react-star-ratings";
 import "../css/Modal.css";
 
 // TODO:
 // display the correct level of colors on stars based on the actual rating
-// DONE - *Figure out why cancelling rating activates postRating Action*
 // Add a popup component that lets you sign in or sign up
-// DONE - Make the <button> tag for # of reviews display reviews in a popup
 
 const StarRating = ({
   currentUser,
-  allRatings,
+  averageRating,
+  breweryRatings,
   postRating,
   breweryId,
   breweryName,
 }) => {
-  const [breweryRatings, setBreweryRatings] = useState([]);
-  const [averageRating, setAverageRating] = useState(0);
-  const [rating, setRating] = useState(null);
-  const [hover, setHover] = useState(null);
+  const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState("none");
   const [review, setReview] = useState("");
 
   useEffect(() => {
-    filterBreweryRatings(allRatings, breweryId, setBreweryRatings);
-  }, [allRatings]);
-
-  useEffect(() => {
-    averageRatings();
-  }, [breweryRatings]);
-
-  const ratingValues = breweryRatings.map((rating) => {
-    return rating.rating;
-  });
-  // calculates the average rating for brewery
-  const averageRatings = () => {
-    if (breweryRatings.length > 0) {
-      const reducer = (acc, currentVal) => acc + currentVal;
-      setAverageRating(ratingValues.reduce(reducer) / breweryRatings.length);
-    } else setAverageRating(0);
-  };
+    setRating(averageRating);
+  }, []);
 
   // if currentUser exists, setRating to value of the clicked star and display review form
   const handleClick = (ratingVal) => {
@@ -81,39 +61,22 @@ const StarRating = ({
     };
     postRating(state);
     setSubmitDisplay("none");
-    setRating(averageRating);
+    setRating(rating);
   };
 
   return (
     <div>
-      {[...Array(5)].map((star, i) => {
-        const ratingVal = i + 1;
-        return (
-          <label>
-            <input
-              type="radio"
-              name="rating"
-              value={1}
-              onClick={() => handleClick(ratingVal)}
-              style={{ display: "none" }}
-            />
-            <FaStar
-              className={
-                Number.isInteger(averageRating) ? "star" : "partial-star"
-              }
-              onMouseEnter={() => setHover(ratingVal)}
-              onMouseLeave={() => setHover(null)}
-              color={
-                ratingVal <= (hover || rating || averageRating)
-                  ? // first color yellow, second color gray
-                    "#ffc107"
-                  : "#e4e5e9"
-              }
-            />
-          </label>
-        );
-      })}
-      <span>{averageRating} Stars</span>
+      <Stars
+        rating={rating}
+        starRatedColor="orange"
+        changeRating={handleClick}
+        numberOfStars={5}
+        starEmptyColor="grey"
+        starHoverColor="orange"
+        starDimension="22px"
+        starSpacing="2px"
+      />
+      <span> {averageRating} Stars</span>
 
       <br />
       <Popup
@@ -169,7 +132,6 @@ const StarRating = ({
 
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
-  allRatings: state.ratingData.ratings,
 });
 
 export default connect(mapStateToProps, { postRating })(StarRating);
