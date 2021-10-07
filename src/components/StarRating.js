@@ -13,6 +13,10 @@ import filterBreweryRatings from "../lib/filterBreweryRatings";
 // display the correct level of colors on stars based on the actual rating
 // Add a popup component that lets you sign in or sign up
 
+// USING BACKEND RATING SYSTEM
+// fetch ratings based on brewery id
+// fetch average rating based on brewery id
+
 const StarRating = ({
   breweryId,
   breweryName,
@@ -38,6 +42,17 @@ const StarRating = ({
     setRating(averageRating);
   }, [averageRating]);
 
+  // const getBreweryRatings = (breweryId) => {
+  //   axios.request({
+  //     method: "GET",
+  //     url: `http://localhost:3001/api/v1/brewery_ratings`,
+  //     params: { brewery_id: breweryId }
+  //   })
+  //   .then((response) => {
+
+  //   })
+  // };
+
   // calculates the average rating for brewery
   const averageRatings = () => {
     const ratingValues = breweryRatings.map((rating) => {
@@ -47,7 +62,9 @@ const StarRating = ({
       const reducer = (acc, currentVal) => acc + currentVal;
       const average = ratingValues.reduce(reducer) / breweryRatings.length;
       setAverageRating(average);
-    } else setAverageRating(0);
+    } else {
+      setAverageRating(0);
+    }
   };
 
   // if currentUser exists, setRating to value of the clicked star and display review form

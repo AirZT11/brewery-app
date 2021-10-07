@@ -128,11 +128,10 @@ const Map = ({
               origin: new window.google.maps.Point(0, 0),
               anchor: new window.google.maps.Point(15, 15),
             }}
-            // onClick={() => {
-            //   setSelectedBrew(brewery);
-            // }}
           />
         )}
+
+        {/* WHEN CLICKING OUTSIDE OF INFOWINDOW, RERENDER INFOWINDOW */}
         {selectedBrew && (
           <InfoWindow
             position={{

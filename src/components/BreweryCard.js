@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
+import { ImLocation } from "react-icons/im";
 
 const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
   const handleClick = () => {
@@ -14,8 +15,9 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
       14
     );
   };
+
   return (
-    <div className="brew-card" onClick={handleClick}>
+    <div className="brew-card">
       <Link
         to={{
           pathname: `brewery/${brewery.id}`,
@@ -30,6 +32,7 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
         <i>{brewery.city}</i>, {brewery.state}
       </p>
       {/* <p className="brew-location">{brewery.country}</p> */}
+
       <span>
         {urlExist(brewery.website_url)}
         <span> || </span>
@@ -41,6 +44,12 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
           Directions
         </a>
       </span>
+
+      <br />
+
+      <button className="show-on-map-btn" onClick={handleClick}>
+        <ImLocation /> Map
+      </button>
     </div>
   );
 };

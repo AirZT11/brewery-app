@@ -1,8 +1,10 @@
+import axios from "axios";
+
 const RATINGS_API_URL = "http://localhost:3001/api/v1/ratings";
 // const TOKEN = localStorage.getItem("token")
 
 export const postRating = (data) => (dispatch) => {
-  console.log(data);
+  // console.log(data);
   fetch(RATINGS_API_URL, {
     method: "POST",
     headers: {

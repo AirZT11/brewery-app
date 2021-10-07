@@ -1,18 +1,17 @@
 import axios from "axios";
-// import filterBreweryRatings from "../lib/filterBreweryRatings";
 
 const SEARCH_URL = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search`;
-// const BY_DIST_URL = "https://api.openbrewerydb.org/breweries?by_dist";
+// const SEARCH_URL = `http://localhost:3001/api/v1/search`;
 
 function BREW_API(url, input) {
   return {
     method: "GET",
     url: url,
     params: { query: input },
-    headers: {
-      "x-rapidapi-key": "0d5f8f8bb8mshdec6240eba9abb8p130b38jsn82704896f6c0",
-      "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
-    },
+    // headers: {
+    //   "x-rapidapi-key": "0d5f8f8bb8mshdec6240eba9abb8p130b38jsn82704896f6c0",
+    //   "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
+    // },
   };
 }
 

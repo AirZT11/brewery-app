@@ -37,7 +37,7 @@
 }
 
 .brew-card {
-  border-bottom: 1px solid rgb(182, 182, 182);
+  /* border-bottom: 1px solid rgb(182, 182, 182); */
   padding: 0.7em 1em 0.7em 1em;
   line-height: 1.1;
   text-align: left;
@@ -66,4 +66,20 @@
 
 .brewpage-description {
   text-align: left;
+}
+
+/* button {
+  border-radius: 15px;
+  padding: 2px;
+  margin: 1px;
+  width: 130px;
+} */
+
+.show-on-map-btn {
+  /* float: right; */
+  border-radius: 15px;
+  padding: 2px;
+  margin-top: 4px;
+  width: 130px;
+  cursor: pointer;
 }
