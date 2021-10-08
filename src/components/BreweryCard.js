@@ -18,11 +18,7 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
 
   return (
     <div className="brew-card">
-      <Link
-        to={{
-          pathname: `brewery/${brewery.id}`,
-        }}
-      >
+      <Link to={{ pathname: `brewery/${brewery.id}` }}>
         <strong>{brewery.name}</strong>
       </Link>
 
@@ -31,6 +27,7 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
       <p className="brew-location">
         <i>{brewery.city}</i>, {brewery.state}
       </p>
+
       {/* <p className="brew-location">{brewery.country}</p> */}
 
       <span>

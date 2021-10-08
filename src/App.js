@@ -27,7 +27,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
 
   useEffect(() => {
     fetchCurrentUser();
-    getRatings();
+    // getRatings();
   }, []);
 
   const displayList = () => {

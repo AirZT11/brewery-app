@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 
 const RATINGS_API_URL = "http://localhost:3001/api/v1/ratings";
 // const TOKEN = localStorage.getItem("token")
@@ -21,7 +21,7 @@ export const postRating = (data) => (dispatch) => {
   })
     .then((resp) => resp.json())
     .then((rating) => {
-      console.log(rating);
+      // console.log(rating);
       if (rating.error) {
         alert(rating.error);
       } else {

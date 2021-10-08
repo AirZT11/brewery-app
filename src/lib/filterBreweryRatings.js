@@ -1,16 +1,23 @@
-// filters allRatings from redux ratings state and returns ratings for brewery
-// allRatings = ratingData from redux store
-// breweryId = id that is passed down from component using this function
-// stateSetter = useState setter
-const filterBreweryRatings = (allRatings, breweryId, stateSetter) => {
-  const filteredRatings = allRatings.filter((rating) => {
-    // console.log("rating.brewery_id" + " " + rating.brewery_id);
-    // console.log(breweryId);
-    return rating.brewery_id === breweryId;
-  });
-  if (filteredRatings.length > 0) {
-    stateSetter(filteredRatings);
-  }
+import axios from "axios";
+
+export const getBreweryRatings = (breweryId, stateSetter) => {
+  axios
+    .request({
+      method: "GET",
+      url: `http://localhost:3001/api/v1/brewery_ratings`,
+      params: { brewery_id: breweryId },
+    })
+    .then((response) => {
+      // console.log(response.data);
+      stateSetter(response.data);
+    });
 };
 
-export default filterBreweryRatings;
+// export const filterBreweryRatings = (allRatings, breweryId, stateSetter) => {
+//   const filteredRatings = allRatings.filter((rating) => {
+//     return rating.brewery_id === breweryId;
+//   });
+//   if (filteredRatings.length > 0) {
+//     stateSetter(filteredRatings);
+//   }
+// };

@@ -3,12 +3,11 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import Map from "./Map";
-
-import filterBreweryRatings from "../lib/filterBreweryRatings";
+import { getBreweryRatings } from "../lib/filterBreweryRatings";
 
 import Reviews from "./Reviews";
 import StarRating from "./StarRating";
+import Map from "./Map";
 
 // TODO:
 // DONE - Display starRating
@@ -16,9 +15,9 @@ import StarRating from "./StarRating";
 // DONE - Display Reviews
 
 const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
+  const [brewery, setBrewery] = useState([]);
   const [breweryRatings, setBreweryRatings] = useState([]);
   const { id } = useParams();
-  const [brewery, setBrewery] = useState({});
   const { name, city, state, country, website_url, latitude, longitude } =
     brewery;
 
@@ -27,11 +26,6 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
       .request({
         method: "GET",
         url: `https://api.openbrewerydb.org/breweries/${id}`,
-        // headers: {
-        //   "x-rapidapi-key":
-        //     "0d5f8f8bb8mshdec6240eba9abb8p130b38jsn82704896f6c0",
-        //   "x-rapidapi-host": "brianiswu-open-brewery-db-v1.p.rapidapi.com",
-        // },
       })
       .then((response) => {
         setBrewery(response.data);
@@ -42,18 +36,16 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
   }, []);
 
   useEffect(() => {
-    filterBreweryRatings(allRatings, parseInt(id), setBreweryRatings);
+    getBreweryRatings(id, setBreweryRatings);
   }, []);
-
-  // useEffect(() => {
-  //   displayList("block");
-  // });
 
   return (
     <div className="brewery-page">
       <div className="brewpage-description">
         <h1>{name}</h1>
-        <StarRating breweryId={parseInt(id)} breweryName={name} />
+
+        <StarRating breweryId={id} breweryName={name} />
+
         <p className="brew-location">
           {city}, {state}
         </p>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import axios from "axios";
 import "../css/Rating.css";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -7,21 +8,17 @@ import { postRating } from "../actions/ratingActions";
 import Reviews from "./Reviews";
 import Stars from "react-star-ratings";
 import "../css/Modal.css";
-import filterBreweryRatings from "../lib/filterBreweryRatings";
+import { getBreweryRatings } from "../lib/filterBreweryRatings";
 
 // TODO:
 // display the correct level of colors on stars based on the actual rating
 // Add a popup component that lets you sign in or sign up
 
-// USING BACKEND RATING SYSTEM
-// fetch ratings based on brewery id
-// fetch average rating based on brewery id
-
 const StarRating = ({
   breweryId,
   breweryName,
   currentUser,
-  allRatings,
+  // allRatings,
   postRating,
 }) => {
   const [breweryRatings, setBreweryRatings] = useState([]);
@@ -31,29 +28,15 @@ const StarRating = ({
   const [review, setReview] = useState("");
 
   useEffect(() => {
-    filterBreweryRatings(allRatings, breweryId, setBreweryRatings);
-  }, [allRatings]);
+    getBreweryRatings(breweryId, setBreweryRatings);
+  }, []);
 
   useEffect(() => {
     averageRatings();
   }, [breweryRatings]);
 
-  useEffect(() => {
-    setRating(averageRating);
-  }, [averageRating]);
-
-  // const getBreweryRatings = (breweryId) => {
-  //   axios.request({
-  //     method: "GET",
-  //     url: `http://localhost:3001/api/v1/brewery_ratings`,
-  //     params: { brewery_id: breweryId }
-  //   })
-  //   .then((response) => {
-
-  //   })
-  // };
-
   // calculates the average rating for brewery
+  // Move this into lib file
   const averageRatings = () => {
     const ratingValues = breweryRatings.map((rating) => {
       return rating.rating;
@@ -61,7 +44,9 @@ const StarRating = ({
     if (breweryRatings.length > 0) {
       const reducer = (acc, currentVal) => acc + currentVal;
       const average = ratingValues.reduce(reducer) / breweryRatings.length;
-      setAverageRating(average);
+      const formattedAverage = Number(average.toFixed(1));
+      setAverageRating(formattedAverage);
+      setRating(formattedAverage);
     } else {
       setAverageRating(0);
     }
@@ -86,6 +71,7 @@ const StarRating = ({
     e.preventDefault();
     setSubmitDisplay("none");
     setRating(averageRating);
+    setReview("");
   };
 
   // submits a rating to the backend database
@@ -100,7 +86,8 @@ const StarRating = ({
     };
     postRating(state);
     setSubmitDisplay("none");
-    setRating(rating);
+    setReview("");
+    getBreweryRatings(breweryId, setBreweryRatings);
   };
 
   return (
@@ -161,6 +148,7 @@ const StarRating = ({
             type="text"
             name="review"
             onChange={handleChange}
+            value={review}
             placeholder="Submit a review..."
           ></input>
           <button onClick={handleCancel}>Cancel</button>
