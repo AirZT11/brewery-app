@@ -3,8 +3,15 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
 import { ImLocation } from "react-icons/im";
+import { getBreweryRatings } from "../lib/filterBreweryRatings";
 
 const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
+  const [breweryRatings, setBreweryRatings] = useState([]);
+
+  useEffect(() => {
+    getBreweryRatings(brewery.id, setBreweryRatings);
+  }, [brewery]);
+
   const handleClick = () => {
     setSelectedBrew(brewery);
     panTo(
@@ -22,7 +29,11 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
         <strong>{brewery.name}</strong>
       </Link>
 
-      <StarRating breweryId={brewery.id} breweryName={brewery.name} />
+      <StarRating
+        breweryId={brewery.id}
+        breweryName={brewery.name}
+        breweryRatings={breweryRatings}
+      />
 
       <p className="brew-location">
         <i>{brewery.city}</i>, {brewery.state}
@@ -44,7 +55,7 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
 
       <br />
 
-      <button className="show-on-map-btn" onClick={handleClick}>
+      <button className="pan-to-on-map-btn" onClick={handleClick}>
         <ImLocation /> Map
       </button>
     </div>

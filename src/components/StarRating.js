@@ -11,7 +11,6 @@ import "../css/Modal.css";
 import { getBreweryRatings } from "../lib/filterBreweryRatings";
 
 // TODO:
-// display the correct level of colors on stars based on the actual rating
 // Add a popup component that lets you sign in or sign up
 
 const StarRating = ({
@@ -20,16 +19,17 @@ const StarRating = ({
   currentUser,
   // allRatings,
   postRating,
+  breweryRatings,
 }) => {
-  const [breweryRatings, setBreweryRatings] = useState([]);
+  // const [breweryRatings, setBreweryRatings] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState("none");
   const [review, setReview] = useState("");
 
-  useEffect(() => {
-    getBreweryRatings(breweryId, setBreweryRatings);
-  }, []);
+  // useEffect(() => {
+  //   getBreweryRatings(breweryId, setBreweryRatings);
+  // }, []);
 
   useEffect(() => {
     averageRatings();
@@ -87,7 +87,7 @@ const StarRating = ({
     postRating(state);
     setSubmitDisplay("none");
     setReview("");
-    getBreweryRatings(breweryId, setBreweryRatings);
+    // getBreweryRatings(breweryId, setBreweryRatings);
   };
 
   return (
@@ -126,7 +126,7 @@ const StarRating = ({
             </div>
 
             {breweryRatings.map((review) => {
-              return <Reviews review={review} />;
+              return <Reviews key={review.id} review={review} />;
             })}
 
             <button

@@ -18,8 +18,6 @@ import mapStyles from "../mapStyles";
 import "../css/Map.css";
 import "../css/Loading.css";
 
-const libraries = ["places"];
-
 const options = {
   styles: mapStyles,
   disableDefaultUI: true,
@@ -36,6 +34,8 @@ const Map = ({
   setMapZoom,
   mapCenter,
 }) => {
+  const [libraries] = useState(["places"]);
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -48,6 +48,18 @@ const Map = ({
 
   const [selectedBrew, setSelectedBrew] = useState(null);
   const [loadDisplay, setLoadDisplay] = useState("none");
+
+  const handleOutsideClick = () => {
+    // setSelectedBrew(null);
+  };
+
+  useEffect(() => {
+    window.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      window.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
 
   // useEffect(() => {
   //   panTo(userLocation, mapZoom);
@@ -147,6 +159,7 @@ const Map = ({
             />
           </InfoWindow>
         )}
+
         <Marker
           position={{
             lat: userLocation.lat,

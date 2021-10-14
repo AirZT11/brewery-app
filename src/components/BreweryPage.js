@@ -44,7 +44,11 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
       <div className="brewpage-description">
         <h1>{name}</h1>
 
-        <StarRating breweryId={id} breweryName={name} />
+        <StarRating
+          breweryId={id}
+          breweryName={name}
+          breweryRatings={breweryRatings}
+        />
 
         <p className="brew-location">
           {city}, {state}
