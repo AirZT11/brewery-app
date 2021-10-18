@@ -9,6 +9,9 @@ import Reviews from "./Reviews";
 import Stars from "react-star-ratings";
 import "../css/Modal.css";
 import { getBreweryRatings } from "../lib/filterBreweryRatings";
+import Login from "./Login";
+import SignUpContainer from "./containers/SignUpContainer";
+import useToggle from "../hooks/useToggle";
 
 // TODO:
 // Add a popup component that lets you sign in or sign up
@@ -26,6 +29,8 @@ const StarRating = ({
   const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState("none");
   const [review, setReview] = useState("");
+  const [loginView, setLoginView] = useState(false);
+  const [modalView, toggleModalView] = useToggle();
 
   // useEffect(() => {
   //   getBreweryRatings(breweryId, setBreweryRatings);
@@ -60,7 +65,8 @@ const StarRating = ({
       setSubmitDisplay("block");
     } else {
       // Add a popup component that lets you sign in or sign up
-      alert("Please sign up or sign in to submit a review");
+      // alert("Please sign up or sign in to submit a review");
+      setLoginView(true);
     }
   };
 
@@ -103,6 +109,32 @@ const StarRating = ({
         starDimension="22px"
         starSpacing="2px"
       />
+      <Popup
+        open={loginView}
+        modal
+        nested
+        onClose={() => {
+          setLoginView(false);
+          toggleModalView(false);
+        }}
+      >
+        {(close) => (
+          <div className="modal">
+            <button className="close" onClick={close}>
+              &times;
+            </button>
+            <div className="header">
+              Please Login or Create New Account to Review
+            </div>
+
+            {modalView ? <SignUpContainer /> : <Login />}
+
+            <button className="submit-btn" onClick={toggleModalView}>
+              {modalView ? "Login" : "Create New Account"}
+            </button>
+          </div>
+        )}
+      </Popup>
 
       <span> {averageRating} Stars</span>
 
