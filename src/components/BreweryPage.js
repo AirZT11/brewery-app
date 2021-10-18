@@ -9,11 +9,6 @@ import Reviews from "./Reviews";
 import StarRating from "./StarRating";
 import Map from "./Map";
 
-// TODO:
-// DONE - Display starRating
-// DONE - Display # of reviews
-// DONE - Display Reviews
-
 const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
   const [brewery, setBrewery] = useState([]);
   const [breweryRatings, setBreweryRatings] = useState([]);

@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import { connect } from "react-redux";
+import useToggle from "../hooks/useToggle";
 
 import Locate from "./Locate";
 // import GoogleSearch from "./GoogleSearch";
@@ -34,6 +35,9 @@ const Map = ({
   setMapZoom,
   mapCenter,
 }) => {
+  const [selectedBrew, setSelectedBrew] = useState(null);
+  const [loadDisplay, setLoadDisplay] = useState("none");
+  const [markerView, toggleMarkerView] = useToggle(true);
   const [libraries] = useState(["places"]);
 
   const { isLoaded, loadError } = useLoadScript({
@@ -46,20 +50,16 @@ const Map = ({
     height: "50vh",
   };
 
-  const [selectedBrew, setSelectedBrew] = useState(null);
-  const [loadDisplay, setLoadDisplay] = useState("none");
+  // const handleOutsideClick = () => {
+  //   selectedBrew && toggleMarkerView();
+  // };
 
-  const handleOutsideClick = () => {
-    // setSelectedBrew(null);
-  };
-
-  useEffect(() => {
-    window.addEventListener("click", handleOutsideClick);
-
-    return () => {
-      window.removeEventListener("click", handleOutsideClick);
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("click", handleOutsideClick);
+  //   return () => {
+  //     window.removeEventListener("click", handleOutsideClick);
+  //   };
+  // }, []);
 
   // useEffect(() => {
   //   panTo(userLocation, mapZoom);
@@ -98,7 +98,6 @@ const Map = ({
           setLoadDisplay={setLoadDisplay}
           setMapZoom={setMapZoom}
           mapZoom={mapZoom}
-          // userLocation={userLocation}
         />
       )}
 
@@ -109,6 +108,7 @@ const Map = ({
         options={options}
         onLoad={onMapLoad}
       >
+        {/* DISPLAYS MULTIPLE MARKERS IF > 1 BREWERY : (HOME VS BREWERYPAGE) */}
         {Array.isArray(breweries) ? (
           breweries.map((brewery) => (
             <Marker
@@ -144,7 +144,7 @@ const Map = ({
         )}
 
         {/* WHEN CLICKING OUTSIDE OF INFOWINDOW, RERENDER INFOWINDOW */}
-        {selectedBrew && (
+        {selectedBrew && markerView && (
           <InfoWindow
             position={{
               lat: Number(selectedBrew.latitude),
@@ -159,7 +159,6 @@ const Map = ({
             />
           </InfoWindow>
         )}
-
         <Marker
           position={{
             lat: userLocation.lat,
@@ -167,7 +166,7 @@ const Map = ({
           }}
         />
       </GoogleMap>
-      {/* <br /> */}
+
       {Array.isArray(breweries) && (
         <div style={{ display: display }}>
           <BreweryList

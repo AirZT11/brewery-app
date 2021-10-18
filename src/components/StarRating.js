@@ -49,6 +49,7 @@ const StarRating = ({
       setRating(formattedAverage);
     } else {
       setAverageRating(0);
+      setRating(0);
     }
   };
 

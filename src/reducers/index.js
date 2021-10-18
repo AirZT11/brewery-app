@@ -9,7 +9,7 @@ const persistConfig = {
   key: "root",
   storage,
   whitelist: [
-    "userData",
+    // "userData",
     // "ratingData"
   ],
 };
