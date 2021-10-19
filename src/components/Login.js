@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-
-import { loginUser } from "../actions/userActions";
+import React, { useState } from "react";
 import { connect } from "react-redux";
+import { loginUser, setPromptView } from "../actions/userActions";
 
-const Login = ({ loginUser, loginFailed, setLoginView }) => {
+const Login = ({ loginUser, loginFailed, setPromptView }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -13,14 +12,18 @@ const Login = ({ loginUser, loginFailed, setLoginView }) => {
       password: password,
     };
     const response = await loginUser(userInputData);
-    // return response;
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
     handleLogin()
-      .then((response) => {
-        setLoginView(false);
+      .then(() => {
+        setPromptView("LOGGED_IN", true);
+      })
+      .then(() => {
+        setTimeout(() => {
+          return setPromptView("LOGGED_IN", false);
+        }, 2500);
       })
       .catch((err) => console.log(err));
     resetForm();
@@ -71,4 +74,4 @@ const mapStateToProps = (state) => ({
   loginFailed: state.userData.loginFailed,
 });
 
-export default connect(mapStateToProps, { loginUser })(Login);
+export default connect(mapStateToProps, { loginUser, setPromptView })(Login);

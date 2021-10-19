@@ -3,7 +3,8 @@ const initialState = {
   locationAvail: false,
   userLocation: {},
   loginFailed: false,
-  // loginView: false,
+  promptView: false,
+  promptMessage: "",
 };
 
 export default function userReducer(state = initialState, action) {
@@ -29,17 +30,27 @@ export default function userReducer(state = initialState, action) {
         userLocation: action.payload,
       };
     case "LOGOUT":
-      return initialState;
+      return {
+        ...state,
+        currentUser: null,
+        locationAvail: true,
+        // userLocation: {},
+        loginFailed: false,
+        promptView: action.payload,
+        promptMessage: "Logged Out",
+      };
     case "LOGIN_FAILED":
       return {
         ...state,
         loginFailed: action.payload,
       };
-    // case "SET_LOGIN_VIEW":
-    //   return {
-    //     ...state,
-    //     loginView: action.payload,
-    //   };
+    case "LOGGED_IN":
+      return {
+        ...state,
+        promptView: action.payload,
+        promptMessage: `Logged In`,
+      };
+
     default:
       return state;
   }

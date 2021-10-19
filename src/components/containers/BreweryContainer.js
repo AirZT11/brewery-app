@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { fetchBreweries } from "../../actions/breweryActions";
-import { getUserLocation } from "../../actions/userActions";
+import { getUserLocation, setPromptView } from "../../actions/userActions";
 import "../../css/Breweries.css";
 import Map from "../Map";
+import Prompt from "../Prompt";
+import "../../css/Modal.css";
 
 const BreweryContainer = ({
   displayList,
@@ -45,6 +47,8 @@ const BreweryContainer = ({
         {/* <div style={{display: this.state.display}}>
             < BreweryList breweries={this.state.breweries} listStyle={'brewList-map'}/>
           </div>   */}
+
+        <Prompt />
       </div>
     </>
   );
@@ -56,6 +60,7 @@ const mapStateToProps = (state) => ({
   userLocation: state.userData.userLocation,
 });
 
-export default connect(mapStateToProps, { fetchBreweries, getUserLocation })(
-  BreweryContainer
-);
+export default connect(mapStateToProps, {
+  fetchBreweries,
+  getUserLocation,
+})(BreweryContainer);

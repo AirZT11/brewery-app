@@ -13,6 +13,12 @@ export const getBreweryRatings = (breweryId, stateSetter) => {
     });
 };
 
+export const delay = (t, v) => {
+  return new Promise(function (resolve) {
+    setTimeout(resolve(null, v), t);
+  });
+};
+
 // export const filterBreweryRatings = (allRatings, breweryId, stateSetter) => {
 //   const filteredRatings = allRatings.filter((rating) => {
 //     return rating.brewery_id === breweryId;

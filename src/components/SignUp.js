@@ -1,8 +1,6 @@
 import React from "react";
 
 const SignUp = ({ handleChange, handleSubmit, state, errors }) => {
-  // const [display, setDisplay] = useState('none')
-
   // get's keys of all errors and finds specific key
   let errorKey = (error) => {
     let keys = Object.keys(errors);
@@ -63,7 +61,7 @@ const SignUp = ({ handleChange, handleSubmit, state, errors }) => {
         {errorMsg("password")}
         <input
           // id="password"
-          // name="password"
+          name="password"
           type="password"
           value={state.password}
           placeholder="Password"

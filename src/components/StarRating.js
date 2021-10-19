@@ -3,7 +3,7 @@ import useToggle from "../hooks/useToggle";
 
 import { connect } from "react-redux";
 import { postRating } from "../actions/ratingActions";
-import { setLoginView } from "../actions/userActions";
+import { setPromptView } from "../actions/userActions";
 
 import Stars from "react-star-ratings";
 import Popup from "reactjs-popup";
@@ -22,14 +22,14 @@ const StarRating = ({
   currentUser,
   postRating,
   breweryRatings,
-  // loginView,
-  // setLoginView,
+  promptView,
+  setPromptView,
 }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState("none");
   const [review, setReview] = useState("");
-  const [loginView, setLoginView] = useState(false);
+  // const [loginView, setLoginView] = useState(false);
   const [modalView, toggleModalView] = useToggle();
 
   useEffect(() => {
@@ -60,7 +60,8 @@ const StarRating = ({
       setRating(ratingVal);
       setSubmitDisplay("block");
     } else {
-      setLoginView(true);
+      // setLoginView(true);
+      setPromptView("LOGGED_IN", true);
     }
   };
 
@@ -88,7 +89,6 @@ const StarRating = ({
     postRating(state);
     setSubmitDisplay("none");
     setReview("");
-    // getBreweryRatings(breweryId, setBreweryRatings);
   };
 
   return (
@@ -104,11 +104,11 @@ const StarRating = ({
         starSpacing="2px"
       />
       <Popup
-        open={loginView}
+        open={promptView}
         modal
         nested
         onClose={() => {
-          setLoginView(false);
+          setPromptView(false);
           toggleModalView(false);
         }}
       >
@@ -124,7 +124,7 @@ const StarRating = ({
             {modalView ? (
               <SignUpContainer />
             ) : (
-              <Login setLoginView={setLoginView} />
+              <Login setPromptView={setPromptView} />
             )}
 
             <button className="toggle-modal" onClick={toggleModalView}>
@@ -193,7 +193,9 @@ const StarRating = ({
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
   allRatings: state.ratingData.ratings,
-  // loginView: state.userData.loginView,
+  promptView: state.ratingData.promptView,
 });
 
-export default connect(mapStateToProps, { postRating })(StarRating);
+export default connect(mapStateToProps, { postRating, setPromptView })(
+  StarRating
+);

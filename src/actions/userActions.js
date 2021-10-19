@@ -85,16 +85,16 @@ export const getUserLocation = (locationAvail) => (dispatch) => {
   }
 };
 
-export const logOut = () => (dispatch) => {
+export const logOut = (bool) => (dispatch) => {
   dispatch({
     type: "LOGOUT",
+    payload: bool,
   });
 };
 
-// CAN'T USE STORE FOR LOGINVIEW AS IT APPLIES IT TO EVERY STARRATING COMPONENT...
-// export const setLoginView = (boolean) => (dispatch) => {
-//   dispatch({
-//     type: "SET_LOGIN_VIEW",
-//     payload: boolean,
-//   });
-// };
+export const setPromptView = (type, bool) => (dispatch) => {
+  dispatch({
+    type: type,
+    payload: bool,
+  });
+};

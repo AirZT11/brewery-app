@@ -1,14 +1,22 @@
+.popup-content {
+  /* display: flex; */
+  overflow: hidden;
+  border-radius: 10px;
+}
+
 .modal {
-  font-size: 12px;
-  border-radius: 20px;
+  display: flex;
+
+  font-size: 16px;
   text-align: center;
 }
 .modal > .header {
   width: 100%;
-  border-bottom: 1px solid gray;
+  /* border-bottom: 1px solid gray; */
   font-size: 30px;
   text-align: center;
-  padding: 5px;
+  padding: 15px;
+  margin: 10px;
 }
 .modal > .content {
   width: 100%;
@@ -24,11 +32,11 @@
   cursor: pointer;
   position: absolute;
   display: block;
-  padding: 2px 5px;
-  line-height: 20px;
-  right: -0px;
-  top: -0px;
-  font-size: 24px;
+  /* padding: 5px; */
+  /* line-height: 20px; */
+  right: 4px;
+  top: 0px;
+  font-size: 30px;
   background: #ffffff;
   border-style: hidden;
   color: rgb(170, 169, 169);
@@ -43,8 +51,4 @@
   border-radius: 10px;
   margin: 10px;
   cursor: pointer;
-}
-
-.popup-overlay {
-  background: rgba(0, 0, 0, 0.315);
 }

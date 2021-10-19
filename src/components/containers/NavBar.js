@@ -4,7 +4,7 @@ import { fetchBreweries } from "../../actions/breweryActions";
 import { NavLink } from "react-router-dom";
 import SearchBar from "../SearchBar";
 import "../../css/NavBar.css";
-import { logOut } from "../../actions/userActions";
+import { logOut, setPromptView } from "../../actions/userActions";
 
 const NavBar = ({
   currentUser,
@@ -12,6 +12,7 @@ const NavBar = ({
   logOut,
   displayList,
   setMapZoom,
+  setPromptView,
 }) => {
   const [searchInput, setSearchInput] = useState("");
 
@@ -28,9 +29,12 @@ const NavBar = ({
   };
 
   const logout = () => {
-    logOut();
+    logOut(true);
     localStorage.removeItem("token");
-    alert("You have been successfully logged out");
+    setTimeout(() => {
+      return setPromptView("LOGOUT", false);
+    }, 2500);
+    // alert("You have been successfully logged out");
   };
 
   return (
@@ -88,4 +92,4 @@ const NavBar = ({
   );
 };
 
-export default connect(null, { fetchBreweries, logOut })(NavBar);
+export default connect(null, { fetchBreweries, logOut, setPromptView })(NavBar);
