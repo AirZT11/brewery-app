@@ -1,7 +1,7 @@
 .signup-form input {
   padding: 10px;
   border-radius: 10px;
-  width: 200px;
+  width: 350px;
   font-size: 18px;
   margin: 10px;
   /* border-style: ridge; */
@@ -12,15 +12,16 @@
   margin: 10px;
 }
 
-.signup-form label {
-  font-size: 20px;
-  line-height: 1.8;
-}
-
 .submit-btn {
   font-size: 18px;
   padding: 10px;
   border-radius: 10px;
   margin: 10px;
   cursor: pointer;
+}
+
+.signup-form .error {
+  font-size: 16px;
+  font-style: italic;
+  color: red;
 }

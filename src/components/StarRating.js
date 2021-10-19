@@ -1,40 +1,36 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
-import axios from "axios";
-import "../css/Rating.css";
-import Popup from "reactjs-popup";
-import "reactjs-popup/dist/index.css";
-import { postRating } from "../actions/ratingActions";
-import Reviews from "./Reviews";
-import Stars from "react-star-ratings";
-import "../css/Modal.css";
-import { getBreweryRatings } from "../lib/filterBreweryRatings";
-import Login from "./Login";
-import SignUpContainer from "./containers/SignUpContainer";
 import useToggle from "../hooks/useToggle";
 
-// TODO:
-// Add a popup component that lets you sign in or sign up
+import { connect } from "react-redux";
+import { postRating } from "../actions/ratingActions";
+import { setLoginView } from "../actions/userActions";
+
+import Stars from "react-star-ratings";
+import Popup from "reactjs-popup";
+
+import Reviews from "./Reviews";
+import Login from "./Login";
+import SignUpContainer from "./containers/SignUpContainer";
+
+import "../css/Modal.css";
+import "../css/Rating.css";
+import "reactjs-popup/dist/index.css";
 
 const StarRating = ({
   breweryId,
   breweryName,
   currentUser,
-  // allRatings,
   postRating,
   breweryRatings,
+  // loginView,
+  // setLoginView,
 }) => {
-  // const [breweryRatings, setBreweryRatings] = useState([]);
   const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState("none");
   const [review, setReview] = useState("");
   const [loginView, setLoginView] = useState(false);
   const [modalView, toggleModalView] = useToggle();
-
-  // useEffect(() => {
-  //   getBreweryRatings(breweryId, setBreweryRatings);
-  // }, []);
 
   useEffect(() => {
     averageRatings();
@@ -64,8 +60,6 @@ const StarRating = ({
       setRating(ratingVal);
       setSubmitDisplay("block");
     } else {
-      // Add a popup component that lets you sign in or sign up
-      // alert("Please sign up or sign in to submit a review");
       setLoginView(true);
     }
   };
@@ -127,9 +121,13 @@ const StarRating = ({
               Please Login or Create New Account to Review
             </div>
 
-            {modalView ? <SignUpContainer /> : <Login />}
+            {modalView ? (
+              <SignUpContainer />
+            ) : (
+              <Login setLoginView={setLoginView} />
+            )}
 
-            <button className="submit-btn" onClick={toggleModalView}>
+            <button className="toggle-modal" onClick={toggleModalView}>
               {modalView ? "Login" : "Create New Account"}
             </button>
           </div>
@@ -195,6 +193,7 @@ const StarRating = ({
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
   allRatings: state.ratingData.ratings,
+  // loginView: state.userData.loginView,
 });
 
 export default connect(mapStateToProps, { postRating })(StarRating);

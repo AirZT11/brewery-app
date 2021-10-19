@@ -1,3 +1,4 @@
+import axios from "axios";
 const API_URL = "http://localhost:3001/api/v1";
 // const USER_API_URL = API_URL + '/users';
 const LOGIN_API_URL = API_URL + "/login";
@@ -6,32 +7,35 @@ const LOGIN_API_URL = API_URL + "/login";
 const TOKEN = localStorage.getItem("token");
 
 export const loginUser = (userInputData) => (dispatch) => {
-  fetch(LOGIN_API_URL, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify({
-      user: userInputData,
-    }),
-  })
-    .then((resp) => resp.json())
-    .then((user) => {
-      if (user.error) {
-        alert(user.error);
-        // dispatch({
-        //   type: LOGIN_FAILED,
-        //   payload: user.error
-        // })
-      } else {
-        localStorage.setItem("token", user.jwt);
-        dispatch({
-          type: "LOGIN_USER",
-          payload: user,
-        });
-      }
-    });
+  return new Promise((resolve, reject) => {
+    fetch(LOGIN_API_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        user: userInputData,
+      }),
+    })
+      .then((resp) => resp.json())
+      .then((user) => {
+        if (user.error) {
+          dispatch({
+            type: "LOGIN_FAILED",
+            payload: true,
+          });
+          return reject(false);
+        } else {
+          localStorage.setItem("token", user.jwt);
+          dispatch({
+            type: "LOGIN_USER",
+            payload: user,
+          });
+          return resolve(true);
+        }
+      });
+  });
 };
 
 export const fetchCurrentUser = () => (dispatch) => {
@@ -86,3 +90,11 @@ export const logOut = () => (dispatch) => {
     type: "LOGOUT",
   });
 };
+
+// CAN'T USE STORE FOR LOGINVIEW AS IT APPLIES IT TO EVERY STARRATING COMPONENT...
+// export const setLoginView = (boolean) => (dispatch) => {
+//   dispatch({
+//     type: "SET_LOGIN_VIEW",
+//     payload: boolean,
+//   });
+// };

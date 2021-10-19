@@ -1,19 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { loginUser } from "../actions/userActions";
 import { connect } from "react-redux";
 
-const Login = ({ loginUser }) => {
+const Login = ({ loginUser, loginFailed, setLoginView }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
+  const handleLogin = async () => {
     const userInputData = {
       username: username,
       password: password,
     };
-    loginUser(userInputData);
+    const response = await loginUser(userInputData);
+    // return response;
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    handleLogin()
+      .then((response) => {
+        setLoginView(false);
+      })
+      .catch((err) => console.log(err));
     resetForm();
   };
 
@@ -47,9 +56,19 @@ const Login = ({ loginUser }) => {
 
         <input className="submit-btn" type="submit" />
         <br />
+        <div
+          className="error"
+          style={{ display: loginFailed ? "block" : "none" }}
+        >
+          Username or Password is Incorrect
+        </div>
       </form>
     </div>
   );
 };
 
-export default connect(null, { loginUser })(Login);
+const mapStateToProps = (state) => ({
+  loginFailed: state.userData.loginFailed,
+});
+
+export default connect(mapStateToProps, { loginUser })(Login);

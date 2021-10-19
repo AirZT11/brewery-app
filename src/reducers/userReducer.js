@@ -2,6 +2,8 @@ const initialState = {
   currentUser: null,
   locationAvail: false,
   userLocation: {},
+  loginFailed: false,
+  // loginView: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -28,6 +30,16 @@ export default function userReducer(state = initialState, action) {
       };
     case "LOGOUT":
       return initialState;
+    case "LOGIN_FAILED":
+      return {
+        ...state,
+        loginFailed: action.payload,
+      };
+    // case "SET_LOGIN_VIEW":
+    //   return {
+    //     ...state,
+    //     loginView: action.payload,
+    //   };
     default:
       return state;
   }
