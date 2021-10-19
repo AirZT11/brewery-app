@@ -1,40 +1,25 @@
-.search-bar {
+/* .search-bar {
 }
 
 .search-text {
-  width: 40%;
+  width: 80%;
 }
 
-.search input {
+.search-bar input {
   display: inline;
   padding: 0.7rem;
   font-size: 16px;
-  margin-top: 10px;
-  margin-right: 6px;
+  margin: 6px;
   border-style: hidden;
-  border-radius: 20px;
+  border-radius: 10px;
 }
 
 .submit {
   cursor: pointer;
   font-family: "Roboto";
   font-weight: bold;
-  /* margin-left: -50px; */
-  width: 10%;
 }
 
 .submit:hover {
   background-color: rgb(211, 211, 211);
-}
-
-/* .search {
-  position: absolute;
-  top: 1rem;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 400px;
-  z-index: 10;
-}
-
-*/
+} */

@@ -1,13 +1,13 @@
-.bar {
+/* .bar {
   position: relative;
-  /* display: flex; */
+
   justify-content: space-between;
   top: 0;
   height: 64px;
-  background-color: #333;
+  background-color: rgba(51, 51, 51);
   box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.774);
   z-index: 10;
-}
+} */
 
 .bottom-nav {
   position: fixed;
@@ -22,121 +22,113 @@
 .bar .search {
 }
 
-.app-name {
-  display: block;
-  position: absolute;
-  float: left;
-  font-family: "Lobster Two";
-  font-style: italic;
-  font-weight: bold;
-  font-size: 30px;
-  color: whitesmoke;
-  margin-top: 10px;
-  margin-left: 10px;
-  cursor: pointer;
-  /* padding: 8px; */
-}
-
 /* HAMBURGER MENU STYLING */
-#menuToggle {
-  display: block;
-  position: absolute;
-  padding: 16px;
-  top: 0px;
-  right: 0px;
-  -webkit-user-select: none;
-  user-select: none;
+
+.bm-burger-button {
+  position: fixed;
+  width: 30px;
+  height: 30px;
+  right: 36px;
+  top: 36px;
 }
 
-.nav-link {
-  text-decoration: none;
-  color: #232323;
-  transition: color 0.3s ease;
+/* Color/shape of burger icon bars */
+.bm-burger-bars {
+  background: #373a47;
 }
 
-.nav-link:hover {
-  color: tomato;
-  text-shadow: 4px 6px 4px rgba(153, 153, 153, 0.309);
+/* Color/shape of burger icon bars on hover*/
+.bm-burger-bars-hover {
+  background: #a90000;
 }
 
-#menuToggle input {
-  display: block;
-  position: absolute;
-  width: 40px;
-  height: 34px;
-  top: 0px;
-  right: 0px;
-  margin-right: 13px;
-  margin-top: 10px;
-  cursor: pointer;
-  opacity: 0;
-  z-index: 15;
-  -webkit-touch-callout: none;
+/* Position and sizing of clickable cross button */
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
 }
 
-#menuToggle span {
-  display: block;
-  position: relative;
-  width: 33px;
-  height: 5px;
-  margin-bottom: 5px;
-  background: #cdcdcd;
-  border-radius: 3px;
-  z-index: 14;
-  transform-origin: 4px 0px;
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
-    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
+/* Color/shape of close button cross */
+.bm-cross {
+  background: #bdc3c7;
 }
 
-#menuToggle span:first-child {
-  transform-origin: 0% 0%;
+/*
+Sidebar wrapper styles
+Note: Beware of modifying this element as it can break the animations - you should not need to touch it in most cases
+*/
+.bm-menu-wrap {
+  position: fixed;
+  height: 100%;
 }
 
-#menuToggle span:nth-last-child(2) {
-  transform-origin: 0% 100%;
+/* General sidebar styles */
+.bm-menu {
+  background: #2b2929ee;
+  padding: 1em 1.5em 0;
+  font-size: 1.15em;
 }
 
-#menuToggle input:checked ~ span {
-  opacity: 1;
-  transform: rotate(45deg) translate(-4px, 1px);
-  background: #232323;
+/* Morph shape necessary with bubble or elastic */
+.bm-morph-shape {
+  fill: #373a47;
 }
 
-#menuToggle input:checked ~ span:nth-last-child(3) {
-  opacity: 0;
-  transform: rotate(0deg) scale(0.2, 0.2);
-}
-
-#menuToggle input:checked ~ span:nth-last-child(2) {
-  transform: rotate(-45deg) translate(0, -4px);
-}
-
-#menu {
-  position: absolute;
-  width: 200px;
-  margin-top: 10px;
-  margin-bottom: 0;
-  padding: 5px;
-  right: 0px;
-  background: #ededed;
-  list-style-type: none;
-  z-index: 9;
-  border-radius: 0 0 0 10px;
-  -webkit-font-smoothing: antialiased;
-  transform-origin: 0% 0%;
-  transform: translate(0, -100%);
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
-}
-
-#menu li {
-  padding: 10px 20px 5px 0px;
-  font-size: 22px;
+/* Wrapper for item list */
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
   text-align: right;
+}
+
+/* Individual item */
+.menu-item {
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 10px;
+  font-size: 35px;
+  text-decoration: none;
+  color: aliceblue;
+  font-family: "Lobster Two";
+  font-weight: bold;
+}
+
+.menu-item p {
+  font-family: "Lobster Two";
+  font-size: 41px;
+  cursor: pointer;
+  font-stretch: expanded;
+}
+
+/* Styling of overlay */
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.search-bar {
+}
+
+.search-text {
+  width: 90%;
+}
+
+.search-bar input {
+  display: inline-block;
+  padding: 0.7rem;
+  font-size: 16px;
+  margin: 6px;
+  border-style: hidden;
+  border-radius: 10px;
+}
+
+.submit-btn {
+  cursor: pointer;
   font-family: "Roboto";
   font-weight: bold;
+  /* margin-left: -50px; */
+  width: 10;
 }
 
-#menuToggle input:checked ~ ul {
-  transform: scale(1, 1);
-  transform: none;
+.submit:hover {
+  background-color: rgb(211, 211, 211);
 }

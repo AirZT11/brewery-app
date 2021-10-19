@@ -13,7 +13,7 @@ const SearchBar = ({ handleChange, searchInput, handleSubmit }) => {
           onChange={handleChange}
           placeholder="Search Breweries..."
         />
-        <input type="submit" className="submit" />
+        <input type="submit" className="submit-btn" />
       </form>
     </div>
   );

@@ -22,6 +22,9 @@ import { fetchCurrentUser } from "./actions/userActions";
 import { getRatings } from "./actions/ratingActions";
 import BottomNav from "./components/BottomNav";
 
+import "./css/NavBar.css";
+import { slide as Menu } from "react-burger-menu";
+
 const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
   const [display, setDisplay] = useState("none");
   const [mapZoom, setMapZoom] = useState(10);
@@ -36,8 +39,8 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
   };
 
   return (
-    <div className="App">
-      <Router>
+    <Router>
+      <div className="App">
         <NavBar
           currentUser={currentUser}
           displayList={displayList}
@@ -76,8 +79,8 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
           </Route>
         </Switch>
         {/* <BottomNav /> */}
-      </Router>
-    </div>
+      </div>
+    </Router>
   );
 };
 
