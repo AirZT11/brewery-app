@@ -92,17 +92,19 @@ const StarRating = ({
   };
 
   return (
-    <div>
-      <Stars
-        rating={rating}
-        starRatedColor="orange"
-        changeRating={handleClick}
-        numberOfStars={5}
-        starEmptyColor="grey"
-        starHoverColor="orange"
-        starDimension="22px"
-        starSpacing="2px"
-      />
+    <>
+      <span className="stars">
+        <Stars
+          rating={rating}
+          starRatedColor="orange"
+          changeRating={handleClick}
+          numberOfStars={5}
+          starEmptyColor="grey"
+          starHoverColor="orange"
+          starDimension="22px"
+          starSpacing="2px"
+        />
+      </span>
       <Popup
         open={promptView}
         modal
@@ -151,24 +153,26 @@ const StarRating = ({
               &times;
             </button>
             <div className="header">
-              {breweryName} Reviews
-              <p>{breweryRatings.length} ratings</p>
-              <p>{averageRating} Stars</p>
+              <p className="brew-name">{breweryName}</p>
+              <span className="stars">
+                <Stars
+                  rating={rating}
+                  starRatedColor="orange"
+                  changeRating={handleClick}
+                  numberOfStars={5}
+                  starEmptyColor="grey"
+                  starHoverColor="orange"
+                  starDimension="22px"
+                  starSpacing="2px"
+                />
+              </span>
+              <span> {averageRating} Stars</span>
+              <p>{breweryRatings.length} Reviews</p>
             </div>
-
+            <br />
             {breweryRatings.map((review) => {
               return <Reviews key={review.id} review={review} />;
             })}
-
-            <button
-              className="button"
-              onClick={() => {
-                console.log("modal closed ");
-                close();
-              }}
-            >
-              close
-            </button>
           </div>
         )}
       </Popup>
@@ -186,7 +190,7 @@ const StarRating = ({
           <input type="submit"></input>
         </div>
       </form>
-    </div>
+    </>
   );
 };
 

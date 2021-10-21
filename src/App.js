@@ -1,5 +1,3 @@
-import "./css/App.css";
-import "./css/SignUpForm.css";
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import {
@@ -22,7 +20,10 @@ import { fetchCurrentUser } from "./actions/userActions";
 import { getRatings } from "./actions/ratingActions";
 import BottomNav from "./components/BottomNav";
 
+import "./css/App.css";
+import "./css/SignUpForm.css";
 import "./css/NavBar.css";
+import "./css/Rating.css";
 import { slide as Menu } from "react-burger-menu";
 
 const App = ({ fetchCurrentUser, getRatings, currentUser }) => {

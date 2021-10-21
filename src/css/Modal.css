@@ -5,22 +5,27 @@
 }
 
 .modal {
-  display: flex;
-
-  font-size: 16px;
-  text-align: center;
+  text-align: left;
 }
+
 .modal > .header {
   width: 100%;
+  font-size: 20px;
+
+  /* text-align: center; */
+  /* padding: 15px; */
+  /* margin: 10px; */
   /* border-bottom: 1px solid gray; */
-  font-size: 30px;
-  text-align: center;
-  padding: 15px;
-  margin: 10px;
 }
+
+.header > p {
+  margin: 0px;
+  /* display: block; */
+}
+
 .modal > .content {
   width: 100%;
-  padding: 10px 5px;
+  /* padding: 10px 5px; */
 }
 .modal > .actions {
   width: 100%;
@@ -51,4 +56,8 @@
   border-radius: 10px;
   margin: 10px;
   cursor: pointer;
+}
+
+.reviews p {
+  margin: 0px;
 }

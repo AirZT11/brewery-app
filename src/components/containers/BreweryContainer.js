@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { fetchBreweries } from "../../actions/breweryActions";
 import { getUserLocation, setPromptView } from "../../actions/userActions";
-import "../../css/Breweries.css";
 import Map from "../Map";
 import Prompt from "../Prompt";
 import "../../css/Modal.css";
+import "../../css/Breweries.css";
 
 const BreweryContainer = ({
   displayList,
@@ -36,7 +36,7 @@ const BreweryContainer = ({
           userLocation={userLocation}
           displayList={displayList}
           display={display}
-          mapWidth="100vw"
+          mapWidth="70vw"
           mapZoom={mapZoom}
           setMapZoom={setMapZoom}
           mapCenter={userLocation}

@@ -1,7 +1,14 @@
+:root {
+  --main-bg-color: rgb(243, 243, 243);
+  --main-text-color: black;
+}
+
 .App {
   text-align: center;
   margin: auto;
-  width: 100vw;
+  /* display: flex; */
+  /* width: 100vw; */
+  /* height: 100vh; */
   /* background: tan; */
   /* padding: 30px; */
 }

@@ -48,18 +48,8 @@ const Map = ({
   const mapContainerStyle = {
     width: mapWidth,
     height: "50vh",
+    background: "#333",
   };
-
-  // const handleOutsideClick = () => {
-  //   selectedBrew && toggleMarkerView();
-  // };
-
-  // useEffect(() => {
-  //   window.addEventListener("click", handleOutsideClick);
-  //   return () => {
-  //     window.removeEventListener("click", handleOutsideClick);
-  //   };
-  // }, []);
 
   // useEffect(() => {
   //   panTo(userLocation, mapZoom);

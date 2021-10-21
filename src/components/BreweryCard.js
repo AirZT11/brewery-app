@@ -24,43 +24,44 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
   };
 
   return (
-    <div className="brewList-container">
-      <div className="brew-card">
-        <Link to={{ pathname: `brewery/${brewery.id}` }}>
-          <span className="brew-name">{brewery.name}</span>
-        </Link>
+    <div className="brew-card">
+      <Link
+        style={{ textDecoration: "none" }}
+        to={{ pathname: `brewery/${brewery.id}` }}
+      >
+        <span className="brew-name">{brewery.name}</span>
+      </Link>
+      <br />
+      <StarRating
+        breweryId={brewery.id}
+        breweryName={brewery.name}
+        breweryRatings={breweryRatings}
+      />
+      {/* </div> */}
+      {/* <div className="brew-card" style={{ textAlign: "left" }}> */}
+      <span className="brew-location">
+        <i>{brewery.city}</i>, {brewery.state}
+      </span>
 
-        <StarRating
-          breweryId={brewery.id}
-          breweryName={brewery.name}
-          breweryRatings={breweryRatings}
-        />
-      </div>
-      <div className="brew-card" style={{ textAlign: "left" }}>
-        <p className="brew-location">
-          <i>{brewery.city}</i>, {brewery.state}
-        </p>
+      {/* <p className="brew-location">{brewery.country}</p> */}
 
-        {/* <p className="brew-location">{brewery.country}</p> */}
+      <br />
 
-        <span>
-          {urlExist(brewery.website_url)}
-          <span> || </span>
-          <a
-            className="brew-website"
-            href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
-            target="_blank"
-          >
-            Directions
-          </a>
-        </span>
+      <span>{urlExist(brewery.website_url)}</span>
+      <span> || </span>
+      <a
+        className="brew-website"
+        href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
+        target="_blank"
+      >
+        <span>Directions</span>
+      </a>
 
-        <br />
+      <br />
 
-        <button className="pan-to-on-map-btn" onClick={handleClick}>
-          <ImLocation /> Map
-        </button>
-      </div>
+      <button className="pan-to-on-map-btn" onClick={handleClick}>
+        <ImLocation /> Map
+      </button>
     </div>
   );
 };

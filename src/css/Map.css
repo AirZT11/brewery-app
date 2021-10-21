@@ -1,5 +1,7 @@
 .map-container {
-  position: relative;
+  /* position: relative; */
+  display: flex;
+  flex-direction: row-reverse;
 }
 
 .locate {

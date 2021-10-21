@@ -4,6 +4,8 @@
   position: relative;
   margin: auto;
   overflow: hidden;
+  /* background-color: #333; */
+  background-color: var(--main-bg-color);
 }
 
 .small-map {
@@ -27,38 +29,50 @@
 }
 
 .brewList-container {
-  display: flex;
-  /* background: #2b2929ee; */
+  /* height: 50vh; */
+  width: 30vw;
+  overflow: auto;
+  box-shadow: 0px 0 15px rgba(51, 51, 51, 0.267);
 }
+
 .brewList {
+  padding: 10px;
+  margin: 30px;
+  /* border: 5px solid rgba(255, 235, 205, 0.288); */
+  position: relative;
+
+  /* background-color: var(--main-bg-color) */
   /* width: 90%; */
   /* height: 38vh; */
-  height: 50vh;
   /* margin: 0% 5% 0% 5%; */
-  overflow: auto;
-  position: relative;
-  /* box-shadow: 0px 0px 15px rgba(51, 51, 51, 0.267); */
 }
 
 .brew-card {
-  /* border-bottom: 1px solid rgb(182, 182, 182); */
-  /* padding: 30px; */
-  /* line-height: 1.1; */
+  padding: 0px 10px 0px 10px;
   text-align: left;
-  flex: 50%;
-  padding: 40px;
-  padding-left: 20%;
-  color: aliceblue;
-  /* text-decoration: none; */
+
+  /* line-height: 1.1; */
+  /* border-bottom: 1px solid rgb(182, 182, 182); */
+  /* flex: 50%; */
 }
 
 .brew-card span {
+  color: var(--main-text-color);
   text-decoration: none;
+  box-shadow: none;
+  outline: none;
+}
+
+.brew-card a {
+  color: var(--main-text-color);
+  text-decoration: none;
+  box-shadow: none;
+  outline: none;
 }
 
 .brew-name {
-  font-size: 50px;
-  /* font-family: "Lobster Two"; */
+  font-size: 45px;
+  font-family: "Lobster Two";
 }
 
 .brew-card p {
