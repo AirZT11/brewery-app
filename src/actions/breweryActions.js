@@ -3,6 +3,10 @@ import axios from "axios";
 const SEARCH_URL = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search`;
 // const SEARCH_URL = `http://localhost:3001/api/v1/search`;
 
+const alpabetize = (a, b) => {
+  return a.id.localeCompare(b.id);
+};
+
 function BREW_API(url, input) {
   return {
     method: "GET",
@@ -23,9 +27,10 @@ export const fetchBreweries = (input) => (dispatch) => {
       let filteredBrews = response.data.filter((brew) => {
         return brew.latitude !== null;
       });
+      let sortedBrews = filteredBrews.sort(alpabetize);
       dispatch({
         type: "FETCH_BREWERIES",
-        payload: filteredBrews,
+        payload: sortedBrews,
       });
     })
     .catch((error) => {
@@ -34,13 +39,13 @@ export const fetchBreweries = (input) => (dispatch) => {
 };
 
 export const fetchUserLocationBrews = (lat, lng) => (dispatch) => {
-  // console.log("Hello from redux");
   axios
     .request(`https://api.openbrewerydb.org/breweries?by_dist=${lat},${lng}`)
     .then((response) => {
+      let sortedBrews = response.data.sort(alpabetize);
       dispatch({
         type: "FETCH_USER_LOCATION_BREWS",
-        payload: response.data,
+        payload: sortedBrews,
       });
     })
     .catch((error) => {

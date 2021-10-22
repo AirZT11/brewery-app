@@ -29,7 +29,7 @@ const StarRating = ({
   const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState("none");
   const [review, setReview] = useState("");
-  // const [loginView, setLoginView] = useState(false);
+  const [loginView, setLoginView] = useState(false);
   const [modalView, toggleModalView] = useToggle();
 
   useEffect(() => {
@@ -60,8 +60,8 @@ const StarRating = ({
       setRating(ratingVal);
       setSubmitDisplay("block");
     } else {
-      // setLoginView(true);
-      setPromptView("LOGGED_IN", true);
+      setLoginView(true);
+      // setPromptView("LOGGED_IN", true);
     }
   };
 
@@ -105,11 +105,14 @@ const StarRating = ({
           starSpacing="2px"
         />
       </span>
+
+      {/* POPUP IF NOT LOGGED IN */}
       <Popup
-        open={promptView}
+        open={loginView}
         modal
         nested
         onClose={() => {
+          setLoginView(false);
           setPromptView(false);
           toggleModalView(false);
         }}

@@ -51,7 +51,7 @@ const Locate = ({
   return (
     <button className="locate" onClick={handleClick}>
       <ImLocation />
-      Nearby Breweries
+      {/* Nearby Breweries */}
     </button>
   );
 };

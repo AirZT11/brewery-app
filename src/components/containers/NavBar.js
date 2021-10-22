@@ -9,25 +9,28 @@ import { slide as Menu } from "react-burger-menu";
 
 const NavBar = ({
   currentUser,
-  fetchBreweries,
+  handleChange,
+  handleSubmit,
+  searchInput,
   logOut,
-  displayList,
-  setMapZoom,
   setPromptView,
+  // fetchBreweries,
+  // displayList,
+  // setMapZoom,
 }) => {
-  const [searchInput, setSearchInput] = useState("");
+  // const [searchInput, setSearchInput] = useState("");
 
-  const handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
+  // const handleChange = (e) => {
+  //   setSearchInput(e.target.value);
+  // };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchBreweries(searchInput);
-    displayList();
-    setMapZoom(5);
-    setSearchInput("");
-  };
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   fetchBreweries(searchInput);
+  //   displayList();
+  //   setMapZoom(5);
+  //   setSearchInput("");
+  // };
 
   const logout = () => {
     logOut(true);
@@ -44,11 +47,11 @@ const NavBar = ({
         <p>TheBreweryFinder</p>
       </NavLink>
 
-      <SearchBar
+      {/* <SearchBar
         handleChange={handleChange}
         searchInput={searchInput}
         handleSubmit={handleSubmit}
-      />
+      /> */}
 
       <NavLink exact className="menu-item" to="/">
         Home

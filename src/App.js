@@ -18,6 +18,7 @@ import Reviews from "./components/Reviews";
 
 import { fetchCurrentUser } from "./actions/userActions";
 import { getRatings } from "./actions/ratingActions";
+import { fetchBreweries } from "./actions/breweryActions";
 import BottomNav from "./components/BottomNav";
 
 import "./css/App.css";
@@ -26,9 +27,24 @@ import "./css/NavBar.css";
 import "./css/Rating.css";
 import { slide as Menu } from "react-burger-menu";
 
-const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
+const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [display, setDisplay] = useState("none");
   const [mapZoom, setMapZoom] = useState(10);
+  const [searchInput, setSearchInput] = useState("");
+
+  // SEARCH INPUT CHANGE
+  const handleChange = (e) => {
+    setSearchInput(e.target.value);
+  };
+
+  // SEARCH SUBMIT
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    fetchBreweries(searchInput);
+    displayList();
+    setMapZoom(5);
+    setSearchInput("");
+  };
 
   useEffect(() => {
     fetchCurrentUser();
@@ -44,9 +60,12 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
       <div className="App">
         <NavBar
           currentUser={currentUser}
-          displayList={displayList}
-          display={display}
-          setMapZoom={setMapZoom}
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          searchInput={searchInput}
+          // displayList={displayList}
+          // display={display}
+          // setMapZoom={setMapZoom}
         />
 
         <Switch>
@@ -62,6 +81,9 @@ const App = ({ fetchCurrentUser, getRatings, currentUser }) => {
               display={display}
               mapZoom={mapZoom}
               setMapZoom={setMapZoom}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              searchInput={searchInput}
             />
           </Route>
           <Route exact path="/brewery/:id">
@@ -89,4 +111,8 @@ const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
 });
 
-export default connect(mapStateToProps, { fetchCurrentUser, getRatings })(App);
+export default connect(mapStateToProps, {
+  fetchCurrentUser,
+  getRatings,
+  fetchBreweries,
+})(App);

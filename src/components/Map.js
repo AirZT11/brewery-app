@@ -34,6 +34,9 @@ const Map = ({
   mapZoom,
   setMapZoom,
   mapCenter,
+  handleChange,
+  handleSubmit,
+  searchInput,
 }) => {
   const [selectedBrew, setSelectedBrew] = useState(null);
   const [loadDisplay, setLoadDisplay] = useState("none");
@@ -47,8 +50,7 @@ const Map = ({
 
   const mapContainerStyle = {
     width: mapWidth,
-    height: "50vh",
-    background: "#333",
+    height: "100vh",
   };
 
   // useEffect(() => {
@@ -164,6 +166,9 @@ const Map = ({
             listStyle={"brewList"}
             panTo={panTo}
             setSelectedBrew={setSelectedBrew}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            searchInput={searchInput}
           />
         </div>
       )}

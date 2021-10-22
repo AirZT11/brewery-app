@@ -1,6 +1,6 @@
 .brew-container {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   position: relative;
   margin: auto;
   overflow: hidden;
@@ -23,16 +23,18 @@
   bottom: 0;
   right: 0;
   margin: auto;
-  overflow: auto;
+  overflow: hidden;
   height: 50vh;
   background: rgba(207, 207, 207, 0.7);
 }
 
 .brewList-container {
   /* height: 50vh; */
-  width: 30vw;
+  display: inline-block;
+  height: 100vh;
+  width: 25vw;
   overflow: auto;
-  box-shadow: 0px 0 15px rgba(51, 51, 51, 0.267);
+  /* box-shadow: 0px -40px 15px rgba(51, 51, 51, 0.267); */
 }
 
 .brewList {
@@ -71,7 +73,7 @@
 }
 
 .brew-name {
-  font-size: 45px;
+  font-size: 30px;
   font-family: "Lobster Two";
 }
 
