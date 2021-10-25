@@ -3,16 +3,18 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
 import { ImLocation } from "react-icons/im";
-import { getBreweryRatings } from "../lib/filterBreweryRatings";
+import { getBreweryRatings } from "../lib/helperMethods";
+import { getRatings } from "../actions/ratingActions";
 
 const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
+  // RATINGS HAV TO LIVE IN COMPONENT AS ITS RELATED TO INDIVIDAUL BREWERIES
   const [breweryRatings, setBreweryRatings] = useState([]);
 
   useEffect(() => {
     getBreweryRatings(brewery.id, setBreweryRatings);
   }, [brewery]);
 
-  const handleClick = () => {
+  const handleLocateOnMapClick = () => {
     setSelectedBrew(brewery);
     panTo(
       {
@@ -36,6 +38,8 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
         breweryId={brewery.id}
         breweryName={brewery.name}
         breweryRatings={breweryRatings}
+        getBreweryRatings={getBreweryRatings}
+        setBreweryRatings={setBreweryRatings}
       />
       {/* </div> */}
       {/* <div className="brew-card" style={{ textAlign: "left" }}> */}
@@ -59,7 +63,7 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
 
       <br />
 
-      <button className="pan-to-on-map-btn" onClick={handleClick}>
+      <button className="pan-to-on-map-btn" onClick={handleLocateOnMapClick}>
         <ImLocation /> Map
       </button>
     </div>

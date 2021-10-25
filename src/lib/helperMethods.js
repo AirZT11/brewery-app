@@ -8,7 +8,6 @@ export const getBreweryRatings = (breweryId, stateSetter) => {
       params: { brewery_id: breweryId },
     })
     .then((response) => {
-      // console.log(response.data);
       stateSetter(response.data);
     });
 };

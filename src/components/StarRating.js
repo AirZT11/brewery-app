@@ -24,6 +24,8 @@ const StarRating = ({
   breweryRatings,
   promptView,
   setPromptView,
+  getBreweryRatings,
+  setBreweryRatings,
 }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
@@ -37,7 +39,7 @@ const StarRating = ({
   }, [breweryRatings]);
 
   // calculates the average rating for brewery
-  // Move this into lib file
+  // Move this into lib file - MAYBE
   const averageRatings = () => {
     const ratingValues = breweryRatings.map((rating) => {
       return rating.rating;
@@ -76,8 +78,8 @@ const StarRating = ({
     setReview("");
   };
 
-  // submits a rating to the backend database
-  const handleSubmit = (e) => {
+  // SUBMITS A REVIEW TO THE BACKEND
+  const handleReviewSubmit = (e) => {
     e.preventDefault();
     const state = {
       rating: rating,
@@ -89,6 +91,7 @@ const StarRating = ({
     postRating(state);
     setSubmitDisplay("none");
     setReview("");
+    getBreweryRatings(breweryId, setBreweryRatings);
   };
 
   return (
@@ -180,7 +183,7 @@ const StarRating = ({
         )}
       </Popup>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleReviewSubmit}>
         <div style={{ display: submitDisplay }}>
           <input
             type="text"

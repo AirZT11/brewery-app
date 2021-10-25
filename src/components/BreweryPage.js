@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 
-import { getBreweryRatings } from "../lib/filterBreweryRatings";
+import { getBreweryRatings } from "../lib/helperMethods";
 
 import Reviews from "./Reviews";
 import StarRating from "./StarRating";

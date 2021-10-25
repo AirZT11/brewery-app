@@ -31,6 +31,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [display, setDisplay] = useState("none");
   const [mapZoom, setMapZoom] = useState(10);
   const [searchInput, setSearchInput] = useState("");
+  const [menuState, setMenuState] = useState(false);
 
   // SEARCH INPUT CHANGE
   const handleChange = (e) => {
@@ -48,11 +49,18 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
 
   useEffect(() => {
     fetchCurrentUser();
-    // getRatings();
   }, []);
 
   const displayList = () => {
     setDisplay("block");
+  };
+
+  const handleMenuStateChange = (state) => {
+    setMenuState(state.isOpen);
+  };
+
+  const closeMenu = () => {
+    setMenuState(false);
   };
 
   return (
@@ -63,9 +71,9 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
           handleChange={handleChange}
           handleSubmit={handleSubmit}
           searchInput={searchInput}
-          // displayList={displayList}
-          // display={display}
-          // setMapZoom={setMapZoom}
+          menuState={menuState}
+          closeMenu={closeMenu}
+          handleMenuStateChange={handleMenuStateChange}
         />
 
         <Switch>
@@ -84,6 +92,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
               handleChange={handleChange}
               handleSubmit={handleSubmit}
               searchInput={searchInput}
+              closeMenu={closeMenu}
             />
           </Route>
           <Route exact path="/brewery/:id">

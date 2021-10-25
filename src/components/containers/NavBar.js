@@ -14,35 +14,27 @@ const NavBar = ({
   searchInput,
   logOut,
   setPromptView,
-  // fetchBreweries,
-  // displayList,
-  // setMapZoom,
+  menuState,
+  closeMenu,
+  handleMenuStateChange,
 }) => {
-  // const [searchInput, setSearchInput] = useState("");
-
-  // const handleChange = (e) => {
-  //   setSearchInput(e.target.value);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   fetchBreweries(searchInput);
-  //   displayList();
-  //   setMapZoom(5);
-  //   setSearchInput("");
-  // };
-
   const logout = () => {
     logOut(true);
     localStorage.removeItem("token");
+    closeMenu();
     setTimeout(() => {
       return setPromptView("LOGOUT", false);
     }, 2500);
-    // alert("You have been successfully logged out");
   };
 
   return (
-    <Menu right noOverlay width={"23%"}>
+    <Menu
+      right
+      noOverlay
+      width={"23%"}
+      isOpen={menuState}
+      onStateChange={(state) => handleMenuStateChange(state)}
+    >
       <NavLink exact className="menu-item" to="/">
         <p>TheBreweryFinder</p>
       </NavLink>
@@ -53,20 +45,20 @@ const NavBar = ({
         handleSubmit={handleSubmit}
       /> */}
 
-      <NavLink exact className="menu-item" to="/">
+      <NavLink exact className="menu-item" to="/" onClick={closeMenu}>
         Home
       </NavLink>
 
-      <NavLink exact className="menu-item" to="/about">
+      <NavLink exact className="menu-item" to="/about" onClick={closeMenu}>
         About
       </NavLink>
 
       {currentUser ? (
-        <NavLink exact className="menu-item" to="/profile">
+        <NavLink exact className="menu-item" to="/profile" onClick={closeMenu}>
           {currentUser.user.name}
         </NavLink>
       ) : (
-        <NavLink exact className="menu-item" to="/signup">
+        <NavLink exact className="menu-item" to="/signup" onClick={closeMenu}>
           Sign Up
         </NavLink>
       )}
@@ -76,7 +68,7 @@ const NavBar = ({
           Logout
         </NavLink>
       ) : (
-        <NavLink exact className="menu-item" to="/login">
+        <NavLink exact className="menu-item" to="/login" onClick={closeMenu}>
           Login
         </NavLink>
       )}

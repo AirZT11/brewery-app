@@ -20,6 +20,7 @@ const BreweryContainer = ({
   handleChange,
   handleSubmit,
   searchInput,
+  closeMenu,
 }) => {
   const dispatch = useDispatch();
 
@@ -33,7 +34,7 @@ const BreweryContainer = ({
 
   return (
     <>
-      <div className="brew-container">
+      <div className="brew-container" onClick={closeMenu}>
         <Map
           breweries={breweries}
           userLocation={userLocation}
