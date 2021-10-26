@@ -27,13 +27,13 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
 
   return (
     <div className="brew-card">
-      <Link
-        style={{ textDecoration: "none" }}
-        to={{ pathname: `brewery/${brewery.id}` }}
-      >
+      <Link to={{ pathname: `brewery/${brewery.id}` }}>
         <span className="brew-name">{brewery.name}</span>
       </Link>
-      <br />
+      <p className="brew-location">
+        <i>{brewery.city}</i>, {brewery.state}
+      </p>
+
       <StarRating
         breweryId={brewery.id}
         breweryName={brewery.name}
@@ -43,9 +43,6 @@ const BreweryCard = ({ brewery, userLocation, panTo, setSelectedBrew }) => {
       />
       {/* </div> */}
       {/* <div className="brew-card" style={{ textAlign: "left" }}> */}
-      <span className="brew-location">
-        <i>{brewery.city}</i>, {brewery.state}
-      </span>
 
       {/* <p className="brew-location">{brewery.country}</p> */}
 

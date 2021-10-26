@@ -22,10 +22,9 @@ import { fetchBreweries } from "./actions/breweryActions";
 import BottomNav from "./components/BottomNav";
 
 import "./css/App.css";
-import "./css/SignUpForm.css";
 import "./css/NavBar.css";
 import "./css/Rating.css";
-import { slide as Menu } from "react-burger-menu";
+import "./css/Breweries.css";
 
 const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [display, setDisplay] = useState("none");

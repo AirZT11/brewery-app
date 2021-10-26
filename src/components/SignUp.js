@@ -79,7 +79,7 @@ const SignUp = ({ handleChange, handleSubmit, state, errors }) => {
         />
         <br />
 
-        <input className="submit-btn" type="submit" />
+        <input className="main-btn-style" type="submit" />
         <br />
       </form>
     </div>

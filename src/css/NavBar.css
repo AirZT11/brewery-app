@@ -89,12 +89,12 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 35px;
   text-decoration: none;
   color: aliceblue;
-  font-family: "Lobster Two";
+  font-family: var(--secondary-font);
   font-weight: bold;
 }
 
 .menu-item p {
-  font-family: "Lobster Two";
+  font-family: var(--secondary-font);
   font-size: 41px;
   cursor: pointer;
   font-stretch: expanded;
@@ -105,25 +105,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
   background: rgba(0, 0, 0, 0.3);
 }
 
-.search-bar {
-}
-
 .search-text {
   width: 90%;
 }
 
-.search-bar input {
-  display: inline-block;
-  padding: 0.7rem;
-  font-size: 16px;
-  margin: 6px;
-  border-style: hidden;
-  border-radius: 10px;
-}
-
-.submit-btn {
+.main-btn-style {
   cursor: pointer;
-  font-family: "Roboto";
+  font-family: var(--secondary-font);
   font-weight: bold;
   /* margin-left: -50px; */
   width: 10;

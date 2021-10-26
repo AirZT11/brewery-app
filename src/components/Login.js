@@ -57,7 +57,7 @@ const Login = ({ loginUser, loginFailed, setPromptView }) => {
         />
         <br />
 
-        <input className="submit-btn" type="submit" />
+        <input className="main-btn-style" type="submit" />
         <br />
         <div
           className="error"

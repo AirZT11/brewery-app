@@ -1,6 +1,8 @@
 :root {
   --main-bg-color: rgb(252, 252, 252);
   --main-text-color: black;
+  --main-font: "Roboto";
+  --secondary-font: "Lobster Two";
 }
 
 .App {
@@ -22,4 +24,78 @@
   font-size: 14px;
   line-height: 1px;
   font-style: italic;
+}
+
+.signup-form input {
+  padding: 10px;
+  border-radius: 10px;
+  width: 350px;
+  font-size: 18px;
+  margin: 10px;
+  /* border-style: ridge; */
+}
+
+.signup-form h1 {
+  font-size: 30px;
+  margin: 10px;
+}
+
+.main-btn-style {
+  font-size: 18px;
+  width: 100px;
+  padding: 10px;
+  border-radius: 10px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.signup-form .error {
+  font-size: 16px;
+  font-style: italic;
+  color: red;
+}
+
+.text-box {
+  padding: 10px;
+  font-family: "Roboto";
+  border-radius: 5px;
+  width: 80%;
+  height: 100px;
+  font-size: 18px;
+  /* margin: 10px; */
+}
+
+.title {
+  font-family: "Lobster Two";
+  font-size: 40px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.title-sm {
+  font-family: "Lobster Two";
+  font-size: 30px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.search-bar-container {
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+}
+.search-bar {
+  padding: 0.5rem;
+  flex-grow: 2;
+  font-size: 14px;
+  border-radius: 10px 0px 0 10px;
+  outline: none;
+  border-right: none;
+}
+
+.search-button {
+  /* border: 1px solid blue; */
+  /* background: blue; */
+  /* color: white; */
+  border-radius: 0px 10px 10px 0px;
 }

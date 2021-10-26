@@ -29,7 +29,7 @@ const StarRating = ({
 }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
-  const [submitDisplay, setSubmitDisplay] = useState("none");
+  const [submitDisplay, setSubmitDisplay] = useState(false);
   const [review, setReview] = useState("");
   const [loginView, setLoginView] = useState(false);
   const [modalView, toggleModalView] = useToggle();
@@ -60,7 +60,7 @@ const StarRating = ({
   const handleClick = (ratingVal) => {
     if (currentUser) {
       setRating(ratingVal);
-      setSubmitDisplay("block");
+      setSubmitDisplay(true);
     } else {
       setLoginView(true);
       // setPromptView("LOGGED_IN", true);
@@ -72,8 +72,8 @@ const StarRating = ({
   };
 
   const handleCancel = (e) => {
-    e.preventDefault();
-    setSubmitDisplay("none");
+    // e.preventDefault();
+    setSubmitDisplay(false);
     setRating(averageRating);
     setReview("");
   };
@@ -89,7 +89,7 @@ const StarRating = ({
       review: review,
     };
     postRating(state);
-    setSubmitDisplay("none");
+    setSubmitDisplay(false);
     setReview("");
     getBreweryRatings(breweryId, setBreweryRatings);
   };
@@ -142,7 +142,7 @@ const StarRating = ({
         )}
       </Popup>
 
-      <span> {averageRating} Stars</span>
+      <span className="average-rating"> {averageRating} Stars</span>
 
       <br />
 
@@ -159,7 +159,7 @@ const StarRating = ({
               &times;
             </button>
             <div className="header">
-              <p className="brew-name">{breweryName}</p>
+              <p className="brew-name-lrg">{breweryName}</p>
               <span className="stars">
                 <Stars
                   rating={rating}
@@ -172,7 +172,7 @@ const StarRating = ({
                   starSpacing="2px"
                 />
               </span>
-              <span> {averageRating} Stars</span>
+              <span className="average-rating"> {averageRating} Stars</span>
               <p>{breweryRatings.length} Reviews</p>
             </div>
             <br />
@@ -183,19 +183,46 @@ const StarRating = ({
         )}
       </Popup>
 
-      <form onSubmit={handleReviewSubmit}>
-        <div style={{ display: submitDisplay }}>
-          <input
-            type="text"
-            name="review"
-            onChange={handleChange}
-            value={review}
-            placeholder="Submit a review..."
-          ></input>
-          <button onClick={handleCancel}>Cancel</button>
-          <input type="submit"></input>
+      <Popup open={submitDisplay}>
+        <div className="modal">
+          <form onSubmit={handleReviewSubmit} className="modal-content">
+            {/* <div> */}
+            <h1 className="title">{breweryName}</h1>
+            <span className="stars">
+              <Stars
+                rating={rating}
+                starRatedColor="orange"
+                changeRating={handleClick}
+                numberOfStars={5}
+                starEmptyColor="grey"
+                starHoverColor="orange"
+                starDimension="22px"
+                starSpacing="2px"
+              />
+            </span>
+            <span> {averageRating} Stars</span>
+            <p>{breweryRatings.length} Reviews</p>
+            <textarea
+              className="text-box"
+              type="text"
+              name="review"
+              onChange={handleChange}
+              value={review}
+              placeholder="Submit a review..."
+            ></textarea>
+            <br />
+            <button className="main-btn-style" onClick={handleCancel}>
+              Cancel
+            </button>
+            <input className="main-btn-style" type="submit"></input>
+            {/* </div> */}
+          </form>
+          <h1 className="title-sm">User Reviews</h1>
+          {breweryRatings.map((review) => {
+            return <Reviews key={review.id} review={review} />;
+          })}
         </div>
-      </form>
+      </Popup>
     </>
   );
 };

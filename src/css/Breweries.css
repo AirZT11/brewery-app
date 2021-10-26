@@ -38,8 +38,8 @@
 }
 
 .brewList {
-  padding: 10px;
-  margin: 30px;
+  /* padding: 10px; */
+  margin: 10px;
   /* border: 5px solid rgba(255, 235, 205, 0.288); */
   position: relative;
 
@@ -50,7 +50,7 @@
 }
 
 .brew-card {
-  padding: 0px 10px 0px 10px;
+  padding: 10px 10px 0px 10px;
   text-align: left;
 
   /* line-height: 1.1; */
@@ -72,9 +72,15 @@
   outline: none;
 }
 
+.brew-name-lrg {
+  font-size: 35px;
+
+  font-family: var(--secondary-font);
+}
 .brew-name {
-  font-size: 30px;
-  font-family: "Lobster Two";
+  font-size: 20px;
+
+  font-family: var(--secondary-font);
 }
 
 .brew-card p {
@@ -116,4 +122,8 @@
   margin-top: 4px;
   width: 130px;
   cursor: pointer;
+}
+
+.average-rating {
+  font-size: 12px;
 }

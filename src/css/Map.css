@@ -8,7 +8,7 @@
   position: absolute;
   bottom: 40px;
   right: 80px;
-  font-family: "Lobster Two";
+  font-family: var(--secondary-font);
   font-size: 30px;
   height: 50px;
   width: 50px;
