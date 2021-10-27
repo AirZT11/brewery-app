@@ -26,6 +26,7 @@ const Locate = ({
   const loadUserBrews = (zoom) => {
     dispatch({ type: "SET_LOADING" });
     setLoadDisplay("block");
+    // SYNTAX ERROR IF NO navigator.getlocation...WHY??
     navigator.geolocation.getCurrentPosition(
       (position) => {
         panTo(
@@ -51,7 +52,6 @@ const Locate = ({
   return (
     <button className="locate" onClick={handleClick}>
       <ImLocation />
-      {/* Nearby Breweries */}
     </button>
   );
 };

@@ -26,10 +26,11 @@
 
 .bm-burger-button {
   position: fixed;
+  padding: 2px;
   width: 30px;
   height: 30px;
-  right: 36px;
-  top: 36px;
+  right: 14px;
+  top: 14px;
 }
 
 /* Color/shape of burger icon bars */

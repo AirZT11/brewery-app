@@ -15,7 +15,7 @@ const BreweryList = ({
   return (
     <div className="brewList-container">
       <div className={listStyle}>
-        <Loading type="bars" />
+        {/* <Loading type="bars" /> */}
         <SearchBar
           handleChange={handleChange}
           searchInput={searchInput}

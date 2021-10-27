@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-import { connect } from "react-redux";
+// import { connect } from "react-redux";
 import useToggle from "../hooks/useToggle";
 
 import Locate from "./Locate";
@@ -176,8 +176,4 @@ const Map = ({
   );
 };
 
-const mapStateToProps = (state) => ({
-  // userLocation: state.userData.userLocation,
-});
-
-export default connect(mapStateToProps)(Map);
+export default Map;

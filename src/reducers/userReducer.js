@@ -1,7 +1,6 @@
 const initialState = {
   currentUser: null,
-  locationAvail: false,
-  userLocation: {},
+  userLocation: { lat: 39.5501, lng: -105.7821 },
   loginFailed: false,
   promptView: false,
   promptMessage: "",
@@ -19,12 +18,12 @@ export default function userReducer(state = initialState, action) {
         ...state,
         currentUser: action.payload,
       };
-    case "IS_LOCATION_AVAIL":
+    case "GET_USER_LOCATION":
       return {
         ...state,
-        locationAvail: "geolocation" in navigator ? true : false,
+        userLocation: action.payload,
       };
-    case "GET_USER_LOCATION":
+    case "DEFAULT_LOCATION":
       return {
         ...state,
         userLocation: action.payload,
@@ -33,8 +32,6 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         currentUser: null,
-        locationAvail: true,
-        // userLocation: {},
         loginFailed: false,
         promptView: action.payload,
         promptMessage: "Logged Out",

@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { connect, useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import { fetchBreweries } from "../../actions/breweryActions";
-import { getUserLocation, setPromptView } from "../../actions/userActions";
+import { getUserLocation } from "../../actions/userActions";
 import Map from "../Map";
 import Prompt from "../Prompt";
 import "../../css/Modal.css";
@@ -11,9 +11,7 @@ const BreweryContainer = ({
   displayList,
   display,
   breweries,
-  fetchBreweries,
   getUserLocation,
-  locationAvail,
   userLocation,
   mapZoom,
   setMapZoom,
@@ -22,15 +20,9 @@ const BreweryContainer = ({
   searchInput,
   closeMenu,
 }) => {
-  const dispatch = useDispatch();
-
   useEffect(() => {
-    dispatch({ type: "IS_LOCATION_AVAIL" });
+    getUserLocation();
   }, []);
-
-  useEffect(() => {
-    getUserLocation(locationAvail);
-  }, [locationAvail]);
 
   return (
     <>
@@ -63,7 +55,6 @@ const BreweryContainer = ({
 
 const mapStateToProps = (state) => ({
   breweries: state.breweryData.breweries,
-  locationAvail: state.userData.locationAvail,
   userLocation: state.userData.userLocation,
 });
 

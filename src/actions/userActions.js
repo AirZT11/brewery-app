@@ -6,6 +6,11 @@ const LOGIN_API_URL = API_URL + "/login";
 // TOKEN used for JWT to persist login
 const TOKEN = localStorage.getItem("token");
 
+const DEFAULT_LOCATION = {
+  lat: 39.5501,
+  lng: -105.7821,
+};
+
 export const loginUser = (userInputData) => (dispatch) => {
   return new Promise((resolve, reject) => {
     fetch(LOGIN_API_URL, {
@@ -63,24 +68,34 @@ export const fetchCurrentUser = () => (dispatch) => {
   }
 };
 
-export const getUserLocation = (locationAvail) => (dispatch) => {
-  if (locationAvail) {
-    navigator.geolocation.getCurrentPosition(function (position) {
-      dispatch({
-        type: "GET_USER_LOCATION",
-        payload: {
-          lat: position.coords.latitude,
-          lng: position.coords.longitude,
-        },
-      });
-    });
-  } else {
+export const getUserLocation = () => (dispatch) => {
+  // CB FOR navigator.geolocation.getCurrentPosition
+  const locateSuccess = (position) => {
+    console.log("locate success");
     dispatch({
       type: "GET_USER_LOCATION",
       payload: {
-        lat: 39.5501,
-        lng: -105.7821,
+        lat: position.coords.latitude,
+        lng: position.coords.longitude,
       },
+    });
+  };
+  // CB FOR navigator.geolocation.getCurrentPosition
+  const locateError = () => {
+    console.log("locate error");
+    dispatch({
+      type: "DEFAULT_LOCATION",
+      payload: DEFAULT_LOCATION,
+    });
+  };
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(locateSuccess, locateError);
+  } else {
+    console.log("Use default location");
+    dispatch({
+      type: "DEFAULT_LOCATION",
+      payload: DEFAULT_LOCATION,
     });
   }
 };

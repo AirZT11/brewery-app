@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import {
   BrowserRouter as Router,
   Switch,
@@ -25,6 +25,7 @@ import "./css/App.css";
 import "./css/NavBar.css";
 import "./css/Rating.css";
 import "./css/Breweries.css";
+import "./css/Loading.css";
 
 const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [display, setDisplay] = useState("none");
