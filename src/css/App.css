@@ -1,18 +1,7 @@
-:root {
-  --main-bg-color: rgb(252, 252, 252);
-  --main-text-color: black;
-  --main-font: "Roboto";
-  --secondary-font: "Lobster Two";
-}
-
 .App {
   text-align: center;
   margin: auto;
   display: flex;
-  /* width: 100vw; */
-  /* height: 100vh; */
-  /* background: tan; */
-  /* padding: 30px; */
 }
 
 .content {
@@ -41,12 +30,21 @@
 }
 
 .main-btn-style {
+  font-family: var(--main-font);
   font-size: 18px;
-  width: 100px;
+  width: 100%;
   padding: 10px;
-  border-radius: 10px;
-  margin: 10px;
+  border-radius: 5px;
+  border-style: none;
+  margin-top: 15px;
   cursor: pointer;
+  box-shadow: var(--main-box-shadow);
+  transition: var(--main-transition);
+}
+
+.main-btn-style:hover {
+  font-weight: bold;
+  box-shadow: var(--secondary-box-shadow);
 }
 
 .signup-form .error {
@@ -66,14 +64,14 @@
 }
 
 .title {
-  font-family: "Lobster Two";
+  font-family: var(--secondary-font);
   font-size: 40px;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
 .title-sm {
-  font-family: "Lobster Two";
+  font-family: var(--secondary-font);
   font-size: 30px;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -81,21 +79,36 @@
 
 .search-bar-container {
   display: flex;
-  flex-direction: row;
-  padding: 2px;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 5;
+  box-shadow: var(--main-box-shadow);
 }
 .search-bar {
-  padding: 0.5rem;
+  padding: 20px;
   flex-grow: 1;
-  font-size: 14px;
-  border-radius: 10px 0px 0 10px;
+  font-size: 16px;
+  /* border-radius: 10px 0px 0 10px; */
   outline: none;
-  border-right: none;
+  border: none;
 }
 
 .search-button {
-  /* border: 1px solid blue; */
-  /* background: blue; */
-  /* color: white; */
-  border-radius: 0px 10px 10px 0px;
+  border: none;
+  width: 13%;
+  max-width: 100px;
+  transition: 0.1s;
+  transition-timing-function: linear;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: rgb(228, 228, 228);
+}
+
+.welcome-name {
+  font-size: 60px;
+  margin: 10px;
+  font-family: var(--secondary-font);
 }

@@ -15,6 +15,7 @@ import BreweryContainer from "./components/containers/BreweryContainer";
 import SignUpContainer from "./components/containers/SignUpContainer";
 import Login from "./components/Login";
 import Reviews from "./components/Reviews";
+import WelcomePage from "./components/WelcomePage";
 
 import { fetchCurrentUser } from "./actions/userActions";
 import { getRatings } from "./actions/ratingActions";
@@ -74,6 +75,12 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
           menuState={menuState}
           closeMenu={closeMenu}
           handleMenuStateChange={handleMenuStateChange}
+        />
+
+        <WelcomePage
+          handleChange={handleChange}
+          handleSubmit={handleSubmit}
+          searchInput={searchInput}
         />
 
         <Switch>

@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { BsSearch } from "react-icons/bs";
 
 // Search input should dynamically load a list of breweries that correspond to what is being typed
 const SearchBar = ({ handleChange, searchInput, handleSubmit }) => {
   return (
-    <form onSubmit={handleSubmit} className="search-bar-container">
+    <form className="search-bar-container">
       <input
         className="search-bar"
         type="text"
@@ -11,7 +12,9 @@ const SearchBar = ({ handleChange, searchInput, handleSubmit }) => {
         onChange={handleChange}
         placeholder="Search Breweries..."
       />
-      <input type="submit" className="search-button" />
+      <button className="search-button" onClick={handleSubmit}>
+        <BsSearch />
+      </button>
     </form>
   );
 };

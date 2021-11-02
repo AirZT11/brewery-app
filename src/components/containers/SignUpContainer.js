@@ -1,59 +1,75 @@
-import React, { Component } from 'react';
-import SignUp from '../SignUp';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import SignUp from "../SignUp";
 import axios from "axios";
+import { setPromptView } from "../../actions/userActions";
 
 class SignUpContainer extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      name: '',
-      email: '',
-      username: '',
-      password: '',
-      passwordConfirmation: '',
-      errors: []
-    }
+      name: "",
+      email: "",
+      username: "",
+      password: "",
+      passwordConfirmation: "",
+      errors: [],
+    };
   }
 
   handleChange = (event) => {
     this.setState({
-      [event.target.name]: event.target.value
-    })
-  }
+      [event.target.name]: event.target.value,
+    });
+  };
 
-  handleSubmit = event => {
+  handleSubmit = (event) => {
     event.preventDefault();
-    console.log(this.state)
-    axios.post('http://localhost:3001/api/v1/users', {
-      name: this.state.name,
-      email: this.state.email,
-      username: this.state.username,
-      password: this.state.password,
-      password_confirmation: this.state.passwordConfirmation
-    })
-    .then(response => {
-      console.log(response)
-      
-    })
-    .catch(error => {
-      this.setState({
-        errors: error.response.data
+    console.log(this.state);
+    axios
+      .post("http://localhost:3001/api/v1/users", {
+        name: this.state.name,
+        email: this.state.email,
+        username: this.state.username,
+        password: this.state.password,
+        password_confirmation: this.state.passwordConfirmation,
       })
-    })
-  }
+      .then((response) => {
+        // console.log(response);
+        this.props.signupSuccessful(true);
+      })
+      .then(() => {
+        setTimeout(() => {
+          return this.props.signupSuccessful(false);
+        }, 2500);
+      })
+      .catch((error) => {
+        this.setState({
+          errors: error.response.data,
+        });
+      });
+  };
 
   render() {
     return (
       <div>
-        < SignUp 
+        <SignUp
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
           state={this.state}
           errors={this.state.errors}
         />
       </div>
-    )
+    );
   }
 }
 
-export default SignUpContainer;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    closeWelcomeModal: () => dispatch({ type: "CLOSE_WELCOME_MODAL" }),
+    signupSuccessful: (bool) =>
+      dispatch(setPromptView("SIGNUP_SUCCESSFUL", bool)),
+  };
+};
+
+export default connect(null, mapDispatchToProps)(SignUpContainer);

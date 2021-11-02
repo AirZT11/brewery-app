@@ -1,5 +1,4 @@
 .map-container {
-  /* position: relative; */
   display: flex;
   flex-direction: row-reverse;
 }
@@ -14,24 +13,17 @@
   width: 50px;
   font-style: italic;
   font-weight: bold;
-  text-underline-offset: 3px;
   border: none;
   z-index: 10;
   cursor: pointer;
   border-radius: 20px;
   padding: 0.5rem;
   opacity: 0.6;
-  /* box-shadow: 1px 1px 2px #00000077; */
   background-color: white;
-
-  /* background: transparent;
-  box-shadow: 0px 0px 0px transparent;
-  border: 0px solid transparent;
-  text-shadow: 0px 0px 0px transparent; */
 }
 
 .locate:hover {
-  box-shadow: 2px 2px 3px #000000b7;
+  box-shadow: var(--main-box-shadow);
   text-decoration: underline;
   opacity: 0.8;
 }

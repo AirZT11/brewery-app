@@ -75,7 +75,7 @@ const Map = ({
   }, []);
 
   if (loadError) return "Error loading maps";
-  if (!isLoaded) return "Loading Map...";
+  if (!isLoaded) return <Loading />;
 
   return (
     <div className="map-container">
@@ -148,6 +148,7 @@ const Map = ({
               panTo={panTo}
               setSelectedBrew={setSelectedBrew}
               brewery={selectedBrew}
+              panBtnView="none"
             />
           </InfoWindow>
         )}
@@ -163,7 +164,6 @@ const Map = ({
         <div style={{ display: display }}>
           <BreweryList
             breweries={breweries}
-            listStyle={"brewList"}
             panTo={panTo}
             setSelectedBrew={setSelectedBrew}
             handleChange={handleChange}

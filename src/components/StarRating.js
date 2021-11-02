@@ -94,9 +94,11 @@ const StarRating = ({
     getBreweryRatings(breweryId, setBreweryRatings);
   };
 
+  const isReviewPlural = breweryRatings.length === 1 ? "Review" : "Reviews";
+
   return (
     <>
-      <span className="stars">
+      <label className="stars">
         <Stars
           rating={rating}
           starRatedColor="orange"
@@ -107,7 +109,7 @@ const StarRating = ({
           starDimension="22px"
           starSpacing="2px"
         />
-      </span>
+      </label>
 
       {/* POPUP IF NOT LOGGED IN */}
       <Popup
@@ -142,13 +144,16 @@ const StarRating = ({
         )}
       </Popup>
 
-      <span className="average-rating"> {averageRating} Stars</span>
+      <label className="average-rating"> {averageRating} Stars</label>
 
       <br />
 
+      {/* POPUP DISPLAYING USER REVIEWS */}
       <Popup
         trigger={
-          <button className="button">{breweryRatings.length} Reviews</button>
+          <button className="button">
+            {breweryRatings.length} {isReviewPlural}
+          </button>
         }
         modal
         nested
@@ -173,7 +178,9 @@ const StarRating = ({
                 />
               </span>
               <span className="average-rating"> {averageRating} Stars</span>
-              <p>{breweryRatings.length} Reviews</p>
+              <p>
+                {breweryRatings.length} {isReviewPlural}
+              </p>
             </div>
             <br />
             {breweryRatings.map((review) => {
@@ -201,7 +208,10 @@ const StarRating = ({
               />
             </span>
             <span> {averageRating} Stars</span>
-            <p>{breweryRatings.length} Reviews</p>
+            <p>
+              {breweryRatings.length}{" "}
+              {breweryRatings.length > 1 ? "Reviews" : "Review"}
+            </p>
             <textarea
               className="text-box"
               type="text"
@@ -215,7 +225,6 @@ const StarRating = ({
               Cancel
             </button>
             <input className="main-btn-style" type="submit"></input>
-            {/* </div> */}
           </form>
           <h1 className="title-sm">User Reviews</h1>
           {breweryRatings.map((review) => {

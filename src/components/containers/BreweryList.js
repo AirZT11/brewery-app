@@ -14,7 +14,7 @@ const BreweryList = ({
 }) => {
   return (
     <div className="brewList-container">
-      <div className={listStyle}>
+      <div className="brewList">
         {/* <Loading type="bars" /> */}
         <SearchBar
           handleChange={handleChange}
@@ -29,6 +29,7 @@ const BreweryList = ({
                   brewery={b}
                   panTo={panTo}
                   setSelectedBrew={setSelectedBrew}
+                  panBtnView="block"
                 />
               }
             </div>

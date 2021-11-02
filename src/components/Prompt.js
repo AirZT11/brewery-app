@@ -7,14 +7,9 @@ const Prompt = ({ promptMessage, promptView }) => {
   return (
     <div>
       <Popup open={promptView} modal nested>
-        {(close) => (
-          <div className="modal">
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-            <div className="header">{promptMessage}</div>
-          </div>
-        )}
+        <div className="modal">
+          <div className="header">{promptMessage}</div>
+        </div>
       </Popup>
     </div>
   );

@@ -37,6 +37,9 @@ export const loginUser = (userInputData) => (dispatch) => {
             type: "LOGIN_USER",
             payload: user,
           });
+          dispatch({
+            type: "CLOSE_WELCOME_MODAL",
+          });
           return resolve(true);
         }
       });

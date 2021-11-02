@@ -1,6 +1,15 @@
 import React from "react";
+import { connect } from "react-redux";
+import Popup from "reactjs-popup";
+import Login from "./Login";
 
-const SignUp = ({ handleChange, handleSubmit, state, errors }) => {
+const SignUp = ({
+  handleChange,
+  handleSubmit,
+  state,
+  errors,
+  signupSuccessful,
+}) => {
   // get's keys of all errors and finds specific key
   let errorKey = (error) => {
     let keys = Object.keys(errors);
@@ -82,8 +91,23 @@ const SignUp = ({ handleChange, handleSubmit, state, errors }) => {
         <input className="main-btn-style" type="submit" />
         <br />
       </form>
+
+      <Popup open={signupSuccessful} modal>
+        {(close) => (
+          <div className="modal">
+            <button className="close" onClick={close}>
+              &times;
+            </button>
+            <Login />
+          </div>
+        )}
+      </Popup>
     </div>
   );
 };
 
-export default SignUp;
+const mapStateToProps = (state) => ({
+  signupSuccessful: state.userData.signupSuccessful,
+});
+
+export default connect(mapStateToProps)(SignUp);

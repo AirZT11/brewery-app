@@ -4,6 +4,8 @@ const initialState = {
   loginFailed: false,
   promptView: false,
   promptMessage: "",
+  welcomeView: true,
+  signupSuccessful: false,
 };
 
 export default function userReducer(state = initialState, action) {
@@ -47,7 +49,18 @@ export default function userReducer(state = initialState, action) {
         promptView: action.payload,
         promptMessage: `Logged In`,
       };
-
+    case "CLOSE_WELCOME_MODAL":
+      return {
+        ...state,
+        welcomeView: false,
+      };
+    case "SIGNUP_SUCCESSFUL":
+      return {
+        ...state,
+        signupSuccessful: true,
+        promptView: action.payload,
+        promptMessage: "Sign up successful! Please login",
+      };
     default:
       return state;
   }
