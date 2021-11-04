@@ -101,8 +101,7 @@
 
 .brew-name b:hover {
   font-size: 28.9px;
-  color: var(--second-text-color);
-  -webkit-text-stroke-width: 0.3px;
+  -webkit-text-stroke-width: 0.5px;
   -webkit-text-stroke-color: var(--highlight-color);
 }
 

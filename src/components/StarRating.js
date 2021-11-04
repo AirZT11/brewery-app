@@ -12,6 +12,8 @@ import Reviews from "./Reviews";
 import Login from "./Login";
 import SignUpContainer from "./containers/SignUpContainer";
 
+import { getBreweryRatings } from "../lib/helperMethods";
+
 import "../css/Modal.css";
 import "../css/Rating.css";
 import "reactjs-popup/dist/index.css";
@@ -21,11 +23,11 @@ const StarRating = ({
   breweryName,
   currentUser,
   postRating,
-  breweryRatings,
   promptView,
   setPromptView,
-  getBreweryRatings,
   setBreweryRatings,
+  breweryRatings,
+  ratingsFromStore,
 }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
@@ -35,18 +37,18 @@ const StarRating = ({
   const [modalView, toggleModalView] = useToggle();
 
   useEffect(() => {
-    averageRatings();
+    averageRatings(breweryRatings);
   }, [breweryRatings]);
 
   // calculates the average rating for brewery
   // Move this into lib file - MAYBE
-  const averageRatings = () => {
-    const ratingValues = breweryRatings.map((rating) => {
+  const averageRatings = (userRatings) => {
+    const ratingValues = userRatings.map((rating) => {
       return rating.rating;
     });
-    if (breweryRatings.length > 0) {
+    if (userRatings.length > 0) {
       const reducer = (acc, currentVal) => acc + currentVal;
-      const average = ratingValues.reduce(reducer) / breweryRatings.length;
+      const average = ratingValues.reduce(reducer) / userRatings.length;
       const formattedAverage = Number(average.toFixed(1));
       setAverageRating(formattedAverage);
       setRating(formattedAverage);
@@ -91,7 +93,6 @@ const StarRating = ({
     postRating(state);
     setSubmitDisplay(false);
     setReview("");
-    getBreweryRatings(breweryId, setBreweryRatings);
   };
 
   const isReviewPlural = breweryRatings.length === 1 ? "Review" : "Reviews";
@@ -186,10 +187,10 @@ const StarRating = ({
         </div>
       </Popup>
 
-      <Popup open={submitDisplay}>
+      {/* POPUP TO RATE BREWERY */}
+      <Popup open={submitDisplay} onClose={handleCancel}>
         <div className="modal">
           <form onSubmit={handleReviewSubmit} className="modal-content">
-            {/* <div> */}
             <h1 className="title">{breweryName}</h1>
             <span className="stars">
               <Stars
@@ -234,7 +235,7 @@ const StarRating = ({
 
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
-  allRatings: state.ratingData.ratings,
+  ratingsFromStore: state.ratingData.ratings,
   promptView: state.ratingData.promptView,
 });
 

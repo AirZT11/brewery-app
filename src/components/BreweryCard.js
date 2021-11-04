@@ -15,13 +15,18 @@ const BreweryCard = ({
   panTo,
   setSelectedBrew,
   panBtnView,
+  ratings,
 }) => {
-  // RATINGS HAV TO LIVE IN COMPONENT AS ITS RELATED TO INDIVIDAUL BREWERIES
+  // RATINGS HAVE TO LIVE IN COMPONENT AS ITS RELATED TO INDIVIDAUL BREWERIES
   const [breweryRatings, setBreweryRatings] = useState([]);
 
   useEffect(() => {
     getBreweryRatings(brewery.id, setBreweryRatings);
   }, [brewery]);
+
+  useEffect(() => {
+    getBreweryRatings(brewery.id, setBreweryRatings);
+  }, [ratings]);
 
   const handleLocateOnMapClick = () => {
     setSelectedBrew(brewery);
@@ -54,7 +59,7 @@ const BreweryCard = ({
           breweryId={brewery.id}
           breweryName={brewery.name}
           breweryRatings={breweryRatings}
-          getBreweryRatings={getBreweryRatings}
+          // getBreweryRatings={getBreweryRatings}
           setBreweryRatings={setBreweryRatings}
         />
       </div>
@@ -108,6 +113,7 @@ const urlExist = (url) => {
 
 const mapStateToProps = (state) => ({
   userLocation: state.userData.userLocation,
+  ratings: state.ratingData.ratings,
 });
 
 export default connect(mapStateToProps)(BreweryCard);

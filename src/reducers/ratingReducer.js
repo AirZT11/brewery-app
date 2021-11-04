@@ -9,6 +9,10 @@ export default function userReducer(state = initialState, action) {
         ...state,
         ratings: action.payload,
       };
+    // POST_RATING populates state.ratings, which triggers
+    // => getBreweryRatings(brewery.id, setBreweryRatings)
+    // in a useEffect({}, [ratings]) so that StarRating can
+    // average the ratings, including the submitted rating
     case "POST_RATING":
       return {
         ...state,
