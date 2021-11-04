@@ -3,7 +3,9 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
 import { IoMdLocate, IoIosBeer } from "react-icons/io";
-import { MdLocationSearching } from "react-icons/md";
+import { FaDirections } from "react-icons/fa";
+import { RiExternalLinkFill } from "react-icons/ri";
+import { MdLocationSearching, MdReviews } from "react-icons/md";
 import { getBreweryRatings } from "../lib/helperMethods";
 import { getRatings } from "../actions/ratingActions";
 
@@ -34,42 +36,50 @@ const BreweryCard = ({
 
   return (
     <div className="brew-card">
-      <Link to={{ pathname: `brewery/${brewery.id}` }}>
-        <span className="brew-name">{brewery.name}</span>
-      </Link>
-      <p className="brew-location">
-        <i>{brewery.city}</i>, {brewery.state}
-      </p>
+      <div className="flex-left">
+        <Link to={{ pathname: `brewery/${brewery.id}` }}>
+          <span className="brew-name">
+            <b>{brewery.name}</b>
+          </span>
+        </Link>
+        <p className="brew-location">
+          <i>{brewery.city}</i>, {brewery.state}
+        </p>
 
-      <StarRating
-        breweryId={brewery.id}
-        breweryName={brewery.name}
-        breweryRatings={breweryRatings}
-        getBreweryRatings={getBreweryRatings}
-        setBreweryRatings={setBreweryRatings}
-      />
-
-      <br />
-
-      <a>{urlExist(brewery.website_url)}</a>
-      <label> || </label>
-      <a
-        // className="brew-website"
-        href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
-        target="_blank"
-      >
-        Directions
-      </a>
+        <StarRating
+          breweryId={brewery.id}
+          breweryName={brewery.name}
+          breweryRatings={breweryRatings}
+          getBreweryRatings={getBreweryRatings}
+          setBreweryRatings={setBreweryRatings}
+        />
+      </div>
 
       <br />
 
-      <button
-        className="pan-to-on-map-btn"
-        style={{ display: panBtnView }}
-        onClick={handleLocateOnMapClick}
-      >
-        <IoIosBeer />
-      </button>
+      <div className="flex-right">
+        {urlExist(brewery.website_url)}
+
+        <br />
+
+        <a
+          className="link-icons"
+          href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
+          target="_blank"
+        >
+          <FaDirections />
+        </a>
+
+        <br />
+
+        <a
+          className="link-icons"
+          // style={{ display: panBtnView }}
+          onClick={handleLocateOnMapClick}
+        >
+          <IoIosBeer />
+        </a>
+      </div>
     </div>
   );
 };
@@ -77,13 +87,8 @@ const BreweryCard = ({
 const urlExist = (url) => {
   if (url != null) {
     return (
-      <a
-        // className="brew-website"
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-      >
-        Website
+      <a className="link-icons" href={url} target="_blank" rel="noreferrer">
+        <RiExternalLinkFill />
       </a>
     );
   }

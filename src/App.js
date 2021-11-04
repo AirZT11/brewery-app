@@ -34,6 +34,8 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [searchInput, setSearchInput] = useState("");
   const [menuState, setMenuState] = useState(false);
 
+  const dispatch = useDispatch();
+
   // SEARCH INPUT CHANGE
   const handleChange = (e) => {
     setSearchInput(e.target.value);
@@ -46,6 +48,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
     displayList();
     setMapZoom(5);
     setSearchInput("");
+    dispatch({ type: "CLOSE_WELCOME_MODAL" });
   };
 
   useEffect(() => {

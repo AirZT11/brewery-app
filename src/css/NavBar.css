@@ -12,7 +12,7 @@
 .bottom-nav {
   position: fixed;
   overflow: hidden;
-  background-color: var(--main-bg-color);
+  background-color: var(--main-color);
   bottom: 0;
   /* height: 6vh; */
   width: 100%;
@@ -86,12 +86,13 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .menu-item {
   display: inline-block;
   letter-spacing: 1px;
-  margin: 10px;
+  /* margin: 10px; */
   font-size: 35px;
   text-decoration: none;
   color: aliceblue;
   font-family: var(--secondary-font);
   font-weight: bold;
+  transition: var(--main-transition);
 }
 
 .menu-item p {
@@ -99,6 +100,11 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 41px;
   cursor: pointer;
   font-stretch: expanded;
+}
+
+.menu-item:hover {
+  color: var(--highlight-color);
+  font-size: 42px;
 }
 
 /* Styling of overlay */

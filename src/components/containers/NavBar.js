@@ -36,7 +36,7 @@ const NavBar = ({
       onStateChange={(state) => handleMenuStateChange(state)}
     >
       <NavLink exact className="menu-item" to="/">
-        <p>TheBreweryFinder</p>
+        <p>The Brewery Finder</p>
       </NavLink>
 
       {/* <SearchBar

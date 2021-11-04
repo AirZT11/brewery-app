@@ -151,43 +151,38 @@ const StarRating = ({
       {/* POPUP DISPLAYING USER REVIEWS */}
       <Popup
         trigger={
-          <button className="button">
+          <button className="second-btn-style">
             {breweryRatings.length} {isReviewPlural}
           </button>
         }
         modal
         nested
       >
-        {(close) => (
-          <div className="modal">
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-            <div className="header">
-              <p className="brew-name-lrg">{breweryName}</p>
-              <span className="stars">
-                <Stars
-                  rating={rating}
-                  starRatedColor="orange"
-                  changeRating={handleClick}
-                  numberOfStars={5}
-                  starEmptyColor="grey"
-                  starHoverColor="orange"
-                  starDimension="22px"
-                  starSpacing="2px"
-                />
-              </span>
-              <span className="average-rating"> {averageRating} Stars</span>
-              <p>
-                {breweryRatings.length} {isReviewPlural}
-              </p>
-            </div>
-            <br />
-            {breweryRatings.map((review) => {
-              return <Reviews key={review.id} review={review} />;
-            })}
+        <div className="modal">
+          <div className="header">
+            <p className="brew-name-lrg">{breweryName}</p>
+            <span className="stars">
+              <Stars
+                rating={rating}
+                starRatedColor="orange"
+                changeRating={handleClick}
+                numberOfStars={5}
+                starEmptyColor="grey"
+                starHoverColor="orange"
+                starDimension="22px"
+                starSpacing="2px"
+              />
+            </span>
+            <span className="average-rating"> {averageRating} Stars</span>
+            <p>
+              {breweryRatings.length} {isReviewPlural}
+            </p>
           </div>
-        )}
+          <br />
+          {breweryRatings.map((review) => {
+            return <Reviews key={review.id} review={review} />;
+          })}
+        </div>
       </Popup>
 
       <Popup open={submitDisplay}>

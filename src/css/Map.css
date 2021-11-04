@@ -30,7 +30,7 @@
 
 /* GOOGLE MAPS INFOWINDOW CUSTOM CSS */
 .gm-style .gm-style-iw-c {
-  background: var(--main-bg-color);
+  background: var(--main-color);
   padding: 0;
   /* overflow: hidden; */
 }
