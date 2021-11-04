@@ -12,7 +12,11 @@ const SearchBar = ({ handleChange, searchInput, handleSubmit }) => {
         onChange={handleChange}
         placeholder="Search Breweries..."
       />
-      <button className="search-button" onClick={handleSubmit}>
+      <button
+        className="search-button"
+        title="Search for Brewery"
+        onClick={handleSubmit}
+      >
         <BsSearch />
       </button>
     </form>

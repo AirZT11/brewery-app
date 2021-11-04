@@ -6,23 +6,6 @@
   background-color: var(--main-color);
 }
 
-.small-map {
-  margin: auto;
-  height: 50vh;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
-.brewList-map {
-  width: 23%;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  margin: auto;
-  height: 50vh;
-  background: rgba(207, 207, 207, 0.7);
-}
-
 .brewList-container {
   height: 100%;
   width: 27vw;
@@ -41,6 +24,7 @@
   display: none; /* for Chrome, Safari, and Opera */
 }
 
+/* ------ BREW CARD STYLING ------ */
 .brew-card {
   display: flex;
   line-height: 1.4;
@@ -60,6 +44,24 @@
 
 .brew-card:hover .brew-name {
   font-size: 26.9px;
+  text-shadow: 5px 5px 1px rgba(150, 150, 150, 0.295);
+}
+
+.brew-location {
+  font-family: var(--main-font);
+  font-size: 14px;
+  padding-bottom: 4px;
+  margin: 1px;
+}
+
+.brew-website {
+  font-size: 12px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.average-rating {
+  font-size: 12px;
 }
 
 .brew-card a {
@@ -72,20 +74,46 @@
   outline: none;
 }
 
-.brew-card span {
+/* ------ BREW NAME STYLING ------ */
+.brew-name-lrg {
+  font-size: 35px;
+  font-family: var(--secondary-font);
+}
+
+.brew-name {
+  /* display: flex; */
+  font-size: 26px;
+  letter-spacing: 0.7px;
+  line-height: 1.3;
+  font-family: var(--secondary-font);
+  transition: var(--main-transition);
+  transition-timing-function: ease-in;
   color: var(--main-text-color);
   text-decoration: none;
   box-shadow: none;
   outline: none;
-  /* line-height: 10px; */
 }
 
-.brew-card span::after {
+.brew-name b {
+  font-weight: lighter;
+  transition: 0.3s;
+}
+
+.brew-name b:hover {
+  font-size: 28.9px;
+  color: var(--second-text-color);
+  -webkit-text-stroke-width: 0.3px;
+  -webkit-text-stroke-color: var(--highlight-color);
+}
+
+/* .brew-card span {
+} */
+
+.brew-card b::after {
   content: "";
   display: block;
   width: 0;
   height: 1px;
-  /* background: #000; */
   background-image: linear-gradient(
     to right,
     rgba(173, 173, 173, 0.493),
@@ -95,12 +123,12 @@
   transition-timing-function: ease-out;
 }
 
-.brew-card span:hover::after {
+.brew-card b:hover::after {
   width: 100%;
 }
 
 .flex-left {
-  flex: 4;
+  flex: 7;
 }
 
 .flex-right {
@@ -110,9 +138,17 @@
 
 .link-icons {
   font-size: 30px;
+  text-shadow: var(--main-text-shadow);
+  transition: 0.2s;
 }
 
-.pan-to-on-map-btn {
+.link-icons:hover {
+  cursor: pointer;
+  font-size: 32px;
+  color: var(--hover-color);
+}
+
+/* .pan-to-on-map-btn {
   display: none;
   background: none;
   color: rgba(17, 17, 17, 0.253);
@@ -124,44 +160,7 @@
 
 .pan-to-on-map-btn:hover {
   color: rgb(54, 54, 54);
-}
-
-.brew-name-lrg {
-  font-size: 35px;
-  font-family: var(--secondary-font);
-}
-.brew-name {
-  font-size: 26px;
-  letter-spacing: 0.7px;
-  line-height: 1.3;
-  font-family: var(--secondary-font);
-  transition: var(--main-transition);
-  transition-timing-function: ease-in;
-}
-
-.brew-name b {
-  font-weight: lighter;
-  transition: 0.3s;
-}
-
-.brew-name b:hover {
-  font-size: 28.9px;
-  text-shadow: 5px 5px 1px rgba(150, 150, 150, 0.295);
-}
-
-.brew-card p {
-  margin: 1px;
-}
-
-.brew-location {
-  font-size: 12px;
-}
-
-.brew-website {
-  font-size: 12px;
-  font-weight: bold;
-  text-decoration: none;
-}
+} */
 
 .brewery-page {
   display: flex;
@@ -172,6 +171,12 @@
   text-align: left;
 }
 
-.average-rating {
-  font-size: 12px;
+.brewList-map {
+  width: 23%;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  margin: auto;
+  height: 50vh;
+  background: rgba(207, 207, 207, 0.7);
 }

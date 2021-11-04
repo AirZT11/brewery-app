@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
-import { IoMdLocate, IoIosBeer } from "react-icons/io";
+import { IoMdLocate, IoIosBeer, IoIosLocate } from "react-icons/io";
 import { FaDirections } from "react-icons/fa";
 import { RiExternalLinkFill } from "react-icons/ri";
 import { MdLocationSearching, MdReviews } from "react-icons/md";
@@ -37,13 +37,17 @@ const BreweryCard = ({
   return (
     <div className="brew-card">
       <div className="flex-left">
-        <Link to={{ pathname: `brewery/${brewery.id}` }}>
+        <Link
+          title={`${brewery.name} Info`}
+          to={{ pathname: `brewery/${brewery.id}` }}
+        >
           <span className="brew-name">
             <b>{brewery.name}</b>
           </span>
         </Link>
+
         <p className="brew-location">
-          <i>{brewery.city}</i>, {brewery.state}
+          {brewery.city}, {brewery.state}
         </p>
 
         <StarRating
@@ -64,6 +68,7 @@ const BreweryCard = ({
 
         <a
           className="link-icons"
+          title="Get Directions"
           href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
           target="_blank"
         >
@@ -74,10 +79,11 @@ const BreweryCard = ({
 
         <a
           className="link-icons"
-          // style={{ display: panBtnView }}
+          title="Locate Brewery"
+          style={{ display: panBtnView }}
           onClick={handleLocateOnMapClick}
         >
-          <IoIosBeer />
+          <IoIosLocate />
         </a>
       </div>
     </div>
@@ -87,7 +93,13 @@ const BreweryCard = ({
 const urlExist = (url) => {
   if (url != null) {
     return (
-      <a className="link-icons" href={url} target="_blank" rel="noreferrer">
+      <a
+        className="link-icons"
+        title="Website"
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+      >
         <RiExternalLinkFill />
       </a>
     );

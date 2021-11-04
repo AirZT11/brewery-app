@@ -108,6 +108,7 @@ const StarRating = ({
           starHoverColor="orange"
           starDimension="22px"
           starSpacing="2px"
+          // typeOfWidget="Rate"
         />
       </label>
 
@@ -144,14 +145,14 @@ const StarRating = ({
         )}
       </Popup>
 
-      <label className="average-rating"> {averageRating} Stars</label>
+      <label className="average-rating"> {averageRating} Star Rating</label>
 
       <br />
 
       {/* POPUP DISPLAYING USER REVIEWS */}
       <Popup
         trigger={
-          <button className="second-btn-style">
+          <button className="second-btn-style" title="Show Reviews">
             {breweryRatings.length} {isReviewPlural}
           </button>
         }

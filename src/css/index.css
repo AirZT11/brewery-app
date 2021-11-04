@@ -1,17 +1,25 @@
 @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Nunito+Sans:wght@200&family=Nunito:wght@200&family=Zen+Old+Mincho&display=swap");
 
 :root {
+  --main-font: "Nunito Sans";
+  --secondary-font: "Bebas Neue";
+
+  --main-text-color: black;
+  --second-text-color: #3b2700;
+
   --main-color: rgb(243, 243, 243);
   --main-bg-color: rgb(247, 247, 247);
   --second-bg-color: rgb(218, 218, 218);
-  --main-text-color: black;
-  --main-font: "Nunito Sans";
-  --secondary-font: "Bebas Neue";
-  --main-transition: 0.1s;
-  --main-box-shadow: 0px 1px 3px rgba(196, 196, 196, 0.39);
-  --secondary-box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.164);
+
   --highlight-color: rgba(255, 203, 24);
   --highlight-soft-color: rgba(255, 201, 24, 0.534);
+  --hover-color: #ffa6008e; /* Extracted from star color */
+
+  --main-box-shadow: 0px 1px 3px rgba(196, 196, 196, 0.39);
+  --secondary-box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.164);
+  --main-text-shadow: 1px 1px rgba(196, 196, 196, 0.39);
+
+  --main-transition: 0.1s;
 }
 
 body {

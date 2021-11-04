@@ -1,14 +1,3 @@
-/* .bar {
-  position: relative;
-
-  justify-content: space-between;
-  top: 0;
-  height: 64px;
-  background-color: rgba(51, 51, 51);
-  box-shadow: 0px 0px 10px rgba(51, 51, 51, 0.774);
-  z-index: 10;
-} */
-
 .bottom-nav {
   position: fixed;
   overflow: hidden;
@@ -22,7 +11,7 @@
 .bar .search {
 }
 
-/* HAMBURGER MENU STYLING */
+/* ------ HAMBURGER MENU STYLING ------ */
 
 .bm-burger-button {
   position: fixed;
@@ -107,7 +96,8 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-size: 42px;
 }
 
-/* Styling of overlay */
+/* ------ Styling of overlay ------ */
+
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
@@ -115,13 +105,6 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .search-text {
   width: 90%;
 }
-
-/* .main-btn-style {
-  cursor: pointer;
-  font-family: var(--secondary-font);
-  font-weight: bold;
-  width: 10;
-} */
 
 .submit:hover {
   background-color: rgb(211, 211, 211);
