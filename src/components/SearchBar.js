@@ -10,19 +10,28 @@ const SearchBar = ({ fetchBreweries }) => {
   const [searchInput, setSearchInput] = useState("");
   const [delayedInput, setDelayedInput] = useState("");
   const [autoCompBrews, setAutoCompBrews] = useState([]);
+  const [autoCompDisplay, setAutoCompDisplay] = useState("none");
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const timeOutId = setTimeout(() => setDelayedInput(searchInput), 500);
+    const timeOutId = setTimeout(() => {
+      setDelayedInput(searchInput);
+    }, 500);
     return () => clearTimeout(timeOutId);
   }, [searchInput]);
 
   useEffect(() => {
     getAutoComplete(delayedInput);
+    if (delayedInput === "") setAutoCompDisplay("none");
   }, [delayedInput]);
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
+    setTimeout(() => setAutoCompDisplay("block"), 500);
+  };
+
+  const alpabetize = (a, b) => {
+    return a.id.localeCompare(b.id);
   };
 
   const getAutoComplete = (query) => {
@@ -32,7 +41,7 @@ const SearchBar = ({ fetchBreweries }) => {
         url: `https://api.openbrewerydb.org/breweries/autocomplete?query=${query}`,
       })
       .then((breweries) => {
-        setAutoCompBrews(breweries);
+        setAutoCompBrews(breweries.data.sort(alpabetize));
       });
   };
 
@@ -64,11 +73,11 @@ const SearchBar = ({ fetchBreweries }) => {
           <BsSearch />
         </button>
       </form>
-      <div className="auto-comp-container">
-        {autoCompBrews &&
-          autoCompBrews.map((brew, key) => (
-            <ul>
-              <li>{brew.name}</li>
+      <div className="auto-comp-container" style={{ display: autoCompDisplay }}>
+        {Array.isArray(autoCompBrews) &&
+          autoCompBrews.map((brew) => (
+            <ul key={brew.id}>
+              <li onClick={() => setSearchInput(brew.name)}>{brew.name}</li>
             </ul>
           ))}
       </div>
