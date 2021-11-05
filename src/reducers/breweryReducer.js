@@ -1,6 +1,8 @@
 const initialState = {
   breweries: [],
   loading: false,
+  // autoCompleteBrews: [],
+  // searchInput: [],
 };
 
 export default function breweryReducer(state = initialState, action) {
@@ -22,6 +24,15 @@ export default function breweryReducer(state = initialState, action) {
         ...state,
         loading: true,
       };
+    // case "SEARCH_INPUT":
+    //   return {
+
+    //   }
+    // case "GET_AUTO_COMPLETE":
+    //   return {
+    //     ...state,
+    //     autoCompleteBrews: action.payload
+    //   }
     default:
       return state;
   }

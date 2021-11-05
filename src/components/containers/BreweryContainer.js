@@ -15,9 +15,6 @@ const BreweryContainer = ({
   userLocation,
   mapZoom,
   setMapZoom,
-  handleChange,
-  handleSubmit,
-  searchInput,
   closeMenu,
 }) => {
   useEffect(() => {
@@ -36,9 +33,6 @@ const BreweryContainer = ({
           mapZoom={mapZoom}
           setMapZoom={setMapZoom}
           mapCenter={userLocation}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          searchInput={searchInput}
         />
 
         {/* SIDE BAR LIST DISPLAY */}

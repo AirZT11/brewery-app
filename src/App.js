@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect, useDispatch } from "react-redux";
+import { connect } from "react-redux";
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,25 +31,7 @@ import "./css/Loading.css";
 const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [display, setDisplay] = useState("none");
   const [mapZoom, setMapZoom] = useState(10);
-  const [searchInput, setSearchInput] = useState("");
   const [menuState, setMenuState] = useState(false);
-
-  const dispatch = useDispatch();
-
-  // SEARCH INPUT CHANGE
-  const handleChange = (e) => {
-    setSearchInput(e.target.value);
-  };
-
-  // SEARCH SUBMIT
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    fetchBreweries(searchInput);
-    displayList();
-    setMapZoom(5);
-    setSearchInput("");
-    dispatch({ type: "CLOSE_WELCOME_MODAL" });
-  };
 
   useEffect(() => {
     fetchCurrentUser();
@@ -72,19 +54,12 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
       <div className="App">
         <NavBar
           currentUser={currentUser}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          searchInput={searchInput}
           menuState={menuState}
           closeMenu={closeMenu}
           handleMenuStateChange={handleMenuStateChange}
         />
 
-        <WelcomePage
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          searchInput={searchInput}
-        />
+        <WelcomePage />
 
         <Switch>
           <Route exact path="/about">
@@ -99,9 +74,6 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
               display={display}
               mapZoom={mapZoom}
               setMapZoom={setMapZoom}
-              handleChange={handleChange}
-              handleSubmit={handleSubmit}
-              searchInput={searchInput}
               closeMenu={closeMenu}
             />
           </Route>

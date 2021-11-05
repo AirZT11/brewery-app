@@ -34,9 +34,6 @@ const Map = ({
   mapZoom,
   setMapZoom,
   mapCenter,
-  handleChange,
-  handleSubmit,
-  searchInput,
 }) => {
   const [selectedBrew, setSelectedBrew] = useState(null);
   const [loadDisplay, setLoadDisplay] = useState("none");
@@ -166,9 +163,6 @@ const Map = ({
             breweries={breweries}
             panTo={panTo}
             setSelectedBrew={setSelectedBrew}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            searchInput={searchInput}
           />
         </div>
       )}

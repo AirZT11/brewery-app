@@ -2,16 +2,12 @@ import React, { useState } from "react";
 import { connect } from "react-redux";
 import { fetchBreweries } from "../../actions/breweryActions";
 import { NavLink } from "react-router-dom";
-import SearchBar from "../SearchBar";
 import "../../css/NavBar.css";
 import { logOut, setPromptView } from "../../actions/userActions";
 import { slide as Menu } from "react-burger-menu";
 
 const NavBar = ({
   currentUser,
-  handleChange,
-  handleSubmit,
-  searchInput,
   logOut,
   setPromptView,
   menuState,
@@ -38,12 +34,6 @@ const NavBar = ({
       <NavLink exact className="menu-item" to="/">
         <p>The Brewery Finder</p>
       </NavLink>
-
-      {/* <SearchBar
-        handleChange={handleChange}
-        searchInput={searchInput}
-        handleSubmit={handleSubmit}
-      /> */}
 
       <NavLink exact className="menu-item" to="/" onClick={closeMenu}>
         Home

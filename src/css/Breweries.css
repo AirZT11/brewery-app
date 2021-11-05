@@ -101,8 +101,9 @@
 
 .brew-name b:hover {
   font-size: 28.9px;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: var(--highlight-color);
+  color: rgb(15, 9, 0);
+  /* -webkit-text-stroke-width: 0.3px;
+  -webkit-text-stroke-color: var(--highlight-color); */
 }
 
 /* .brew-card span {

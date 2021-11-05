@@ -5,21 +5,13 @@ import SignUpContainer from "./containers/SignUpContainer";
 import Login from "./Login";
 import SearchBar from "./SearchBar";
 
-const WelcomePage = ({
-  handleChange,
-  handleSubmit,
-  searchInput,
-  welcomeView,
-}) => {
+const WelcomePage = ({ welcomeView }) => {
   return (
     <Popup open={welcomeView} modal nested>
       <div className="modal">
         <p className="welcome-name">The Brewery Finder</p>
-        <SearchBar
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          searchInput={searchInput}
-        />
+
+        <SearchBar />
 
         {/* BUTTON FOR LOGIN  */}
         <Popup
