@@ -1,4 +1,5 @@
 import axios from "axios";
+import { RiContactsBookLine, RiCreativeCommonsZeroLine } from "react-icons/ri";
 
 const SEARCH_URL = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search`;
 // const SEARCH_URL = `http://localhost:3001/api/v1/search`;
@@ -51,4 +52,20 @@ export const fetchUserLocationBrews = (lat, lng) => (dispatch) => {
     .catch((error) => {
       console.error(error);
     });
+};
+
+export const getUserRatedBrews = (ratings) => (dispatch) => {
+  Promise.all(
+    ratings.map(async (rating) => {
+      const b = await axios.get(
+        `https://api.openbrewerydb.org/breweries/${rating.brewery_id}`
+      );
+      return b;
+    })
+  ).then((breweries) =>
+    dispatch({
+      type: "FETCH_BREWERIES",
+      payload: breweries.map((b) => b.data),
+    })
+  );
 };

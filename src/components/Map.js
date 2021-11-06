@@ -80,6 +80,7 @@ const Map = ({
 
       <Loading type="spinningBubbles" />
 
+      {/* DISPLAY LOCATE ICON IF > 1 BREWERY */}
       {Array.isArray(breweries) && (
         <Locate
           panTo={panTo}

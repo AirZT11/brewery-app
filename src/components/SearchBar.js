@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { getRatings } from "../actions/ratingActions";
-import { fetchBreweries } from "../actions/breweryActions";
+import { fetchBreweries, getUserRatedBrews } from "../actions/breweryActions";
 import { BsSearch } from "react-icons/bs";
 import axios from "axios";
 
 // Search input should dynamically load a list of breweries that correspond to what is being typed
-const SearchBar = ({ fetchBreweries }) => {
+const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
   const [searchInput, setSearchInput] = useState("");
   const [delayedInput, setDelayedInput] = useState("");
   const [autoCompBrews, setAutoCompBrews] = useState([]);
@@ -65,6 +65,17 @@ const SearchBar = ({ fetchBreweries }) => {
           onChange={handleChange}
           placeholder="Search Breweries..."
         />
+
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            getUserRatedBrews(currentUser.ratings);
+          }}
+          className="search-button"
+        >
+          Profile
+        </button>
+
         <button
           className="search-button"
           title="Search for Brewery"
@@ -85,9 +96,12 @@ const SearchBar = ({ fetchBreweries }) => {
   );
 };
 
-const mapStateToProps = (state) => ({});
+const mapStateToProps = (state) => ({
+  currentUser: state.userData.currentUser,
+});
 
 export default connect(mapStateToProps, {
   getRatings,
   fetchBreweries,
+  getUserRatedBrews,
 })(SearchBar);

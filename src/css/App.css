@@ -198,3 +198,8 @@
   margin: 10px;
   font-family: 0.05s;
 }
+
+.profile-container {
+  margin: auto;
+  font-family: var(--main-font);
+}

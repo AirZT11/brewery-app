@@ -45,7 +45,7 @@ const NavBar = ({
 
       {currentUser ? (
         <NavLink exact className="menu-item" to="/profile" onClick={closeMenu}>
-          {currentUser.user.name}
+          {currentUser.name}
         </NavLink>
       ) : (
         <NavLink exact className="menu-item" to="/signup" onClick={closeMenu}>

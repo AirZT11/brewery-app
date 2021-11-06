@@ -65,7 +65,7 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
           <Route exact path="/about">
             <About />
           </Route>
-          <Route exact path="/user/">
+          <Route exact path="/profile/">
             <UserProfile />
           </Route>
           <Route exact path="/">
