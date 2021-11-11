@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { fetchUserLocationBrews } from "../actions/breweryActions";
 import { ImLocation } from "react-icons/im";
+import { RiMapPinUserFill, RiMapPinUserLine } from "react-icons/ri";
 
 const options = {
   disableDefaultUI: true,
@@ -14,7 +15,6 @@ const Locate = ({
   displayList,
   setLoadDisplay,
   mapZoom,
-  setMapZoom,
   userLocation,
 }) => {
   useEffect(() => {
@@ -46,18 +46,20 @@ const Locate = ({
 
   const handleClick = () => {
     loadUserBrews(11);
-    setMapZoom(11);
+    dispatch({ type: "SET_MAP_ZOOM", payload: 11 });
   };
 
   return (
     <button className="locate" onClick={handleClick}>
-      <ImLocation />
+      {/* <RiMapPinUserFill /> */}
+      <RiMapPinUserLine />
     </button>
   );
 };
 
 const mapStateToProps = (state) => ({
   userLocation: state.userData.userLocation,
+  mapZoom: state.breweryData.mapZoom,
 });
 
 export default connect(mapStateToProps, { fetchUserLocationBrews })(Locate);

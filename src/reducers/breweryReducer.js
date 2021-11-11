@@ -2,6 +2,7 @@ const initialState = {
   breweries: [],
   loading: false,
   userRatedBrews: [],
+  mapZoom: 10,
 };
 
 export default function breweryReducer(state = initialState, action) {
@@ -23,14 +24,11 @@ export default function breweryReducer(state = initialState, action) {
         ...state,
         loading: true,
       };
-    // case "GET_USER_RATED_BREWS":
-    //   return {
-    //     ...state,
-    //     userRatedBrews: [
-    //       ...state.userRatedBrews,
-    //       [action.payload.latitude, action.payload.longitude],
-    //     ],
-    //   };
+    case "SET_MAP_ZOOM":
+      return {
+        ...state,
+        mapZoom: action.payload,
+      };
     default:
       return state;
   }

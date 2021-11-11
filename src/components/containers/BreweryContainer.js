@@ -30,8 +30,9 @@ const BreweryContainer = ({
           displayList={displayList}
           display={display}
           mapWidth="73vw"
-          mapZoom={mapZoom}
-          setMapZoom={setMapZoom}
+          mapHeight="100vh"
+          // mapZoom={mapZoom}
+          // setMapZoom={setMapZoom}
           mapCenter={userLocation}
         />
 

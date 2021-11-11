@@ -30,7 +30,6 @@ import "./css/Loading.css";
 
 const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [display, setDisplay] = useState("none");
-  const [mapZoom, setMapZoom] = useState(10);
   const [menuState, setMenuState] = useState(false);
 
   useEffect(() => {
@@ -72,8 +71,6 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
             <BreweryContainer
               displayList={displayList}
               display={display}
-              mapZoom={mapZoom}
-              setMapZoom={setMapZoom}
               closeMenu={closeMenu}
             />
           </Route>

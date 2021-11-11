@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback } from "react";
-// import { connect } from "react-redux";
+import { connect } from "react-redux";
 import useToggle from "../hooks/useToggle";
 
 import Locate from "./Locate";
@@ -31,8 +31,8 @@ const Map = ({
   display,
   displayList,
   mapWidth,
+  mapHeight,
   mapZoom,
-  setMapZoom,
   mapCenter,
 }) => {
   const [selectedBrew, setSelectedBrew] = useState(null);
@@ -47,7 +47,7 @@ const Map = ({
 
   const mapContainerStyle = {
     width: mapWidth,
-    height: "100vh",
+    height: mapHeight,
   };
 
   // useEffect(() => {
@@ -76,8 +76,6 @@ const Map = ({
 
   return (
     <div className="map-container">
-      {/* <GoogleSearch userLocation={userLocation} panTo={panTo} /> */}
-
       <Loading type="spinningBubbles" />
 
       {/* DISPLAY LOCATE ICON IF > 1 BREWERY */}
@@ -86,8 +84,6 @@ const Map = ({
           panTo={panTo}
           displayList={displayList}
           setLoadDisplay={setLoadDisplay}
-          setMapZoom={setMapZoom}
-          mapZoom={mapZoom}
         />
       )}
 
@@ -171,4 +167,8 @@ const Map = ({
   );
 };
 
-export default Map;
+const mapStateToProps = (state) => ({
+  mapZoom: state.breweryData.mapZoom,
+});
+
+export default connect(mapStateToProps)(Map);

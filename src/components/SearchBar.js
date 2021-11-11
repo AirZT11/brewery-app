@@ -3,6 +3,7 @@ import { connect, useDispatch } from "react-redux";
 import { getRatings } from "../actions/ratingActions";
 import { fetchBreweries, getUserRatedBrews } from "../actions/breweryActions";
 import { BsSearch } from "react-icons/bs";
+import { FaUserAlt } from "react-icons/fa";
 import axios from "axios";
 
 // Search input should dynamically load a list of breweries that correspond to what is being typed
@@ -51,13 +52,15 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
     fetchBreweries(searchInput);
     // displayList();
     // setMapZoom(5);
+    dispatch({ type: "SET_MAP_ZOOM", payload: 5 });
     setSearchInput("");
+    setAutoCompDisplay("none");
     dispatch({ type: "CLOSE_WELCOME_MODAL" });
   };
 
   return (
     <>
-      <form className="search-bar-container">
+      <form className="search-bar-container" id="search-bar-container">
         <input
           className="search-bar"
           type="text"
@@ -67,21 +70,24 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
         />
 
         <button
+          id="search-button"
+          className="search-button"
+          title="Search for Brewery"
+          onClick={handleSubmit}
+        >
+          <BsSearch />
+        </button>
+
+        <span className="search-btn-middle-bar" />
+
+        <button
           onClick={(e) => {
             e.preventDefault();
             getUserRatedBrews(currentUser.ratings);
           }}
           className="search-button"
         >
-          Profile
-        </button>
-
-        <button
-          className="search-button"
-          title="Search for Brewery"
-          onClick={handleSubmit}
-        >
-          <BsSearch />
+          <FaUserAlt />
         </button>
       </form>
       <div className="auto-comp-container" style={{ display: autoCompDisplay }}>
