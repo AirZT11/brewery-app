@@ -53,6 +53,7 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
           {website_url}
         </a>
 
+        <h2>Reviews:</h2>
         {breweryRatings.map((review) => (
           <div key={review.id}>
             <Reviews review={review} />

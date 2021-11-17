@@ -2,12 +2,15 @@ import React from "react";
 import Popup from "reactjs-popup";
 import Stars from "react-star-ratings";
 
-const Reviews = ({ review: { user, review, rating } }) => {
+const Reviews = ({ review: { user, review, rating, created_at } }) => {
+  const dateFormat = new Date(created_at).toDateString();
+
   return (
     <div className="reviews">
       <p>
         <strong>{user.name}</strong>
       </p>
+      <p className="review-date">Posted on: {dateFormat}</p>
       <span className="stars">
         <Stars
           rating={rating}

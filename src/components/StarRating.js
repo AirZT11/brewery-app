@@ -207,7 +207,7 @@ const StarRating = ({
             <span> {averageRating} Stars</span>
             <p>
               {breweryRatings.length}{" "}
-              {breweryRatings.length > 1 ? "Reviews" : "Review"}
+              {breweryRatings.length === 1 ? "Review" : "Reviews"}
             </p>
             <textarea
               className="text-box"

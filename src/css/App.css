@@ -68,10 +68,7 @@
 
 .second-btn-style:hover {
   font-weight: bold;
-  /* font-size: 20px; */
   box-shadow: var(--secondary-box-shadow);
-  /* background: var(--main-bg-color); */
-  /* border: 1px solid rgba(128, 128, 128, 0.74); */
 }
 
 .signup-form .error {
@@ -105,9 +102,11 @@
 }
 
 /* ------SEARCHBAR STYLING------ */
+
 .search-bar-container {
   display: flex;
   position: sticky;
+  background-color: var(--main-color);
   top: 0;
   width: 100%;
   z-index: 5;
@@ -153,6 +152,7 @@
 }
 
 .auto-comp-container {
+  padding-top: 32px;
   box-sizing: border-box;
   height: 25%;
   overflow-y: scroll;
@@ -201,10 +201,46 @@
 .welcome-name {
   font-size: 60px;
   margin: 10px;
-  font-family: 0.05s;
+  font-family: var(--secondary-font);
 }
 
+.user-reviews-display {
+  padding: 12px;
+  position: sticky;
+  top: 58px;
+  font-family: var(--secondary-font);
+  font-size: 20px;
+  background-color: var(--main-color);
+  z-index: 6;
+  box-shadow: var(--main-box-shadow);
+  text-align: left;
+}
+
+/* ------ UserProfile Styling ------ */
 .profile-container {
   margin: auto;
   font-family: var(--main-font);
+  width: 75%;
+}
+
+.user-reviews-list {
+  border: 2px solid black;
+  border-radius: 15px;
+  padding: 4px;
+  height: 50vh;
+  overflow-y: scroll;
+}
+
+.user-review {
+  padding: 10px;
+  margin: 0;
+  list-style-type: none;
+  text-align: left;
+  /* border-bottom: solid 0.3px rgba(85, 84, 82, 0.041); */
+  border-top: solid 0.3px rgba(85, 84, 82, 0.315);
+}
+
+.user-review h3,
+p {
+  margin: 0;
 }

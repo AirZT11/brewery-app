@@ -22,17 +22,34 @@ const Profile = ({ currentUser, userLocation }) => {
       {currentUser && (
         <div className="profile-container">
           <h1>{currentUser.name}'s Profile</h1>
-          <h2>Your Brewery Reviews</h2>
-          {currentUser.ratings.map((review) => (
-            <ul key={review.id}>
-              <li>
-                <h3>{review.brewery_name}</h3>
-                <p>{review.created_at}</p>
-                <p>You gave this a {review.rating} star rating</p>
-                <p>{review.review}</p>
-              </li>
-            </ul>
-          ))}
+
+          <div className="user-reviews-list">
+            <h2>Your Brewery Reviews</h2>
+            {currentUser.ratings.map((review) => (
+              <ul className="user-review" key={review.id}>
+                <li>
+                  <h3>{review.brewery_name}</h3>
+                  <p className="review-date">
+                    posted on {new Date(review.created_at).toDateString()}
+                  </p>
+                  <span className="stars">
+                    <Stars
+                      rating={review.rating}
+                      starRatedColor="orange"
+                      numberOfStars={5}
+                      starEmptyColor="grey"
+                      starHoverColor="orange"
+                      starDimension="22px"
+                      starSpacing="2px"
+                    />
+                  </span>
+                  <span> {review.rating} stars</span>
+                  <p className="review">{review.review}</p>
+                </li>
+              </ul>
+            ))}
+          </div>
+
           {/* <div className="small-map">
             <Map
               breweries={currentUser.ratings}

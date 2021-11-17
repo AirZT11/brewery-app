@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import {
   BrowserRouter as Router,
   Switch,
@@ -31,6 +31,7 @@ import "./css/Loading.css";
 const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [display, setDisplay] = useState("none");
   const [menuState, setMenuState] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchCurrentUser();
@@ -61,9 +62,9 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
         <WelcomePage />
 
         <Switch>
-          <Route exact path="/about">
+          {/* <Route exact path="/about">
             <About />
-          </Route>
+          </Route> */}
           <Route exact path="/profile/">
             <UserProfile />
           </Route>

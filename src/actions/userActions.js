@@ -60,25 +60,17 @@ export const fetchCurrentUser = () => (dispatch) => {
           type: "FETCH_CURRENT_USER",
           payload: currentUser.user,
         });
-
-        // Checking to see if user has rated anything
-        // if (currentUser.user.ratings) {
-        //   currentUser.user.ratings.forEach((brewery) => {
-        //     axios
-        //       .get(
-        //         `https://api.openbrewerydb.org/breweries/${brewery.brewery_id}`
-        //       )
-        //       .then((brewery) =>
-        //         dispatch({
-        //           type: "GET_USER_RATED_BREWS",
-        //           payload: brewery.data,
-        //         })
-        //       );
-        //   });
-        // }
+        dispatch({
+          type: "DISPLAY_WELCOME_PAGE",
+          payload: false,
+        });
       });
   } else {
     console.log("no token available. manually login");
+    dispatch({
+      type: "DISPLAY_WELCOME_PAGE",
+      payload: true,
+    });
   }
 };
 

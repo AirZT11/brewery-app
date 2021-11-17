@@ -4,7 +4,7 @@ const initialState = {
   loginFailed: false,
   promptView: false,
   promptMessage: "",
-  welcomeView: true,
+  welcomeView: false,
   signupSuccessful: false,
 };
 
@@ -60,6 +60,11 @@ export default function userReducer(state = initialState, action) {
         signupSuccessful: true,
         promptView: action.payload,
         promptMessage: "Sign up successful! Please login",
+      };
+    case "DISPLAY_WELCOME_PAGE":
+      return {
+        ...state,
+        welcomeView: action.payload,
       };
     default:
       return state;

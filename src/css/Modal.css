@@ -60,6 +60,7 @@
   cursor: pointer;
 }
 
-.reviews p {
+.reviews {
   margin: 0px;
+  text-align: left;
 }

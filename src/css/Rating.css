@@ -1,3 +1,9 @@
 .stars {
   vertical-align: 2px;
 }
+
+.review-date {
+  font-style: italic;
+  font-size: 13px;
+  color: rgb(116, 116, 116);
+}

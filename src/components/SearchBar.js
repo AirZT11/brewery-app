@@ -3,7 +3,8 @@ import { connect, useDispatch } from "react-redux";
 import { getRatings } from "../actions/ratingActions";
 import { fetchBreweries, getUserRatedBrews } from "../actions/breweryActions";
 import { BsSearch } from "react-icons/bs";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserAlt, FaStar } from "react-icons/fa";
+
 import axios from "axios";
 
 // Search input should dynamically load a list of breweries that correspond to what is being typed
@@ -12,12 +13,13 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
   const [delayedInput, setDelayedInput] = useState("");
   const [autoCompBrews, setAutoCompBrews] = useState([]);
   const [autoCompDisplay, setAutoCompDisplay] = useState("none");
+  const [userReviewsDisplay, setUserReviewsDisplay] = useState("none");
   const dispatch = useDispatch();
 
   useEffect(() => {
     const timeOutId = setTimeout(() => {
       setDelayedInput(searchInput);
-    }, 500);
+    }, 300);
     return () => clearTimeout(timeOutId);
   }, [searchInput]);
 
@@ -28,7 +30,8 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
 
   const handleChange = (e) => {
     setSearchInput(e.target.value);
-    setTimeout(() => setAutoCompDisplay("block"), 500);
+    setAutoCompDisplay("block");
+    // setTimeout(() => setAutoCompDisplay("block"), 300);
   };
 
   const alpabetize = (a, b) => {
@@ -51,9 +54,9 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
     e.preventDefault();
     fetchBreweries(searchInput);
     // displayList();
-    // setMapZoom(5);
     dispatch({ type: "SET_MAP_ZOOM", payload: 5 });
     setSearchInput("");
+    setDelayedInput("");
     setAutoCompDisplay("none");
     dispatch({ type: "CLOSE_WELCOME_MODAL" });
   };
@@ -84,12 +87,14 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
           onClick={(e) => {
             e.preventDefault();
             getUserRatedBrews(currentUser.ratings);
+            setUserReviewsDisplay("block");
           }}
           className="search-button"
         >
           <FaUserAlt />
         </button>
       </form>
+
       <div className="auto-comp-container" style={{ display: autoCompDisplay }}>
         {Array.isArray(autoCompBrews) &&
           autoCompBrews.map((brew) => (
@@ -97,6 +102,12 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
               <li onClick={() => setSearchInput(brew.name)}>{brew.name}</li>
             </ul>
           ))}
+      </div>
+      <div
+        className="user-reviews-display"
+        style={{ display: userReviewsDisplay }}
+      >
+        <p>Displaying your reviewed breweries</p>
       </div>
     </>
   );
