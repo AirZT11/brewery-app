@@ -51,7 +51,7 @@ const Map = ({
   };
 
   // useEffect(() => {
-  //   panTo(userLocation, mapZoom);
+  //   panTo({ lat: 39.5501, lng: -105.7821 }, mapZoom);
   // }, [mapZoom]);
 
   // useRef to retain a ref to the map's instance itself

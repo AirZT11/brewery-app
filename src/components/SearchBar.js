@@ -4,6 +4,7 @@ import { getRatings } from "../actions/ratingActions";
 import { fetchBreweries, getUserRatedBrews } from "../actions/breweryActions";
 import { BsSearch } from "react-icons/bs";
 import { FaUserAlt, FaStar } from "react-icons/fa";
+import LoginSignUpContainer from "./containers/LoginSignUpContainer";
 
 import axios from "axios";
 
@@ -14,6 +15,7 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
   const [autoCompBrews, setAutoCompBrews] = useState([]);
   const [autoCompDisplay, setAutoCompDisplay] = useState("none");
   const [userReviewsDisplay, setUserReviewsDisplay] = useState("none");
+  const [loginView, setLoginView] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -47,6 +49,16 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
       .then((breweries) => {
         setAutoCompBrews(breweries.data.sort(alpabetize));
       });
+  };
+
+  const handleProfileClick = (e) => {
+    e.preventDefault();
+    if (currentUser) {
+      getUserRatedBrews(currentUser.ratings);
+      setUserReviewsDisplay("block");
+    } else {
+      setLoginView(true);
+    }
   };
 
   // SEARCH SUBMIT
@@ -85,14 +97,21 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
 
         <button
           onClick={(e) => {
-            e.preventDefault();
-            getUserRatedBrews(currentUser.ratings);
-            setUserReviewsDisplay("block");
+            handleProfileClick(e);
           }}
           className="search-button"
         >
           <FaUserAlt />
         </button>
+
+        {/* ONLY IF CURRENTUSER EXISTS */}
+        <LoginSignUpContainer
+          setLoginView={setLoginView}
+          loginView={loginView}
+          popUpPrompt={
+            "Please login or sign up to display your reviewed breweries"
+          }
+        />
       </form>
 
       <div className="auto-comp-container" style={{ display: autoCompDisplay }}>

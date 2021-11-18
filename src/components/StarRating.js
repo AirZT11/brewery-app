@@ -1,18 +1,13 @@
 import React, { useState, useEffect } from "react";
-import useToggle from "../hooks/useToggle";
 
 import { connect } from "react-redux";
 import { postRating } from "../actions/ratingActions";
-import { setPromptView } from "../actions/userActions";
 
 import Stars from "react-star-ratings";
 import Popup from "reactjs-popup";
 
 import Reviews from "./Reviews";
-import Login from "./Login";
-import SignUpContainer from "./containers/SignUpContainer";
-
-import { getBreweryRatings } from "../lib/helperMethods";
+import LoginSignUpContainer from "./containers/LoginSignUpContainer";
 
 import "../css/Modal.css";
 import "../css/Rating.css";
@@ -23,18 +18,13 @@ const StarRating = ({
   breweryName,
   currentUser,
   postRating,
-  promptView,
-  setPromptView,
-  setBreweryRatings,
   breweryRatings,
-  ratingsFromStore,
 }) => {
   const [averageRating, setAverageRating] = useState(0);
   const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState(false);
   const [review, setReview] = useState("");
   const [loginView, setLoginView] = useState(false);
-  const [modalView, toggleModalView] = useToggle();
 
   useEffect(() => {
     averageRatings(breweryRatings);
@@ -65,7 +55,6 @@ const StarRating = ({
       setSubmitDisplay(true);
     } else {
       setLoginView(true);
-      // setPromptView("LOGGED_IN", true);
     }
   };
 
@@ -74,7 +63,6 @@ const StarRating = ({
   };
 
   const handleCancel = (e) => {
-    // e.preventDefault();
     setSubmitDisplay(false);
     setRating(averageRating);
     setReview("");
@@ -85,7 +73,7 @@ const StarRating = ({
     e.preventDefault();
     const state = {
       rating: rating,
-      userId: currentUser.user.id,
+      userId: currentUser.id,
       breweryId: breweryId,
       breweryName: breweryName,
       review: review,
@@ -114,37 +102,11 @@ const StarRating = ({
       </label>
 
       {/* POPUP IF NOT LOGGED IN */}
-      <Popup
-        open={loginView}
-        modal
-        nested
-        onClose={() => {
-          setLoginView(false);
-          setPromptView(false);
-          toggleModalView(false);
-        }}
-      >
-        {(close) => (
-          <div className="modal">
-            <button className="close" onClick={close}>
-              &times;
-            </button>
-            <div className="header">
-              Please Login or Create New Account to Review
-            </div>
-
-            {modalView ? (
-              <SignUpContainer />
-            ) : (
-              <Login setPromptView={setPromptView} />
-            )}
-
-            <button className="toggle-modal" onClick={toggleModalView}>
-              {modalView ? "Login" : "Create New Account"}
-            </button>
-          </div>
-        )}
-      </Popup>
+      <LoginSignUpContainer
+        setLoginView={setLoginView}
+        loginView={loginView}
+        popUpPrompt={"Please login or create account to review"}
+      />
 
       <label className="average-rating"> {averageRating} Star Rating</label>
 
@@ -236,9 +198,6 @@ const StarRating = ({
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
   ratingsFromStore: state.ratingData.ratings,
-  promptView: state.ratingData.promptView,
 });
 
-export default connect(mapStateToProps, { postRating, setPromptView })(
-  StarRating
-);
+export default connect(mapStateToProps, { postRating })(StarRating);

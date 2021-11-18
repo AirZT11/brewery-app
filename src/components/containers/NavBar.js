@@ -39,9 +39,9 @@ const NavBar = ({
         Home
       </NavLink>
 
-      <NavLink exact className="menu-item" to="/about" onClick={closeMenu}>
+      {/* <NavLink exact className="menu-item" to="/about" onClick={closeMenu}>
         About
-      </NavLink>
+      </NavLink> */}
 
       {currentUser ? (
         <NavLink exact className="menu-item" to="/profile" onClick={closeMenu}>

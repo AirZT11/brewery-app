@@ -35,7 +35,7 @@ export const loginUser = (userInputData) => (dispatch) => {
           localStorage.setItem("token", user.jwt);
           dispatch({
             type: "LOGIN_USER",
-            payload: user,
+            payload: user.user,
           });
           dispatch({
             type: "CLOSE_WELCOME_MODAL",
