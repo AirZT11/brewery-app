@@ -8,7 +8,7 @@ const BreweryList = ({ breweries, listStyle, panTo, setSelectedBrew }) => {
     <div className="brewList-container">
       <div className="brewList">
         {/* <Loading type="bars" /> */}
-        <SearchBar />
+        <SearchBar panTo={panTo} />
         {Array.isArray(breweries) ? (
           breweries.map((b) => (
             <div key={b.name}>

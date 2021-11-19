@@ -9,12 +9,19 @@ import LoginSignUpContainer from "./containers/LoginSignUpContainer";
 import axios from "axios";
 
 // Search input should dynamically load a list of breweries that correspond to what is being typed
-const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
+const SearchBar = ({
+  fetchBreweries,
+  getUserRatedBrews,
+  currentUser,
+  panTo,
+  userLocation,
+  searchReviewPrompt,
+}) => {
   const [searchInput, setSearchInput] = useState("");
   const [delayedInput, setDelayedInput] = useState("");
   const [autoCompBrews, setAutoCompBrews] = useState([]);
   const [autoCompDisplay, setAutoCompDisplay] = useState("none");
-  const [userReviewsDisplay, setUserReviewsDisplay] = useState("none");
+  // const [userReviewsDisplay, setUserReviewsDisplay] = useState("none");
   const [loginView, setLoginView] = useState(false);
   const dispatch = useDispatch();
 
@@ -33,7 +40,6 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
   const handleChange = (e) => {
     setSearchInput(e.target.value);
     setAutoCompDisplay("block");
-    // setTimeout(() => setAutoCompDisplay("block"), 300);
   };
 
   const alpabetize = (a, b) => {
@@ -55,7 +61,7 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
     e.preventDefault();
     if (currentUser) {
       getUserRatedBrews(currentUser.ratings);
-      setUserReviewsDisplay("block");
+      dispatch({ type: "SEARCH_REVIEW_PROMPT", payload: "block" });
     } else {
       setLoginView(true);
     }
@@ -64,12 +70,19 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
   // SEARCH SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
+
     fetchBreweries(searchInput);
-    // displayList();
-    dispatch({ type: "SET_MAP_ZOOM", payload: 5 });
+    panTo(
+      {
+        lat: Number(userLocation.lat),
+        lng: Number(userLocation.lng),
+      },
+      5
+    );
     setSearchInput("");
     setDelayedInput("");
     setAutoCompDisplay("none");
+    dispatch({ type: "SEARCH_REVIEW_PROMPT", payload: "none" });
     dispatch({ type: "CLOSE_WELCOME_MODAL" });
   };
 
@@ -122,7 +135,7 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
       </div>
       <div
         className="user-reviews-display"
-        style={{ display: userReviewsDisplay }}
+        style={{ display: searchReviewPrompt }}
       >
         <p>Displaying your reviewed breweries</p>
       </div>
@@ -132,6 +145,8 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
 
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
+  userLocation: state.userData.userLocation,
+  searchReviewPrompt: state.breweryData.searchReviewPrompt,
 });
 
 export default connect(mapStateToProps, {

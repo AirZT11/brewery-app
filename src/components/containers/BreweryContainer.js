@@ -13,8 +13,6 @@ const BreweryContainer = ({
   breweries,
   getUserLocation,
   userLocation,
-  mapZoom,
-  setMapZoom,
   closeMenu,
 }) => {
   useEffect(() => {
@@ -31,8 +29,6 @@ const BreweryContainer = ({
           display={display}
           mapWidth="73vw"
           mapHeight="100vh"
-          // mapZoom={mapZoom}
-          // setMapZoom={setMapZoom}
           mapCenter={userLocation}
         />
 

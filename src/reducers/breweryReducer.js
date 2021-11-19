@@ -2,7 +2,8 @@ const initialState = {
   breweries: [],
   loading: false,
   userRatedBrews: [],
-  mapZoom: 10,
+  mapZoom: 6,
+  searchReviewPrompt: "none",
 };
 
 export default function breweryReducer(state = initialState, action) {
@@ -24,10 +25,10 @@ export default function breweryReducer(state = initialState, action) {
         ...state,
         loading: true,
       };
-    case "SET_MAP_ZOOM":
+    case "SEARCH_REVIEW_PROMPT":
       return {
         ...state,
-        mapZoom: action.payload,
+        searchReviewPrompt: action.payload,
       };
     default:
       return state;

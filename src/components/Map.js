@@ -50,10 +50,6 @@ const Map = ({
     height: mapHeight,
   };
 
-  useEffect(() => {
-    mapRef.current.setZoom(mapZoom);
-  }, [mapZoom]);
-
   // useRef to retain a ref to the map's instance itself
   // to programmatically move where the map is, to pan and zoom
   // helps retains state without causing a re-render

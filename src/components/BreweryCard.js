@@ -35,7 +35,7 @@ const BreweryCard = ({
         lat: Number(brewery.latitude),
         lng: Number(brewery.longitude),
       },
-      14
+      11
     );
   };
 
