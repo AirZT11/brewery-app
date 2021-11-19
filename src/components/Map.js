@@ -50,9 +50,9 @@ const Map = ({
     height: mapHeight,
   };
 
-  // useEffect(() => {
-  //   panTo({ lat: 39.5501, lng: -105.7821 }, mapZoom);
-  // }, [mapZoom]);
+  useEffect(() => {
+    mapRef.current.setZoom(mapZoom);
+  }, [mapZoom]);
 
   // useRef to retain a ref to the map's instance itself
   // to programmatically move where the map is, to pan and zoom

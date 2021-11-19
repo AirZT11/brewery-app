@@ -67,7 +67,7 @@ const SignUp = ({
           onChange={handleChange}
         />
         <br />
-        {errorMsg("password")}
+        {errorMsg("password") && errorMsg("password")[1]}
         <input
           // id="password"
           name="password"
@@ -77,7 +77,8 @@ const SignUp = ({
           onChange={handleChange}
         />
         <br />
-        {errorMsg("password_confirmation")}
+        {errorMsg("password_confirmation") &&
+          errorMsg("password_confirmation")[0]}
         <input
           id="password-confirmation"
           name="passwordConfirmation"

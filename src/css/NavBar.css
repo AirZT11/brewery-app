@@ -11,6 +11,22 @@
 .bar .search {
 }
 
+.nav-icons {
+  font-size: 40px;
+  text-shadow: var(--main-text-shadow);
+  transition: 0.2s;
+  /* margin-top: 20px; */
+  color: aliceblue;
+  padding-left: 16px;
+  /* vertical-align: bottom; */
+}
+
+.nav-icons:hover {
+  cursor: pointer;
+  /* font-size: 41px; */
+  color: var(--highlight-color);
+}
+
 /* ------ HAMBURGER MENU STYLING ------ */
 
 .bm-burger-button {
@@ -55,7 +71,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 /* General sidebar styles */
 .bm-menu {
   background: #2b2929ee;
-  padding: 1em 1.5em 0;
+  padding: 2.3em 1.5em 0 0;
   font-size: 1.15em;
 }
 
@@ -76,7 +92,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   display: inline-block;
   letter-spacing: 1px;
   /* margin: 10px; */
-  font-size: 35px;
+  font-size: 40px;
   text-decoration: none;
   color: aliceblue;
   font-family: var(--secondary-font);
@@ -86,16 +102,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .menu-item p {
   font-family: var(--secondary-font);
-  font-size: 41px;
+  font-size: 45px;
   cursor: pointer;
   font-stretch: expanded;
   margin-bottom: 20px;
+  transition: var(--main-transition);
 }
 
 .menu-item:hover {
   color: var(--highlight-color);
-  font-size: 42px;
+  /* font-size: 42px; */
 }
+
+/* .menu-item p:hover {
+  color: var(--highlight-color);
+  font-size: 46px;
+} */
 
 /* ------ Styling of overlay ------ */
 

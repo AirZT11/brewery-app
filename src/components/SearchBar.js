@@ -108,9 +108,7 @@ const SearchBar = ({ fetchBreweries, getUserRatedBrews, currentUser }) => {
         <LoginSignUpContainer
           setLoginView={setLoginView}
           loginView={loginView}
-          popUpPrompt={
-            "Please login or sign up to display your reviewed breweries"
-          }
+          popUpPrompt={"Please login or sign up for an account"}
         />
       </form>
 
