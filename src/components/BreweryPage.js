@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import axios from "axios";
 
 import { getBreweryRatings } from "../lib/helperMethods";
@@ -8,6 +8,10 @@ import { getBreweryRatings } from "../lib/helperMethods";
 import Reviews from "./Reviews";
 import StarRating from "./StarRating";
 import Map from "./Map";
+
+import { IoIosLocate } from "react-icons/io";
+import { FaDirections } from "react-icons/fa";
+import { RiExternalLinkFill } from "react-icons/ri";
 
 const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
   const [brewery, setBrewery] = useState([]);
@@ -35,9 +39,10 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
   }, []);
 
   return (
-    <div className="brewery-page">
-      <div className="brewpage-description">
-        <h1>{name}</h1>
+    <div className="brewpage-container">
+      <navbar className="brewpage-nav" />
+      <div className="brewpage-content">
+        <h1 className="brew-name-lrg">{name}</h1>
 
         <StarRating
           breweryId={id}
@@ -49,32 +54,62 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
           {city}, {state}
         </p>
         <p className="brew-location">{country}</p>
-        <a href={website_url} target="_blank" rel="noreferrer">
+        {/* <a href={website_url} target="_blank" rel="noreferrer">
           {website_url}
+        </a> */}
+        {urlExist(brewery.website_url)}
+
+        {/* <br /> */}
+
+        <a
+          className="link-icons"
+          title="Get Directions"
+          href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
+          target="_blank"
+        >
+          <FaDirections />
         </a>
 
-        <h2>Reviews:</h2>
+        <br />
+
+        <div className="brewpage-map">
+          <Map
+            breweries={brewery}
+            userLocation={userLocation}
+            displayList={displayList}
+            display={display}
+            mapWidth="90vw"
+            mapHeight="50vh"
+            mapZoom={12}
+            mapCenter={{ lat: Number(latitude), lng: Number(longitude) }}
+          />
+        </div>
+
+        {/* <h2>Reviews:</h2>
         {breweryRatings.map((review) => (
           <div key={review.id}>
             <Reviews review={review} />
           </div>
-        ))}
-      </div>
-
-      <div className="small-map">
-        <Map
-          breweries={brewery}
-          userLocation={userLocation}
-          displayList={displayList}
-          display={display}
-          mapWidth="50vw"
-          mapHeight="50vh"
-          mapZoom={12}
-          mapCenter={{ lat: Number(latitude), lng: Number(longitude) }}
-        />
+        ))} */}
       </div>
     </div>
   );
+};
+
+const urlExist = (url) => {
+  if (url != null) {
+    return (
+      <a
+        className="link-icons"
+        title="Website"
+        href={url}
+        target="_blank"
+        rel="noreferrer"
+      >
+        <RiExternalLinkFill />
+      </a>
+    );
+  }
 };
 
 const mapStateToProps = (state) => ({

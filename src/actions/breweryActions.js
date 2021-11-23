@@ -64,7 +64,7 @@ export const getUserRatedBrews = (ratings) => (dispatch) => {
   ).then((breweries) =>
     dispatch({
       type: "FETCH_BREWERIES",
-      payload: breweries.map((b) => b.data),
+      payload: breweries.map((b) => b.data).sort(alpabetize),
     })
   );
 };

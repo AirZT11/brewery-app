@@ -15,7 +15,8 @@ const SearchBar = ({
   currentUser,
   panTo,
   userLocation,
-  searchReviewPrompt,
+  searchPromptDisplay,
+  searchPrompt,
 }) => {
   const [searchInput, setSearchInput] = useState("");
   const [delayedInput, setDelayedInput] = useState("");
@@ -61,6 +62,17 @@ const SearchBar = ({
     e.preventDefault();
     if (currentUser) {
       getUserRatedBrews(currentUser.ratings);
+      panTo(
+        {
+          lat: Number(userLocation.lat),
+          lng: Number(userLocation.lng),
+        },
+        5
+      );
+      dispatch({
+        type: "SEARCH_PROMPT",
+        payload: "Displaying your reviewed breweries",
+      });
       dispatch({ type: "SEARCH_REVIEW_PROMPT", payload: "block" });
     } else {
       setLoginView(true);
@@ -109,10 +121,10 @@ const SearchBar = ({
         <span className="search-btn-middle-bar" />
 
         <button
+          className="search-button"
           onClick={(e) => {
             handleProfileClick(e);
           }}
-          className="search-button"
         >
           <FaUserAlt />
         </button>
@@ -135,9 +147,9 @@ const SearchBar = ({
       </div>
       <div
         className="user-reviews-display"
-        style={{ display: searchReviewPrompt }}
+        style={{ display: searchPromptDisplay }}
       >
-        <p>Displaying your reviewed breweries</p>
+        <p>{searchPrompt}</p>
       </div>
     </>
   );
@@ -146,7 +158,8 @@ const SearchBar = ({
 const mapStateToProps = (state) => ({
   currentUser: state.userData.currentUser,
   userLocation: state.userData.userLocation,
-  searchReviewPrompt: state.breweryData.searchReviewPrompt,
+  searchPromptDisplay: state.breweryData.searchPromptDisplay,
+  searchPrompt: state.breweryData.searchPrompt,
 });
 
 export default connect(mapStateToProps, {

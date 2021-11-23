@@ -7,9 +7,7 @@ const Reviews = ({ review: { user, review, rating, created_at } }) => {
 
   return (
     <div className="reviews">
-      <p>
-        <strong>{user.name}</strong>
-      </p>
+      <p>{user.name}</p>
       <p className="review-date">Posted on: {dateFormat}</p>
       <span className="stars">
         <Stars

@@ -8,12 +8,7 @@ const Loading = ({ loading, type }) => {
       {loading && (
         <div className="loading-overlay">
           <div className="loading">
-            <ReactLoading
-              type={type}
-              color="black"
-              // height={"20%"}
-              // width={"20%"}
-            />
+            <ReactLoading type={type} color="black" height={667} width={200} />
           </div>
         </div>
       )}

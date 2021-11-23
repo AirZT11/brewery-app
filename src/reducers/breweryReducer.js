@@ -3,7 +3,8 @@ const initialState = {
   loading: false,
   userRatedBrews: [],
   mapZoom: 6,
-  searchReviewPrompt: "none",
+  searchPromptDisplay: "none",
+  searchPrompt: "",
 };
 
 export default function breweryReducer(state = initialState, action) {
@@ -28,7 +29,12 @@ export default function breweryReducer(state = initialState, action) {
     case "SEARCH_REVIEW_PROMPT":
       return {
         ...state,
-        searchReviewPrompt: action.payload,
+        searchPromptDisplay: action.payload,
+      };
+    case "SEARCH_PROMPT":
+      return {
+        ...state,
+        searchPrompt: action.payload,
       };
     default:
       return state;

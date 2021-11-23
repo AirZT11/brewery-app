@@ -3,12 +3,6 @@
   flex-direction: row-reverse;
 }
 
-.small-map {
-  margin: 30px;
-  border-radius: 15px;
-  overflow: hidden;
-}
-
 .locate {
   position: absolute;
   bottom: 100px;

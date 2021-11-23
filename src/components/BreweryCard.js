@@ -1,13 +1,11 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import StarRating from "./StarRating";
-import { IoMdLocate, IoIosBeer, IoIosLocate } from "react-icons/io";
+import { IoIosLocate } from "react-icons/io";
 import { FaDirections } from "react-icons/fa";
 import { RiExternalLinkFill } from "react-icons/ri";
-import { MdLocationSearching, MdReviews } from "react-icons/md";
 import { getBreweryRatings } from "../lib/helperMethods";
-import { getRatings } from "../actions/ratingActions";
 
 const BreweryCard = ({
   brewery,

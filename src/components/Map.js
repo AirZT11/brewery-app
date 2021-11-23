@@ -72,7 +72,7 @@ const Map = ({
 
   return (
     <div className="map-container">
-      <Loading type="spinningBubbles" />
+      <Loading type="bars" />
 
       {/* DISPLAY LOCATE ICON IF > 1 BREWERY */}
       {Array.isArray(breweries) && (
@@ -164,7 +164,7 @@ const Map = ({
 };
 
 const mapStateToProps = (state) => ({
-  mapZoom: state.breweryData.mapZoom,
+  // mapZoom: state.breweryData.mapZoom,
 });
 
 export default connect(mapStateToProps)(Map);

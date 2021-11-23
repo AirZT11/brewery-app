@@ -46,6 +46,7 @@ const Locate = ({
 
   const handleClick = () => {
     loadUserBrews(11);
+    dispatch({ type: "SEARCH_PROMPT", payload: "Displaying nearby breweries" });
     dispatch({ type: "SEARCH_REVIEW_PROMPT", payload: "block" });
   };
 
