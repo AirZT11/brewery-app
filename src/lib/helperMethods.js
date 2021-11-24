@@ -1,10 +1,11 @@
 import axios from "axios";
+import { API_URL } from "../actions/types";
 
 export const getBreweryRatings = (breweryId, stateSetter) => {
   axios
     .request({
       method: "GET",
-      url: `http://localhost:3001/api/v1/brewery_ratings`,
+      url: `${API_URL}/brewery_ratings`,
       params: { brewery_id: breweryId },
     })
     .then((response) => {

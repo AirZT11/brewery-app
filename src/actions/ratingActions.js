@@ -1,6 +1,7 @@
-// import axios from "axios";
+import { API_URL } from "./types";
 
-const RATINGS_API_URL = "http://localhost:3001/api/v1/ratings";
+const RATINGS_API_URL = `${API_URL}/ratings`;
+
 // const TOKEN = localStorage.getItem("token")
 
 export const postRating = (data) => (dispatch) => {

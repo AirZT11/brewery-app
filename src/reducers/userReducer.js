@@ -1,6 +1,7 @@
 const initialState = {
   currentUser: null,
   userLocation: { lat: 39.5501, lng: -105.7821 },
+  // locationAvail: false,
   loginFailed: false,
   promptView: false,
   promptMessage: "",
@@ -27,6 +28,11 @@ export default function userReducer(state = initialState, action) {
         ...state,
         userLocation: action.payload,
       };
+    // case "LOCATION_AVAIL":
+    //   return {
+    //     ...state,
+    //     locationAvail: action.payload,
+    //   };
     case "DEFAULT_LOCATION":
       return {
         ...state,

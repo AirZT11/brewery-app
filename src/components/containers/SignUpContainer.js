@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import SignUp from "../SignUp";
 import axios from "axios";
 import { setPromptView } from "../../actions/userActions";
+import { API_URL } from "../../actions/types";
 
 class SignUpContainer extends Component {
   constructor(props) {
@@ -27,7 +28,7 @@ class SignUpContainer extends Component {
     event.preventDefault();
     console.log(this.state);
     axios
-      .post("http://localhost:3001/api/v1/users", {
+      .post(`${API_URL}/users`, {
         name: this.state.name,
         email: this.state.email,
         username: this.state.username,

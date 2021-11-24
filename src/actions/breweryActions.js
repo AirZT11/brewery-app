@@ -1,7 +1,6 @@
 import axios from "axios";
 
 const SEARCH_URL = `https://brianiswu-open-brewery-db-v1.p.rapidapi.com/breweries/search`;
-// const SEARCH_URL = `http://localhost:3001/api/v1/search`;
 
 const alpabetize = (a, b) => {
   return a.id.localeCompare(b.id);

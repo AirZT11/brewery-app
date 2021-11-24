@@ -82,20 +82,27 @@ const SearchBar = ({
   // SEARCH SUBMIT
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    fetchBreweries(searchInput);
-    panTo(
-      {
-        lat: Number(userLocation.lat),
-        lng: Number(userLocation.lng),
-      },
-      5
-    );
-    setSearchInput("");
-    setDelayedInput("");
-    setAutoCompDisplay("none");
-    dispatch({ type: "SEARCH_REVIEW_PROMPT", payload: "none" });
-    dispatch({ type: "CLOSE_WELCOME_MODAL" });
+    if (searchInput) {
+      fetchBreweries(searchInput);
+      panTo(
+        {
+          lat: Number(userLocation.lat),
+          lng: Number(userLocation.lng),
+        },
+        5
+      );
+      setSearchInput("");
+      setDelayedInput("");
+      setAutoCompDisplay("none");
+      dispatch({ type: "SEARCH_REVIEW_PROMPT", payload: "none" });
+      dispatch({ type: "CLOSE_WELCOME_MODAL" });
+    } else {
+      dispatch({
+        type: "SEARCH_PROMPT",
+        payload: "Input field can't be blank",
+      });
+      dispatch({ type: "SEARCH_REVIEW_PROMPT", payload: "block" });
+    }
   };
 
   return (

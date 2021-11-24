@@ -1,5 +1,5 @@
-import axios from "axios";
-const API_URL = "http://localhost:3001/api/v1";
+import { API_URL } from "./types";
+
 // const USER_API_URL = API_URL + '/users';
 const LOGIN_API_URL = API_URL + "/login";
 

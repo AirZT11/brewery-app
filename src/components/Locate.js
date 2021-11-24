@@ -15,6 +15,7 @@ const Locate = ({
   setLoadDisplay,
   // mapZoom,
   userLocation,
+  locationAvail,
 }) => {
   // ON LOAD OF APP,
   useEffect(() => {
@@ -60,6 +61,7 @@ const Locate = ({
 const mapStateToProps = (state) => ({
   userLocation: state.userData.userLocation,
   // mapZoom: state.breweryData.mapZoom,
+  // locationAvail: state.userData.locationAvail,
 });
 
 export default connect(mapStateToProps, { fetchUserLocationBrews })(Locate);
