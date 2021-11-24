@@ -48,6 +48,12 @@ export const fetchUserLocationBrews = (lat, lng) => (dispatch) => {
         payload: sortedBrews,
       });
     })
+    .then(() => {
+      dispatch({
+        type: "SET_LOADING",
+        payload: false,
+      });
+    })
     .catch((error) => {
       console.error(error);
     });

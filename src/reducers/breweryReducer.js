@@ -19,12 +19,11 @@ export default function breweryReducer(state = initialState, action) {
       return {
         ...state,
         breweries: action.payload,
-        loading: false,
       };
     case "SET_LOADING":
       return {
         ...state,
-        loading: true,
+        loading: action.payload,
       };
     case "SEARCH_REVIEW_PROMPT":
       return {

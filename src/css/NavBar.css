@@ -109,16 +109,9 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .menu-item:hover {
   color: var(--highlight-color);
-  /* font-size: 42px; */
 }
 
-/* .menu-item p:hover {
-  color: var(--highlight-color);
-  font-size: 46px;
-} */
-
 /* ------ Styling of overlay ------ */
-
 .bm-overlay {
   background: rgba(0, 0, 0, 0.3);
 }
@@ -129,4 +122,22 @@ Note: Beware of modifying this element as it can break the animations - you shou
 
 .submit:hover {
   background-color: rgb(211, 211, 211);
+}
+
+/* ------HOME BUTTON------ */
+.home-btn {
+  display: inline-block;
+  letter-spacing: 1px;
+  margin: 10px 15px 10px 15px;
+  font-size: 40px;
+  text-decoration: none;
+  color: black;
+  font-family: var(--secondary-font);
+  font-weight: bold;
+  transition: var(--main-transition);
+  cursor: pointer;
+}
+
+.home-btn:hover {
+  color: var(--highlight-color);
 }

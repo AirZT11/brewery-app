@@ -101,7 +101,6 @@
 }
 
 /* ------SEARCHBAR STYLING------ */
-
 .search-bar-container {
   display: flex;
   position: sticky;
@@ -127,7 +126,6 @@
   padding: 20px;
   flex-grow: 1;
   font-size: 16px;
-  /* border-radius: 10px 0px 0 10px; */
   outline: none;
   border: none;
 }
@@ -150,10 +148,12 @@
   opacity: 75%;
 }
 
+/* ------AUTO COMP STYLING------ */
 .auto-comp-container {
   padding-top: 32px;
   box-sizing: border-box;
-  height: 25%;
+  height: 25vh;
+  width: 100%;
   overflow-y: scroll;
   box-shadow: inset var(--secondary-box-shadow);
   border-bottom: 3px solid;
@@ -247,3 +247,7 @@
 p {
   margin: 0;
 }
+
+/* .gm-style .gm-style-iw-c {
+  background-color: black;
+} */

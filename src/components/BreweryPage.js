@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { useParams, Link } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import axios from "axios";
 
 import { getBreweryRatings } from "../lib/helperMethods";
 
-import Reviews from "./Reviews";
 import StarRating from "./StarRating";
 import Map from "./Map";
 
-import { IoIosLocate } from "react-icons/io";
-import { FaDirections } from "react-icons/fa";
+import { FaDirections, FaHome } from "react-icons/fa";
 import { RiExternalLinkFill } from "react-icons/ri";
 
 const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
@@ -40,7 +38,11 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
 
   return (
     <div className="brewpage-container">
-      <navbar className="brewpage-nav" />
+      <navbar className="brewpage-nav">
+        <NavLink exact className="home-btn" to="/">
+          <FaHome />
+        </NavLink>
+      </navbar>
       <div className="brewpage-content">
         <h1 className="brew-name-lrg">{name}</h1>
 
@@ -54,12 +56,8 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
           {city}, {state}
         </p>
         <p className="brew-location">{country}</p>
-        {/* <a href={website_url} target="_blank" rel="noreferrer">
-          {website_url}
-        </a> */}
-        {urlExist(brewery.website_url)}
 
-        {/* <br /> */}
+        {urlExist(brewery.website_url)}
 
         <a
           className="link-icons"

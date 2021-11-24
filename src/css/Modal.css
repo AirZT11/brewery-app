@@ -11,6 +11,7 @@
   align-items: center;
   flex-direction: column;
   background: var(--main-color);
+  height: 50%;
 }
 
 .modal-content {

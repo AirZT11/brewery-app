@@ -24,7 +24,7 @@ const Locate = ({
   const dispatch = useDispatch();
 
   const loadUserBrews = (zoom) => {
-    dispatch({ type: "SET_LOADING" });
+    dispatch({ type: "SET_LOADING", payload: true });
     setLoadDisplay("block");
     // SYNTAX ERROR IF NO navigator.getlocation...WHY??
     navigator.geolocation.getCurrentPosition(
