@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from "react";
 
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { postRating } from "../actions/ratingActions";
 
 import Stars from "react-star-ratings";
 import Popup from "reactjs-popup";
 
 import Reviews from "./Reviews";
-import LoginSignUpContainer from "./containers/LoginSignUpContainer";
 
 import "../css/Modal.css";
 import "../css/Rating.css";
@@ -24,7 +23,7 @@ const StarRating = ({
   const [rating, setRating] = useState(0);
   const [submitDisplay, setSubmitDisplay] = useState(false);
   const [review, setReview] = useState("");
-  const [loginView, setLoginView] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     averageRatings(breweryRatings);
@@ -48,13 +47,20 @@ const StarRating = ({
     }
   };
 
-  // if currentUser exists, setRating to value of the clicked star and display review form
+  /*
+   * if logged in => setRating and display review form
+   * else => display loginSignUpContainer popup
+   */
   const handleClick = (ratingVal) => {
     if (currentUser) {
       setRating(ratingVal);
       setSubmitDisplay(true);
     } else {
-      setLoginView(true);
+      dispatch({
+        type: "SET_LOGIN_SIGNUP_PROMPT",
+        payload: "Please login or create account to review",
+      });
+      dispatch({ type: "SET_LOGIN_VIEW", payload: true });
     }
   };
 
@@ -88,6 +94,7 @@ const StarRating = ({
   return (
     <>
       <label className="stars">
+        {/* changeRating => loginSignUpContainer POPS UP IF NOT LOGGED IN */}
         <Stars
           rating={rating}
           starRatedColor="orange"
@@ -101,15 +108,8 @@ const StarRating = ({
         />
       </label>
 
-      {/* POPUP IF NOT LOGGED IN */}
-      <LoginSignUpContainer
-        setLoginView={setLoginView}
-        loginView={loginView}
-        popUpPrompt={"Please login or create account to review"}
-      />
-
+      {/* AVERAGE RATING OF BREWERY */}
       <label className="average-rating"> {averageRating} Star Rating</label>
-
       <br />
 
       {/* POPUP DISPLAYING USER REVIEWS */}

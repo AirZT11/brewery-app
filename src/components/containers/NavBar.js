@@ -8,6 +8,7 @@ import { slide as Menu } from "react-burger-menu";
 import { GoMarkGithub } from "react-icons/go";
 import { FaLinkedin, FaGithub } from "react-icons/fa";
 import { AiOutlineLinkedin } from "react-icons/ai";
+import LoginSignUpContainer from "./LoginSignUpContainer";
 
 const NavBar = ({
   currentUser,
@@ -16,6 +17,7 @@ const NavBar = ({
   menuState,
   closeMenu,
   handleMenuStateChange,
+  displayLoginSignupPopup,
 }) => {
   const logout = () => {
     logOut(true);
@@ -53,9 +55,9 @@ const NavBar = ({
           {currentUser.name}
         </NavLink>
       ) : (
-        <NavLink exact className="menu-item" to="/signup" onClick={closeMenu}>
+        <a className="menu-item" onClick={displayLoginSignupPopup}>
           Sign Up
-        </NavLink>
+        </a>
       )}
 
       {currentUser ? (
@@ -63,9 +65,9 @@ const NavBar = ({
           Logout
         </NavLink>
       ) : (
-        <NavLink exact className="menu-item" to="/login" onClick={closeMenu}>
+        <a className="menu-item" onClick={displayLoginSignupPopup}>
           Login
-        </NavLink>
+        </a>
       )}
 
       <br />

@@ -15,15 +15,12 @@
   font-size: 40px;
   text-shadow: var(--main-text-shadow);
   transition: 0.2s;
-  /* margin-top: 20px; */
   color: aliceblue;
   padding-left: 16px;
-  /* vertical-align: bottom; */
 }
 
 .nav-icons:hover {
   cursor: pointer;
-  /* font-size: 41px; */
   color: var(--highlight-color);
 }
 
@@ -98,6 +95,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
   font-family: var(--secondary-font);
   font-weight: bold;
   transition: var(--main-transition);
+  cursor: pointer;
 }
 
 .menu-item p {

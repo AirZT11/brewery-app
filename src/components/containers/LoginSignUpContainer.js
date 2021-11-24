@@ -1,14 +1,15 @@
 import React from "react";
 import useToggle from "../../hooks/useToggle";
 import Popup from "reactjs-popup";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { setPromptView } from "../../actions/userActions";
 
 import Login from "../Login";
 import SignUpContainer from "./SignUpContainer";
 
-const LoginSignUpContainer = ({ loginView, setLoginView, popUpPrompt }) => {
+const LoginSignUpContainer = ({ loginView, loginSignupPrompt }) => {
   const [modalView, toggleModalView] = useToggle();
+  const dispatch = useDispatch();
 
   return (
     <Popup
@@ -16,7 +17,7 @@ const LoginSignUpContainer = ({ loginView, setLoginView, popUpPrompt }) => {
       modal
       nested
       onClose={() => {
-        setLoginView(false);
+        dispatch({ type: "SET_LOGIN_VIEW", payload: false });
         setPromptView(false);
         toggleModalView(false);
       }}
@@ -26,7 +27,7 @@ const LoginSignUpContainer = ({ loginView, setLoginView, popUpPrompt }) => {
           <button className="close" onClick={close}>
             &times;
           </button>
-          <div className="header">{popUpPrompt}</div>
+          <div className="header">{loginSignupPrompt}</div>
 
           {modalView ? <SignUpContainer /> : <Login />}
 
@@ -39,4 +40,9 @@ const LoginSignUpContainer = ({ loginView, setLoginView, popUpPrompt }) => {
   );
 };
 
-export default LoginSignUpContainer;
+const mapStateToProps = (state) => ({
+  loginView: state.userData.loginView,
+  loginSignupPrompt: state.userData.loginSignupPrompt,
+});
+
+export default connect(mapStateToProps)(LoginSignUpContainer);

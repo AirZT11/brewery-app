@@ -120,21 +120,17 @@ const SearchBar = ({
 
         <span className="search-btn-middle-bar" />
 
-        <button
-          className="search-button"
-          onClick={(e) => {
-            handleProfileClick(e);
-          }}
-        >
-          <FaUserAlt />
-        </button>
-
-        {/* ONLY IF CURRENTUSER EXISTS */}
-        <LoginSignUpContainer
-          setLoginView={setLoginView}
-          loginView={loginView}
-          popUpPrompt={"Please login or sign up for an account"}
-        />
+        {/* USER PROFILE BUTTON VISBILE IF LOGGED IN */}
+        {currentUser && (
+          <button
+            className="search-button"
+            onClick={(e) => {
+              handleProfileClick(e);
+            }}
+          >
+            <FaUserAlt />
+          </button>
+        )}
       </form>
 
       <div className="auto-comp-container" style={{ display: autoCompDisplay }}>

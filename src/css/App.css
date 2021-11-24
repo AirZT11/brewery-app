@@ -4,17 +4,7 @@
   /* display: flex; */
 }
 
-.content {
-  /* padding: 30px; */
-}
-
-.errors {
-  color: red;
-  font-size: 14px;
-  line-height: 1px;
-  font-style: italic;
-}
-
+/* ------SIGN UP FORM------ */
 .signup-form input {
   padding: 10px;
   border-radius: 10px;
@@ -29,6 +19,20 @@
   margin: 10px;
 }
 
+.signup-form .error {
+  font-size: 16px;
+  font-style: italic;
+  color: red;
+}
+
+.errors {
+  color: red;
+  font-size: 14px;
+  line-height: 1px;
+  font-style: italic;
+}
+
+/* ------BUTTON STYLING------ */
 .main-btn-style {
   font-family: var(--main-font);
   font-size: 18px;
@@ -52,6 +56,7 @@
   font-family: var(--main-font);
   font-size: 14px;
   width: 50%;
+  max-width: 300px;
   padding: 5px;
   border-radius: 5px;
   border-style: none;
@@ -69,12 +74,6 @@
 .second-btn-style:hover {
   font-weight: bold;
   box-shadow: var(--secondary-box-shadow);
-}
-
-.signup-form .error {
-  font-size: 16px;
-  font-style: italic;
-  color: red;
 }
 
 .text-box {

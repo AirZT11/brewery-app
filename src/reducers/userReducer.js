@@ -6,6 +6,8 @@ const initialState = {
   promptMessage: "",
   welcomeView: false,
   signupSuccessful: false,
+  loginView: false,
+  loginSignupPrompt: "",
 };
 
 export default function userReducer(state = initialState, action) {
@@ -65,6 +67,16 @@ export default function userReducer(state = initialState, action) {
       return {
         ...state,
         welcomeView: action.payload,
+      };
+    case "SET_LOGIN_VIEW":
+      return {
+        ...state,
+        loginView: action.payload,
+      };
+    case "SET_LOGIN_SIGNUP_PROMPT":
+      return {
+        ...state,
+        loginSignupPrompt: action.payload,
       };
     default:
       return state;

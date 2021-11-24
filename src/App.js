@@ -27,6 +27,7 @@ import "./css/NavBar.css";
 import "./css/Rating.css";
 import "./css/Breweries.css";
 import "./css/Loading.css";
+import LoginSignUpContainer from "./components/containers/LoginSignUpContainer";
 
 const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
   const [display, setDisplay] = useState("none");
@@ -49,6 +50,15 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
     setMenuState(false);
   };
 
+  const displayLoginSignupPopup = () => {
+    setMenuState(false);
+    dispatch({
+      type: "SET_LOGIN_SIGNUP_PROMPT",
+      payload: "",
+    });
+    dispatch({ type: "SET_LOGIN_VIEW", payload: true });
+  };
+
   return (
     <Router>
       <div className="App">
@@ -57,9 +67,13 @@ const App = ({ fetchCurrentUser, getRatings, currentUser, fetchBreweries }) => {
           menuState={menuState}
           closeMenu={closeMenu}
           handleMenuStateChange={handleMenuStateChange}
+          displayLoginSignupPopup={displayLoginSignupPopup}
         />
 
         <WelcomePage />
+
+        {/* POPS UP IF USER WANTS TO LOGIN/SIGNUP OR REVIEW BREWERY */}
+        <LoginSignUpContainer />
 
         <Switch>
           {/* <Route exact path="/about">
