@@ -1,7 +1,4 @@
 .App {
-  /* text-align: center; */
-  /* margin: auto; */
-  /* display: flex; */
 }
 
 /* ------SIGN UP FORM------ */
@@ -11,7 +8,6 @@
   width: 350px;
   font-size: 18px;
   margin: 10px;
-  /* border-style: ridge; */
 }
 
 .signup-form h1 {

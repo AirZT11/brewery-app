@@ -1,5 +1,4 @@
 import React from "react";
-import Popup from "reactjs-popup";
 import Stars from "react-star-ratings";
 
 const Reviews = ({ review: { user, review, rating, created_at } }) => {

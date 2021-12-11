@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { fetchBreweries } from "../../actions/breweryActions";
 import { NavLink } from "react-router-dom";
@@ -6,9 +6,7 @@ import { NavLink } from "react-router-dom";
 import { logOut, setPromptView } from "../../actions/userActions";
 import { slide as Menu } from "react-burger-menu";
 import { GoMarkGithub } from "react-icons/go";
-import { FaLinkedin, FaGithub } from "react-icons/fa";
-import { AiOutlineLinkedin } from "react-icons/ai";
-import LoginSignUpContainer from "./LoginSignUpContainer";
+import { FaLinkedin } from "react-icons/fa";
 
 const NavBar = ({
   currentUser,
@@ -55,9 +53,9 @@ const NavBar = ({
           {currentUser.name}
         </NavLink>
       ) : (
-        <a className="menu-item" onClick={displayLoginSignupPopup}>
+        <p className="menu-item" onClick={displayLoginSignupPopup}>
           Sign Up
-        </a>
+        </p>
       )}
 
       {currentUser ? (
@@ -65,9 +63,9 @@ const NavBar = ({
           Logout
         </NavLink>
       ) : (
-        <a className="menu-item" onClick={displayLoginSignupPopup}>
+        <p className="menu-item" onClick={displayLoginSignupPopup}>
           Login
-        </a>
+        </p>
       )}
 
       <br />
@@ -78,6 +76,7 @@ const NavBar = ({
           href="https://github.com/AirZT11/brewery-app"
           className="nav-icons"
           target="_blank"
+          rel="noreferrer"
         >
           <GoMarkGithub />
         </a>
@@ -85,6 +84,7 @@ const NavBar = ({
           href="https://www.linkedin.com/in/samkim-dev/"
           className="nav-icons"
           target="_blank"
+          rel="noreferrer"
           style={{ fontSize: "44px" }}
         >
           <FaLinkedin />

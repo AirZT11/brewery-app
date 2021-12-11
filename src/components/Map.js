@@ -1,9 +1,8 @@
-import React, { useState, useEffect, useRef, useCallback } from "react";
+import React, { useState, useRef, useCallback } from "react";
 import { connect } from "react-redux";
 import useToggle from "../hooks/useToggle";
 
 import Locate from "./Locate";
-// import GoogleSearch from "./GoogleSearch";
 import BreweryCard from "./BreweryCard";
 import Loading from "./Loading";
 import BreweryList from "./containers/BreweryList";
@@ -36,7 +35,6 @@ const Map = ({
   mapCenter,
 }) => {
   const [selectedBrew, setSelectedBrew] = useState(null);
-  const [loadDisplay, setLoadDisplay] = useState("none");
   const [markerView, toggleMarkerView] = useToggle(true);
   const [libraries] = useState(["places"]);
 
@@ -76,11 +74,7 @@ const Map = ({
 
       {/* DISPLAY LOCATE ICON IF > 1 BREWERY */}
       {Array.isArray(breweries) && (
-        <Locate
-          panTo={panTo}
-          displayList={displayList}
-          setLoadDisplay={setLoadDisplay}
-        />
+        <Locate panTo={panTo} displayList={displayList} />
       )}
 
       <GoogleMap

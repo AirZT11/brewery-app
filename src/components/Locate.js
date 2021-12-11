@@ -12,10 +12,7 @@ const Locate = ({
   panTo,
   fetchUserLocationBrews,
   displayList,
-  setLoadDisplay,
-  // mapZoom,
   userLocation,
-  locationAvail,
 }) => {
   // ON LOAD OF APP,
   useEffect(() => {
@@ -26,7 +23,6 @@ const Locate = ({
 
   const loadUserBrews = (zoom) => {
     dispatch({ type: "SET_LOADING", payload: true });
-    setLoadDisplay("block");
     // SYNTAX ERROR IF NO navigator.getlocation...WHY??
     navigator.geolocation.getCurrentPosition(
       (position) => {

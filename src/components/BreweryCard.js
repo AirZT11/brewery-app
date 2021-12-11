@@ -74,20 +74,21 @@ const BreweryCard = ({
           title="Get Directions"
           href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
           target="_blank"
+          rel="noreferrer"
         >
           <FaDirections />
         </a>
 
         <br />
 
-        <a
+        <p
           className="link-icons"
           title="Locate Brewery"
           style={{ display: panBtnView }}
           onClick={handleLocateOnMapClick}
         >
           <IoIosLocate />
-        </a>
+        </p>
       </div>
     </div>
   );

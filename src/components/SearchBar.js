@@ -3,8 +3,7 @@ import { connect, useDispatch } from "react-redux";
 import { getRatings } from "../actions/ratingActions";
 import { fetchBreweries, getUserRatedBrews } from "../actions/breweryActions";
 import { BsSearch } from "react-icons/bs";
-import { FaUserAlt, FaStar } from "react-icons/fa";
-import LoginSignUpContainer from "./containers/LoginSignUpContainer";
+import { FaUserAlt } from "react-icons/fa";
 
 import axios from "axios";
 
@@ -22,8 +21,6 @@ const SearchBar = ({
   const [delayedInput, setDelayedInput] = useState("");
   const [autoCompBrews, setAutoCompBrews] = useState([]);
   const [autoCompDisplay, setAutoCompDisplay] = useState("none");
-  // const [userReviewsDisplay, setUserReviewsDisplay] = useState("none");
-  const [loginView, setLoginView] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -74,8 +71,6 @@ const SearchBar = ({
         payload: "Displaying your reviewed breweries",
       });
       dispatch({ type: "SEARCH_REVIEW_PROMPT", payload: "block" });
-    } else {
-      setLoginView(true);
     }
   };
 

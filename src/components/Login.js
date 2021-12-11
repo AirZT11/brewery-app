@@ -11,7 +11,7 @@ const Login = ({ loginUser, loginFailed, setPromptView }) => {
       username: username,
       password: password,
     };
-    const response = await loginUser(userInputData);
+    await loginUser(userInputData);
   };
 
   const handleSubmit = (event) => {

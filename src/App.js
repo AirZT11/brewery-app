@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 
 import NavBar from "./components/containers/NavBar";
-import About from "./components/About";
 import UserProfile from "./components/UserProfile";
 import BreweryPage from "./components/BreweryPage";
 import BreweryContainer from "./components/containers/BreweryContainer";
@@ -20,7 +19,6 @@ import WelcomePage from "./components/WelcomePage";
 import { fetchCurrentUser } from "./actions/userActions";
 import { getRatings } from "./actions/ratingActions";
 import { fetchBreweries } from "./actions/breweryActions";
-import BottomNav from "./components/BottomNav";
 
 import "./css/App.css";
 import "./css/NavBar.css";

@@ -57,13 +57,14 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
         </p>
         <p className="brew-location">{country}</p>
 
-        {urlExist(brewery.website_url)}
+        {urlExist(website_url)}
 
         <a
           className="link-icons"
           title="Get Directions"
           href={`https://www.google.com/maps/dir/?api=1&origin=${userLocation.lat},${userLocation.lng}&destination=${brewery.latitude},${brewery.longitude}`}
           target="_blank"
+          rel="noreferrer"
         >
           <FaDirections />
         </a>
@@ -82,13 +83,6 @@ const BreweryPage = ({ allRatings, display, displayList, userLocation }) => {
             mapCenter={{ lat: Number(latitude), lng: Number(longitude) }}
           />
         </div>
-
-        {/* <h2>Reviews:</h2>
-        {breweryRatings.map((review) => (
-          <div key={review.id}>
-            <Reviews review={review} />
-          </div>
-        ))} */}
       </div>
     </div>
   );
