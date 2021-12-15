@@ -39,7 +39,7 @@ const Map = ({
   const [libraries] = useState(["places"]);
 
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
+    googleMapsApiKey: "AIzaSyDeJ-zdqz6pQJQxzhoeXoO3pKCW-j1uK0E",
     libraries,
   });
 
